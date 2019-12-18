@@ -14,7 +14,7 @@ const NavSearch = () => {
 export default NavSearch;
 
 const StyledSearch = styled.div`
-  padding: 30px 0 30px 300px;
+  padding: 1rem;
   background: #222;
   color: white;
 `;

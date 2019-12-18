@@ -19,7 +19,7 @@ const HomeHero = ({ video }) => {
         <div className='video-container'>
           <iframe
             className='video-frame'
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&start=30&showinfo=0&controls=0&mute=1`}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=0&start=30&showinfo=0&controls=0&mute=1`}
             frameBorder='0'
             title='Most recent AFoV Video'
             allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'

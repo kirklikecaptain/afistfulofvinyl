@@ -45,7 +45,7 @@ const VideoPlayer = ({ videoData, relatedVideos, canonicalUrl, pageTitle }) => {
     <StyledVideoPlayer colors={colors}>
       <div className='background' />
       <div className='edges'>
-        <div className='container grid'>
+        <div className='small-container'>
           <div className='video-content'>
             <div className='video-container'>
               <iframe
@@ -90,26 +90,26 @@ const VideoPlayer = ({ videoData, relatedVideos, canonicalUrl, pageTitle }) => {
               <h3>Session recorded live at</h3>
             </div>
 
-            <div>
-              <h3>Contributors</h3>
-            </div>
+            <h3>Contributors</h3>
             <div className='comments'>
               {/* <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} /> */}
             </div>
           </div>
-
+          <h3>More By {artistName}</h3>
           <div className='related-videos'>
-            {relatedVideos.map(video => {
-              const {
-                id,
-                fields: { videoPath },
-                thumbnail: {
-                  file: { url }
-                },
-                title
-              } = video.node;
-              return <VideoCard key={id} songTitle={title} thumbnail={url} color={color} videoUrl={videoPath} />;
-            })}
+            <div className='inner'>
+              {relatedVideos.map(video => {
+                const {
+                  id,
+                  fields: { videoPath },
+                  thumbnail: {
+                    file: { url }
+                  },
+                  title
+                } = video.node;
+                return <VideoCard key={id} songTitle={title} thumbnail={url} color={color} videoUrl={videoPath} />;
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -150,16 +150,30 @@ const StyledVideoPlayer = styled.section`
     position: absolute;
   }
 
-  .grid {
-    display: grid;
-    align-items: start;
-    grid-template-columns: 3fr 1fr;
-    grid-gap: 2rem;
-  }
-
   .related-videos {
-    display: grid;
-    grid-gap: 2rem;
+    position: relative;
+    margin: 0 0 0 -120px;
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 40px;
+      content: '';
+      background: linear-gradient(to right, transparent, white);
+    }
+    .inner {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      padding: 1rem 0;
+      padding-left: 120px;
+      white-space: nowrap;
+      .card {
+        width: 400px;
+        margin-right: 1.5rem;
+        display: inline-block;
+      }
+    }
   }
 
   .video-header {

@@ -6,7 +6,6 @@ import Footer from './Footer';
 import ArtistRainbow from '../components/ArtistRainbow';
 
 import '../style/_index.less';
-import Search from './Search';
 
 const Layout = props => {
   const {
@@ -17,7 +16,6 @@ const Layout = props => {
   return (
     <StyledLayout>
       <Nav transparentNav={transparentNav} />
-      <Search />
       <main className='main-content'>{children}</main>
       <ArtistRainbow />
       <Footer />
