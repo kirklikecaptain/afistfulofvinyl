@@ -23,8 +23,10 @@ export const VideoHero = props => {
           <div className='video-content'>
             <YoutubePlayer videoId={videoId} />
             <div className='related-videos'>
-              <div className='more-by slab'>More {artistName}</div>
               <ul>
+                <div className='more-by slab'>
+                  {relatedVideos.length} more by {artistName}
+                </div>
                 {relatedVideos.map(({ node }) => {
                   const {
                     id,
@@ -51,6 +53,7 @@ export const VideoHero = props => {
                   );
                 })}
               </ul>
+              <div className='fade' />
             </div>
           </div>
         </div>
@@ -95,15 +98,19 @@ const StyledVideoHero = styled.section`
       left: 100%;
       top: 0;
       width: 35%;
-      padding-left: 2rem;
+      height: 100%;
 
-      .more-by {
-        margin-bottom: 1rem;
-        color: white;
-      }
-
-      li {
-        margin-bottom: 2rem;
+      ul {
+        height: 100%;
+        overflow-y: scroll;
+        padding: 0 1rem 0 2rem;
+        .more-by {
+          margin-bottom: 1.5rem;
+          color: white;
+        }
+        li {
+          margin-bottom: 2rem;
+        }
       }
 
       .song-title {
@@ -112,6 +119,20 @@ const StyledVideoHero = styled.section`
         left: 0.5rem;
         right: 0.5rem;
       }
+    }
+
+    .fade {
+      pointer-events: none;
+      position: absolute;
+      top: 85%;
+      right: 0;
+      left: 2rem;
+      height: 15%;
+      content: '';
+      background: linear-gradient(
+        transparent,
+        ${props => darken(0.2, desaturate(0.35, props.color))}
+      );
     }
   }
 
@@ -134,12 +155,16 @@ const StyledVideoHero = styled.section`
     }
 
     h1 {
+      color: white;
       font-size: 3rem;
+      margin: 0;
+      line-height: 1;
       text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.35);
     }
     h2 {
       color: rgba(255, 255, 255, 0.85);
       font-size: 2rem;
+      line-height: 1;
       text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.35);
     }
   }

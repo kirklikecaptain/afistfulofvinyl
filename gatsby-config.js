@@ -22,19 +22,20 @@ module.exports = {
     'gatsby-plugin-react-helmet-async',
     'gatsby-plugin-netlify',
     'gatsby-plugin-styled-components',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: `${__dirname}/src/images`
-      }
-    },
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     name: 'images',
+    //     path: `${__dirname}/src/images`
+    //   }
+    // },
     {
       resolve: 'gatsby-plugin-alias-imports',
       options: {
         alias: {
           '@assets': path.resolve(__dirname, 'src/assets'),
           '@components': path.resolve(__dirname, 'src/components'),
+          '@context': path.resolve(__dirname, 'src/context'),
           '@layout': path.resolve(__dirname, 'src/layout'),
           '@style': path.resolve(__dirname, 'src/style'),
           '@views': path.resolve(__dirname, 'src/views')
