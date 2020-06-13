@@ -22,13 +22,13 @@ module.exports = {
     'gatsby-plugin-react-helmet-async',
     'gatsby-plugin-netlify',
     'gatsby-plugin-styled-components',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: `${__dirname}/src/images`
-      }
-    },
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     name: 'images',
+    //     path: `${__dirname}/src/images`
+    //   }
+    // },
     {
       resolve: 'gatsby-plugin-alias-imports',
       options: {
