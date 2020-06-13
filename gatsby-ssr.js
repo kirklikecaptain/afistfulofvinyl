@@ -1,7 +1,7 @@
-const React = require('react');
-const Layout = require('./src/layout/Layout').default;
+/**
+ * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
+ *
+ * See: https://www.gatsbyjs.org/docs/ssr-apis/
+ */
 
-export const wrapPageElement = ({ element, props }) => {
-  console.log('Props', props);
-  return <Layout {...props}>{element}</Layout>;
-};
+// You can delete this file if you're not using it

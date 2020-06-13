@@ -1,28 +1,31 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import { Layout as AntLayout } from 'antd';
-import Nav from './Nav';
+import NavDesktop from './NavDesktop';
+import NavMobile from './NavMobile';
 import Footer from './Footer';
-import ArtistRainbow from '../components/ArtistRainbow';
+import { Helmet } from 'react-helmet-async';
+import '../style/index.less';
 
-import '../style/_index.less';
+const preconnectOrigins = [
+  'https://www.google.com',
+  'https://www.youtube-nocookie.com',
+  'https://googleads.g.doubleclick.net',
+  'https://static.doubleclick.net'
+];
 
-const Layout = props => {
-  const {
-    location,
-    children,
-    pageContext: { transparentNav }
-  } = props;
+const AppLayout = ({ children }) => {
   return (
-    <StyledLayout>
-      <Nav transparentNav={transparentNav} />
-      <main className='main-content'>{children}</main>
-      <ArtistRainbow />
+    <div id='layout'>
+      <Helmet>
+        {preconnectOrigins.map(url => (
+          <link key={url} href={url} rel='preconnect' crossOrigin />
+        ))}
+      </Helmet>
+      <NavDesktop />
+      <NavMobile />
+      <main id='content'>{children}</main>
       <Footer />
-    </StyledLayout>
+    </div>
   );
 };
 
-export default Layout;
-
-const StyledLayout = styled(AntLayout)``;
+export default AppLayout;

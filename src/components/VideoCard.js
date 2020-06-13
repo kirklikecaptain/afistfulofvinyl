@@ -1,133 +1,82 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Link } from 'gatsby';
+import Img from 'gatsby-image';
 
-const VideoCard = props => {
-  const { songTitle, artistName, thumbnail, artistPhoto, color, videoUrl } = props;
+export const VideoCard = props => {
+  const { fullPath, color, fluid, title, artistAvatar, artistName } = props;
+
   return (
-    <StyledCard to={videoUrl} color={color} className='card'>
-      <div className='thumb-box'>
-        <img src={thumbnail + '?fm=jpg&fl=progressive&w=400'} className='thumb' alt={songTitle + ' video'} />
-        <div className='overlay safari_only' />
-        <h2 className='song-title'>{songTitle}</h2>
+    <StyledVideoCard to={fullPath} color={color}>
+      <div className='thumbnail-wrapper'>
+        <Img className='thumbnail' fluid={fluid} />
+        <div className='song-title display'>{title}</div>
       </div>
-      {artistName && (
-        <div className='card-text'>
-          <div className='artist-row'>
-            <img src={artistPhoto + '?fm=jpg&fl=progressive&w=60'} className='avatar' alt={artistName} />
-            <h3 className='slab'>{artistName}</h3>
+      {artistAvatar && artistName && (
+        <div className='artist-info'>
+          <div className='avatar-wrapper'>
+            <Img className='avatar' fluid={artistAvatar} />
           </div>
+          <div className='artist-name slab'>{artistName}</div>
         </div>
       )}
-    </StyledCard>
+    </StyledVideoCard>
   );
 };
 
-export default VideoCard;
-
-const StyledCard = styled(Link)`
-  display: block;
-  text-decoration: none;
-  color: #333;
-  min-width: 0;
-  overflow: hidden;
-  &:hover .song-title {
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+const StyledVideoCard = styled(Link)`
+  color: inherit;
+  &:hover .thumbnail-wrapper::after {
+    background: transparent;
   }
-
-  &:hover {
-    .overlay {
-      opacity: 0;
-    }
-  }
-
-  .thumb-box {
+  .thumbnail-wrapper {
     position: relative;
-    padding-bottom: 56.25%;
+    border-radius: 5px;
     overflow: hidden;
-    width: 100%;
-  }
+    &::after {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      mix-blend-mode: color;
+      background: ${props => props.color};
+      transition: background 500ms ease;
+    }
 
-  .thumb {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    transition: 0.2s transform ease;
-  }
-
-  .overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: ${props => (props.color ? props.color : '#333')};
-    mix-blend-mode: color;
-    transition: 0.25s all ease;
-  }
-
-  .date {
-    position: absolute;
-    top: 20px;
-    right: -400px;
-    font-size: 11px;
-    color: white;
-    background: ${props => (props.color ? props.color : '#333')};
-    padding: 4px 8px;
-    border-radius: 3px;
-    transition: all 0.2s ease;
-  }
-
-  @media not all and (min-resolution: 0.001dpcm) {
-    .overlay {
-      display: none;
+    .song-title {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1.25rem;
+      color: white;
+      font-size: 2.5rem;
+      text-shadow: 2px 3px 5px rgba(0, 0, 0, 1);
     }
   }
 
-  .avatar {
-    border-radius: 50%;
-    display: block;
-    width: 30px;
-    height: 30px;
-    background: ${props => props.color};
-    border: solid 2px ${props => props.color};
-    margin-right: 10px;
-  }
-
-  .card-text {
-    padding: 0px 5px;
-  }
-
-  .song-title {
-    position: absolute;
-    color: white;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 0.5rem 2rem 0.75rem 0.75rem;
-    margin: 0;
-    transition: 0.3s all ease;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
-    max-width: 100%;
-    font-size: 1.25rem;
-    line-height: 1.4;
-    @media (max-width: 1000px) {
-      font-size: 18px;
-    }
-  }
-
-  .artist-row {
+  .artist-info {
+    padding: 0.75rem 0;
     display: flex;
-    padding-top: 10px;
-
-    h3 {
-      margin: 0;
-      color: #333;
-      @media (max-width: 600px) {
-        font-size: 16px;
+    align-items: center;
+    .avatar-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      padding: 3px;
+      margin-right: 0.75rem;
+      background: ${props => props.color};
+      .avatar {
+        display: block;
+        border-radius: 50%;
+        width: 30px;
       }
+    }
+    .artist-name {
+      font-size: 1.25rem;
+      color: rgba(0, 0, 0, 0.8);
     }
   }
 `;
