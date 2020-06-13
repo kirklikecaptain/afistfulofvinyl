@@ -32,6 +32,7 @@ export const Hero = ({ newestPost }) => {
         <div className='main-info'>
           <div className='song-title display'>{title}</div>
           <div className='artist-name slab'>{artistName}</div>
+
           <Link className='button-link' to={fullPath}>
             Watch Now
           </Link>
@@ -54,7 +55,7 @@ const StyledHero = styled.section`
 
   .hero-grid {
     display: grid;
-    grid-gap: 2rem;
+    grid-gap: 3rem;
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -101,7 +102,7 @@ const StyledHero = styled.section`
       width: 100%;
       mix-blend-mode: color;
       border-radius: 5px;
-      background: ${props => props.color};
+      background: ${props => props.darkenedColor};
     }
     .thumb {
       border-radius: 5px;
