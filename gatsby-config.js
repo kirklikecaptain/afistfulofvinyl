@@ -1,102 +1,104 @@
-const path = require('path');
+import lessToJson from 'less-to-json';
+import dotenv from 'dotenv';
+import { resolve } from 'path';
+import { getThemeVariables } from 'antd/dist/theme';
 
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`
+dotenv.config({
+  path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
 });
 
-const activeEnv =
-  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
-
-console.log(`Using environment config: '${activeEnv}'`);
-
-const siteUrl =
-  activeEnv === 'production'
-    ? 'https://www.afistfulofvinyl.com'
-    : 'https://staging-www.afistfulofvinyl.com';
-
-module.exports = {
+export default {
   siteMetadata: {
-    siteUrl
+    siteUrl: process.env.GATSBY_WEBSITE_ROOT,
   },
   plugins: [
-    'gatsby-plugin-react-helmet-async',
-    'gatsby-plugin-netlify',
-    'gatsby-plugin-styled-components',
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     name: 'images',
-    //     path: `${__dirname}/src/images`
-    //   }
-    // },
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-force-trailing-slashes',
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_DELIVERY_KEY,
+      },
+    },
     {
       resolve: 'gatsby-plugin-alias-imports',
       options: {
         alias: {
-          '@assets': path.resolve(__dirname, 'src/assets'),
-          '@components': path.resolve(__dirname, 'src/components'),
-          '@context': path.resolve(__dirname, 'src/context'),
-          '@layout': path.resolve(__dirname, 'src/layout'),
-          '@style': path.resolve(__dirname, 'src/style'),
-          '@views': path.resolve(__dirname, 'src/views')
-        }
-      }
+          src: 'src',
+          components: 'src/components',
+        },
+        extensions: ['js', 'jsx'],
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images`,
+      },
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-robots-txt',
-    'gatsby-plugin-polished',
     {
-      resolve: 'gatsby-plugin-layout',
+      resolve: 'gatsby-plugin-antd',
       options: {
-        component: path.resolve('./src/layout/Layout.js')
-      }
-    },
-    // {
-    //   resolve: 'gatsby-plugin-manifest',
-    //   options: {
-    //     name: 'gatsby-starter-default',
-    //     short_name: 'starter',
-    //     start_url: '/',
-    //     background_color: '#663399',
-    //     theme_color: '#663399',
-    //     display: 'minimal-ui'
-    //     // icon: 'src/images/gatsby-icon.png' // This path is relative to the root of the site.
-    //   }
-    // },
-    {
-      resolve: 'gatsby-source-contentful',
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-segment-js',
-      options: {
-        prodKey: process.env.SEGMENT_KEY
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-force-trailing-slashes',
-      options: {
-        excludedPaths: ['/404.html']
-      }
+        style: true,
+      },
     },
     {
       resolve: 'gatsby-plugin-less',
       options: {
-        javascriptEnabled: true
-      }
+        lessOptions: {
+          javascriptEnabled: true,
+          modifyVars: {
+            ...getThemeVariables({ dark: true }),
+            ...lessToJson('./src/styles/antd/overrides.less'),
+          },
+        },
+      },
+    },
+    'gatsby-plugin-styled-components',
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: resolve(`./src/layout/index.jsx`),
+      },
     },
     {
-      resolve: 'gatsby-source-instagram',
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        username: 'afistfulofvinyl'
-      }
-    }
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // 'gatsby-plugin-offline',
-  ]
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          process.env.GA_V4_ID, // Google Analytics / GA
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'A Fistful of Vinyl',
+        short_name: 'A Fistful of Vinyl',
+        start_url: '/',
+        background_color: '#222222',
+        theme_color: '#222222',
+        display: 'minimal-ui',
+        icon: 'src/images/brand/favicon.png',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: process.env.GATSBY_WEBSITE_ROOT,
+        sitemap: `${process.env.GATSBY_WEBSITE_ROOT}/sitemap.xml`,
+        development: {
+          policy: [{ userAgent: '*', disallow: ['/'] }],
+        },
+        production: {
+          policy: [{ userAgent: '*', allow: '/' }],
+        },
+      },
+    },
+  ],
 };

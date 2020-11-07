@@ -1,158 +1,157 @@
-// Reference: https://www.gatsbyjs.org/docs/node-apis/
+import chroma from 'chroma-js';
+import { resolve } from 'path';
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
+// Gatsby API: onCreateNode - https://www.gatsbyjs.com/docs/node-apis/#onCreateNode
 
-  // attach full page path to video nodes
+export function onCreateNode(params) {
+  const { node, actions, getNode } = params;
+
+  if (node.internal.type === 'ContentfulArtist') {
+    // attach full href and pathname to artist nodes
+    const artistPath = `/${node.slug}/`;
+
+    actions.createNodeField({
+      node,
+      name: 'fullURL',
+      value: process.env.GATSBY_WEBSITE_ROOT + artistPath,
+    });
+
+    actions.createNodeField({
+      node,
+      name: 'pathname',
+      value: artistPath,
+    });
+
+    // generate a monochrome color scheme from artist color set in contentful
+    const baseColor = node.color;
+    const baseH = chroma(baseColor).get('hsl.h');
+    const baseL = chroma(baseColor).get('hsl.l');
+
+    actions.createNodeField({
+      node,
+      name: 'colors',
+      value: {
+        textColor: baseL < 0.5 ? 'white' : 'black',
+        main: baseColor,
+        bright: `hsl(${baseH}, 100%, 50%)`,
+        light: `hsl(${baseH}, 80%, 90%)`,
+        dark: `hsl(${baseH}, 25%, 30%)`,
+        darkest: `hsl(${baseH}, 20%, 18%)`,
+      },
+    });
+  }
+
+  // attach full href and pathname to video nodes
   if (node.internal.type === 'ContentfulVideo') {
     const artist = getNode(node.artist___NODE);
-    createNodeField({
+    const videoPath = `/${artist.slug}/${node.slug}/`;
+
+    actions.createNodeField({
       node,
-      name: 'fullPath',
-      value: `/${artist.slug}/${node.slug}/`
+      name: 'fullURL',
+      value: process.env.GATSBY_WEBSITE_ROOT + videoPath,
+    });
+
+    actions.createNodeField({
+      node,
+      name: 'pathname',
+      value: videoPath,
     });
   }
-};
+}
 
-// add blog
-// add playlists
-// add social page
-// add about
-// add contact form
-// add subscribe form
+// Gatsby API: createPages - https://www.gatsbyjs.com/docs/node-apis/#createPages
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions;
-
-  createPage({
+function createMainPages({ actions }) {
+  actions.createPage({
     path: '/',
-    component: require.resolve('./src/views/Home/Home.js')
+    component: resolve('./src/templates/HomePage/index.jsx'),
   });
 
-  // create pages for artists and videos
-  const getArtists = await graphql(`
-    query getArtists {
-      allContentfulArtist {
-        edges {
-          node {
-            id
-            slug
-            video {
-              id
-              fields {
-                fullPath
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  if (getArtists.errors) {
-    reporter.panicOnBuild('Error running getArtists query in gatsby-node.js');
-    return;
-  }
-
-  getArtists.data.allContentfulArtist.edges.forEach(artistEdge => {
-    // page components use a graphql query to get data using variables set in context obj
-    // create a page for each artist
-    createPage({
-      path: `/${artistEdge.node.slug}/`,
-      component: require.resolve('./src/views/OneArtist/OneArtist.js'),
-      context: {
-        artistId: artistEdge.node.id
-      }
-    });
-
-    // create a page for each of their videos
-    artistEdge.node.video.forEach(videoEdge => {
-      createPage({
-        path: videoEdge.fields.fullPath, // assembled in onCreateNode
-        component: require.resolve('./src/views/OneVideo/OneVideo.js'),
-        context: {
-          artistId: artistEdge.node.id,
-          videoId: videoEdge.id
-        }
-      });
-    });
-  });
-
-  // Create paginated All Videos section
-  const getVideos = await graphql(`
-    query getVideos {
-      allContentfulVideo(sort: { fields: uploadDate, order: DESC }) {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-  `);
-
-  if (getVideos.errors) {
-    reporter.panicOnBuild('Error running getVideos query in gatsby-node.js');
-    return;
-  }
-
-  const allVideos = getVideos.data.allContentfulVideo.edges;
-  const videosPerPage = 16;
-  const numVideoPages = Math.ceil(allVideos.length / videosPerPage);
-  Array.from({ length: numVideoPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? '/videos/' : `/videos/${i + 1}/`,
-      component: require.resolve('./src/views/AllVideos/AllVideos.js'),
-      context: {
-        limit: videosPerPage,
-        skip: i * videosPerPage,
-        numVideoPages,
-        currentPage: i + 1
-      }
-    });
-  });
-
-  // Create paginated Interviews section
-  const getInterviews = await graphql(`
-    query getInterviews {
-      allContentfulVideo(
-        sort: { fields: uploadDate, order: DESC }
-        filter: { videoType: { eq: "Interview" } }
-      ) {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-  `);
-
-  if (getInterviews.errors) {
-    reporter.panicOnBuild(
-      'Error running getInterviews query in gatsby-node.js'
-    );
-    return;
-  }
-
-  const allInterviews = getInterviews.data.allContentfulVideo.edges;
-  const interviewsPerPage = 16;
-  const numInterviewPages = Math.ceil(allInterviews.length / interviewsPerPage);
-  Array.from({ length: numInterviewPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? '/interviews/' : `/interviews/${i + 1}/`,
-      component: require.resolve('./src/views/AllInterviews/AllInterviews.js'),
-      context: {
-        limit: interviewsPerPage,
-        skip: i * interviewsPerPage,
-        numInterviewPages,
-        currentPage: i + 1
-      }
-    });
-  });
-
-  createPage({
+  actions.createPage({
     path: '/404/',
-    component: require.resolve('./src/views/404/PageNotFound.js')
+    component: resolve('./src/templates/404Page/index.jsx'),
   });
-};
+}
+
+async function createPagesFromArtists(params) {
+  const { graphql, actions } = params;
+
+  const {
+    data: {
+      artists: { nodes: artistNodes },
+    },
+  } = await graphql(`
+    query {
+      artists: allContentfulArtist {
+        nodes {
+          id
+          fields {
+            pathname
+          }
+        }
+      }
+    }
+  `);
+
+  artistNodes.forEach(node => {
+    const {
+      id,
+      fields: { pathname },
+    } = node;
+
+    actions.createPage({
+      path: pathname,
+      component: require.resolve('./src/templates/ArtistPage/index.jsx'),
+      context: { id },
+    });
+  });
+}
+
+async function createPagesFromVideos(params) {
+  const { graphql, actions } = params;
+
+  const {
+    data: {
+      videos: { nodes: videoNodes },
+    },
+  } = await graphql(`
+    query {
+      videos: allContentfulVideo {
+        nodes {
+          id
+          artist {
+            id
+          }
+          fields {
+            pathname
+          }
+        }
+      }
+    }
+  `);
+
+  videoNodes.forEach(node => {
+    const {
+      id,
+      fields: { pathname },
+      artist: { id: artistId },
+    } = node;
+
+    actions.createPage({
+      path: pathname,
+      component: require.resolve('./src/templates/VideoPage/index.jsx'),
+      context: { id, artistId },
+    });
+  });
+}
+
+// Gatsby API: createPages - https://www.gatsbyjs.com/docs/node-apis/#createPages
+
+export async function createPages(params) {
+  await Promise.all([
+    createMainPages(params),
+    createPagesFromArtists(params),
+    createPagesFromVideos(params),
+  ]);
+}
