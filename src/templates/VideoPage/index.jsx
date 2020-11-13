@@ -20,7 +20,10 @@ export const query = graphql`
       filter: { id: { ne: $id }, artist: { id: { eq: $artistId } } }
     ) {
       nodes {
-        ...VideoCard
+        ...Video
+        artist {
+          ...Artist
+        }
       }
     }
   }

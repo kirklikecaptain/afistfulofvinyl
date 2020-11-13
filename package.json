@@ -53,7 +53,10 @@
     "react-icons": "^3.11.0",
     "react-youtube": "^7.13.0",
     "reading-time": "^1.2.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "styled-normalize": "^8.0.7",
+    "styled-reset": "^4.3.0",
+    "styled-sanitize": "^1.1.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",

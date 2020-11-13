@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
-import { Divider, Typography } from 'antd';
 
 import EmbeddedBlockEntry from './EmbeddedBlockEntry';
 import EmbeddedInlineEntry from './EmbeddedInlineEntry';
@@ -10,28 +8,22 @@ import EmbeddedAsset from './EmbeddedAsset';
 
 import Link from '../general/Link';
 
-const { Paragraph, Title } = Typography;
-
 // https://github.com/contentful/rich-text/tree/master/packages/rich-text-react-renderer
 
 // Replace default component renderers
 const renderNode = {
-  [BLOCKS.PARAGRAPH]: (node, children) => <Paragraph>{children}</Paragraph>,
-  [BLOCKS.HEADING_1]: (node, children) => <Title>{children}</Title>,
-  [BLOCKS.HEADING_2]: (node, children) => <Title level={2}>{children}</Title>,
-  [BLOCKS.HEADING_3]: (node, children) => <Title level={3}>{children}</Title>,
-  [BLOCKS.HEADING_4]: (node, children) => <Title level={4}>{children}</Title>,
-  [BLOCKS.HEADING_5]: (node, children) => <Title level={5}>{children}</Title>,
+  [BLOCKS.PARAGRAPH]: (node, children) => <p>{children}</p>,
+  [BLOCKS.HEADING_1]: (node, children) => <h1>{children}</h1>,
+  [BLOCKS.HEADING_2]: (node, children) => <h2>{children}</h2>,
+  [BLOCKS.HEADING_3]: (node, children) => <h3>{children}</h3>,
+  [BLOCKS.HEADING_4]: (node, children) => <h4>{children}</h4>,
+  [BLOCKS.HEADING_5]: (node, children) => <h5>{children}</h5>,
   [BLOCKS.HEADING_6]: (node, children) => <h6>{children}</h6>,
-  [BLOCKS.UL_LIST]: (node, children) => (
-    <ul className='ant-typography'>{children}</ul>
-  ),
-  [BLOCKS.OL_LIST]: (node, children) => (
-    <ol className='ant-typography'>{children}</ol>
-  ),
+  [BLOCKS.UL_LIST]: (node, children) => <ul>{children}</ul>,
+  [BLOCKS.OL_LIST]: (node, children) => <ol>{children}</ol>,
   [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
   [BLOCKS.QUOTE]: (node, children) => <blockquote>{children}</blockquote>,
-  [BLOCKS.HR]: () => <Divider />,
+  [BLOCKS.HR]: () => <hr />,
   [BLOCKS.EMBEDDED_ENTRY]: node => <EmbeddedBlockEntry node={node} />,
   [BLOCKS.EMBEDDED_ASSET]: node => <EmbeddedAsset node={node} />,
   [INLINES.EMBEDDED_ENTRY]: node => <EmbeddedInlineEntry node={node} />,
@@ -56,11 +48,7 @@ const renderText = text => {
   }, []);
 };
 
-const propTypes = {
-  json: PropTypes.object.isRequired,
-};
-
-function RichTextDocument({ className = 'rich-text-document', json = null }) {
+function RichTextDocument({ className = 'rich-text-document', json }) {
   const richTextDocument = documentToReactComponents(json, {
     renderNode,
     renderMark,
@@ -69,7 +57,5 @@ function RichTextDocument({ className = 'rich-text-document', json = null }) {
 
   return <div className={className}>{richTextDocument}</div>;
 }
-
-// RichTextDocument.propTypes = propTypes;
 
 export default RichTextDocument;

@@ -46,6 +46,7 @@ export const query = graphql`
 export default function HomePage({ data }) {
   const newestVideo = data.allContentfulVideo.nodes.slice(0, 1)[0];
   const recentVideos = data.allContentfulVideo.nodes.slice(1);
+
   return (
     <Page
       title='A Fistful of Vinyl'

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Popover } from 'antd';
+
 import Link from '../general/Link';
 
 const Footer = ({ artists }) => {
@@ -8,7 +8,7 @@ const Footer = ({ artists }) => {
     <FooterStyle>
       <div className='artists'>
         <div className='Container artist-grid'>
-          {artists.nodes.map(a => (
+          {/* {artists.nodes.map(a => (
             <Popover
               key={a.id}
               arrowPointAtCenter
@@ -30,7 +30,7 @@ const Footer = ({ artists }) => {
             >
               <ArtistSwatch colors={a.fields.colors} />
             </Popover>
-          ))}
+          ))} */}
         </div>
       </div>
       <div className='inner'>

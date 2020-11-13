@@ -2,22 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import YouTube from 'react-youtube';
-import { Breadcrumb, Divider } from 'antd';
 
 import Link from '../../../components/general/Link';
 import RichTextDocument from '../../../components/contentful/RichTextDocument';
-
-const RelatedVideos = ({ relatedVideos }) => {
-  return (
-    <RelatedVideosStyle>
-      <div>Related Videos</div>
-    </RelatedVideosStyle>
-  );
-};
-
-const RelatedVideosStyle = styled.div``;
+import VideoCard from '../../../components/general/VideoCard';
 
 const VideoPlayer = ({ video, moreVideos }) => {
+  console.log(moreVideos);
   const {
     title,
     videoId,
@@ -37,12 +28,7 @@ const VideoPlayer = ({ video, moreVideos }) => {
   return (
     <VideoPlayerStyle colors={colors}>
       <div className='Container breadcrumbs'>
-        <Breadcrumb>
-          <Breadcrumb.Item>
-            <Link to={artistLink}>{artistName}</Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>{title}</Breadcrumb.Item>
-        </Breadcrumb>
+        <span>Artist Name</span> / <span>Song Name</span>
       </div>
       <div className='Container grid'>
         <div>
@@ -60,7 +46,7 @@ const VideoPlayer = ({ video, moreVideos }) => {
           <div className='info'>
             <header className='video-header'>
               <h1>{title}</h1>
-              <h2>{artistName}</h2>
+              <h2 className='Slab'>{artistName}</h2>
               <div># views - # likes - Posted: {uploadDate}</div>
             </header>
             <RichTextDocument
@@ -69,7 +55,14 @@ const VideoPlayer = ({ video, moreVideos }) => {
             />
           </div>
         </div>
-        <RelatedVideos moreVideos={moreVideos} />
+        <div className='related-videos'>
+          <h3>More by {artistName}</h3>
+          {moreVideos.nodes.map(v => (
+            <div key={v.id} className='video-link'>
+              <VideoCard video={v} related />
+            </div>
+          ))}
+        </div>
       </div>
     </VideoPlayerStyle>
   );
@@ -145,10 +138,16 @@ const VideoPlayerStyle = styled.div`
 
     .rich-text-document {
       padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+  }
 
-      .ant-typography {
-        color: rgba(0, 0, 0, 0.85);
-      }
+  .related-videos {
+    h3 {
+      margin-top: 0;
+    }
+
+    .video-link {
+      margin-bottom: 2rem;
     }
   }
 `;

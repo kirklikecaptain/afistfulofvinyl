@@ -30,7 +30,6 @@ function NewestVideo({ video }) {
 
   function handleOnPlay() {
     setVideoReady(true);
-    console.log('Playing');
   }
 
   function handleOnEnd(event) {
@@ -52,7 +51,7 @@ function NewestVideo({ video }) {
       <div className='container'>
         <div className='text'>
           <div className='title'>{title}</div>
-          <div className='artist'>{artistName}</div>
+          <div className='artist Slab'>{artistName}</div>
           <Link to={pathname}>Watch now</Link>
         </div>
       </div>
@@ -113,13 +112,13 @@ const StyledNewestVideo = styled.div`
 
   .title {
     font-size: 7rem;
-    font-weight: 500;
     line-height: 1;
+    font-weight: 700;
   }
 
   .artist {
     font-size: 5rem;
-    margin: 1.5rem 0 2rem 0;
+    margin: 1.5rem 0 3rem 0;
     line-height: 1;
   }
 

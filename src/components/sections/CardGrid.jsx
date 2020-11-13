@@ -1,16 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Typography } from 'antd';
 
 import VideoCard from '../general/VideoCard';
 
-const { Title } = Typography;
-
 const CardGrid = ({ title, videos }) => {
   return (
-    <CardGridStyle className='Section-Padding'>
+    <CardGridStyle className='Section'>
       <div className='Container'>
-        <Title level={2}>{title}</Title>
+        <h2>{title}</h2>
         <div className='grid'>
           {videos.map(video => (
             <VideoCard key={video.id} video={video} />

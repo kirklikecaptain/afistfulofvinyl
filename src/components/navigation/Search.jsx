@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { SearchOutlined } from '@ant-design/icons';
 
-import { Divider } from 'antd';
 import Link from '../general/Link';
 import useOutsideClick from '../../hooks/useOutsideClick';
 
@@ -83,7 +82,6 @@ const Search = ({ artists, videos }) => {
                   <Link to={a.fields.pathname}>{a.artistName}</Link>
                 </div>
               ))}
-              <Divider />
             </>
           )}
           {results.videos.length > 0 && (
@@ -117,9 +115,10 @@ const StyledSearch = styled.div`
   }
 
   input {
+    color: white;
     background: transparent;
     border: none;
-    padding: 4px 8px 4px 32px;
+    padding: 8px 8px 8px 32px;
     transition: background 300ms ease-in;
     border-radius: 3px;
 

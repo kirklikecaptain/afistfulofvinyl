@@ -1,7 +1,5 @@
-import lessToJson from 'less-to-json';
 import dotenv from 'dotenv';
 import { resolve } from 'path';
-import { getThemeVariables } from 'antd/dist/theme';
 
 dotenv.config({
   path: `.env.${process.env.GATSBY_ACTIVE_ENV}`,
@@ -41,24 +39,6 @@ export default {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-plugin-antd',
-      options: {
-        style: true,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-less',
-      options: {
-        lessOptions: {
-          javascriptEnabled: true,
-          modifyVars: {
-            ...getThemeVariables({ dark: true }),
-            ...lessToJson('./src/styles/antd/overrides.less'),
-          },
-        },
-      },
-    },
     'gatsby-plugin-styled-components',
     {
       resolve: `gatsby-plugin-layout`,
@@ -69,10 +49,7 @@ export default {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          process.env.GA_V4_ID, // Google Analytics / GA
-        ],
+        trackingIds: [process.env.GA_V4_ID],
       },
     },
     {

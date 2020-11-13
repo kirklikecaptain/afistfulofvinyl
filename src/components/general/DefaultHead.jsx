@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import inter400woff2 from '../../fonts/Inter-3.15/Inter-Regular.woff2';
+import robotoSlab700woff2 from '../../fonts/roboto-slab/roboto-slab-v12-latin-700.woff2';
 
 export default function DefaultHead({ location }) {
   const canonicalURL = process.env.GATSBY_WEBSITE_ROOT + location.pathname;
@@ -11,7 +11,7 @@ export default function DefaultHead({ location }) {
       <link
         rel='preload'
         as='font'
-        href={inter400woff2}
+        href={robotoSlab700woff2}
         type='font/woff2'
         crossOrigin='anonymous'
       />

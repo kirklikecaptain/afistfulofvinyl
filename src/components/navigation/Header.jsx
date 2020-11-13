@@ -27,12 +27,14 @@ const Header = ({ artists, videos }) => {
 export default Header;
 
 const HeaderStyle = styled.nav`
+  position: relative;
   z-index: 1000;
   padding: 0 2rem;
 
   .inner {
     padding: 2rem 0;
-    border-bottom: 1px rgba(255, 255, 255, 0.85) solid;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
   }
 
   .row {

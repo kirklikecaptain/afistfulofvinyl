@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import Link from './Link';
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, relatedVideo }) => {
   const {
     artist: {
       artistName,
@@ -22,7 +22,7 @@ const VideoCard = ({ video }) => {
       <div className='overlay' />
       <div className='text'>
         <div className='title'>{title}</div>
-        <div className='artist'>{artistName}</div>
+        {!relatedVideo && <div className='artist Slab'>{artistName}</div>}
       </div>
     </VideoCardStyle>
   );
@@ -55,16 +55,17 @@ const VideoCardStyle = styled(Link)`
     left: 0;
     bottom: 0;
     right: 0;
-    padding: 1rem;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    padding: 1.5rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+    line-height: 1.25;
 
     .title {
-      font-size: 1.5rem;
-      font-weight: 600;
+      font-size: 2rem;
+      font-weight: 700;
     }
 
     .artist {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
     }
   }
 `;
