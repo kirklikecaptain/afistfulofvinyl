@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "artists",
+  "info": {
+    "singularName": "artist",
+    "pluralName": "artists",
+    "displayName": "Artist",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "artistName": {
+      "type": "string",
+      "required": true
+    },
+    "accentColor": {
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "required": false,
+      "customField": "plugin::color-picker.color"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "bio": {
+      "type": "richtext"
+    },
+    "websiteUrl": {
+      "type": "string"
+    },
+    "instagramUrl": {
+      "type": "string"
+    },
+    "facebookUrl": {
+      "type": "string"
+    },
+    "twitterUrl": {
+      "type": "string"
+    },
+    "bandcampUrl": {
+      "type": "string"
+    },
+    "soundcloudUrl": {
+      "type": "string"
+    },
+    "artistSlug": {
+      "type": "string"
+    }
+  }
+}
