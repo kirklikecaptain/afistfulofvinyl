@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "plugins": ["prettier", "import"],
+  "extends": [
+    "next/babel",
+    "next/core-web-vitals",
+    "plugin:import/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          "orderImportKind": "asc",
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}
