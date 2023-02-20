@@ -17,7 +17,7 @@ services:
     ports:
       - 1337:1337
     networks:
-      - afov-cms-network
+      - network
     depends_on:
       - gcp-sql-proxy
   gcp-sql-proxy:
@@ -32,9 +32,9 @@ services:
     ports:
       - 127.0.0.1:5432:5432
     networks:
-      - afov-cms-network
+      - network
 networks:
-  afov-cms-network:
+  network:
     driver: bridge
 
   # TODO: Create local clone of prod db workflow
