@@ -1,9 +1,5 @@
-# A Fistful of Vinyl - Website Stack
+# A Fistful of Vinyl
 
-## CMS
+## Website
 
-A Strapi content management system and backend.
-
-## Frontend
-
-A Next.js application and frontend.
+A Next.js application
