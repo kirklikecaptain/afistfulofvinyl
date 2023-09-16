@@ -1,7 +1,9 @@
+import { Heading } from "~/libs/chakra-ui/react";
+
 export default function HomePage() {
   return (
     <main>
-      <h1>Home Page</h1>
+      <Heading>Home Page</Heading>
     </main>
   );
 }
