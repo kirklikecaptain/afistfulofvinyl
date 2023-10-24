@@ -1,26 +1,26 @@
-import { getAllArtists, getHomePageContent } from "~/api/queries";
 import { Link } from "~/components/Link";
+import { getArtistsPageData } from "~/api/getArtistsPageData";
+import { Layout } from "~/components/Layout/Layout";
 
 export async function generateMetadata() {
-  const { meta } = await getHomePageContent();
+  const { page } = await getArtistsPageData();
 
   return {
-    title: meta?.metaTitle,
-    description: meta?.metaDescription,
+    title: page?.metaTitle,
   };
 }
 
 export default async function ArtistsPage() {
-  const data = await getAllArtists();
+  const { artists } = await getArtistsPageData();
 
   return (
-    <main>
+    <Layout>
       <h1>Artists Page</h1>
-      {data?.map((artist) => (
+      {artists?.map((artist) => (
         <div key={artist?.slug}>
           <Link href={`/artists/${artist?.slug}`}>{artist?.name}</Link>
         </div>
       ))}
-    </main>
+    </Layout>
   );
 }

@@ -3,9 +3,11 @@ import { Link as ChakraLink, type LinkProps as ChakraLinkProps } from "~/libs/ch
 
 type LinkProps = ChakraLinkProps & NextLinkProps;
 
-export function Link({ children, ...props }: LinkProps) {
+export function Link(props: LinkProps) {
+  const { children, ...rest } = props;
+
   return (
-    <ChakraLink as={NextLink} {...props}>
+    <ChakraLink as={NextLink} {...rest}>
       {children}
     </ChakraLink>
   );
