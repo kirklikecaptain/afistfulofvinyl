@@ -1,28 +1,30 @@
 import { Link } from "~/components/Link";
-import { getHomePageContent } from "~/api/queries";
+
 import { Heading } from "~/libs/chakra-ui/react";
+import { Layout } from "~/components/Layout/Layout";
+import { BrandHero } from "~/components/BrandHero";
+import { getHomePageData } from "~/api/getHomePageData";
 
 export async function generateMetadata() {
-  const { meta } = await getHomePageContent();
+  const { page } = await getHomePageData();
 
   return {
-    title: meta?.metaTitle,
-    description: meta?.metaDescription,
+    title: page?.metaTitle,
   };
 }
 
 export default async function HomePage() {
-  const { recentVideos } = await getHomePageContent();
+  const { recentVideos } = await getHomePageData();
 
   return (
-    <main>
-      <Heading as="h1">A Fistful of Vinyl</Heading>
+    <Layout>
+      <BrandHero />
       <Heading size="md">Recent</Heading>
-      {recentVideos?.items.map((video) => (
+      {recentVideos?.map((video) => (
         <div key={video?.slug}>
           <Link href={`/artists/${video?.artist?.slug}/${video?.slug}`}>{video?.title}</Link>
         </div>
       ))}
-    </main>
+    </Layout>
   );
 }
