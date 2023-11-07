@@ -1,6 +1,6 @@
 import { Link } from "~/components/Link";
 import { getArtistsPageData } from "~/api/getArtistsPageData";
-import { Layout } from "~/components/Layout/Layout";
+import { Layout } from "~/components/Layout";
 
 export async function generateMetadata() {
   const { page } = await getArtistsPageData();

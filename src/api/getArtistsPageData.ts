@@ -1,25 +1,26 @@
 import { getClient } from "~/libs/apollo/client.rsc";
-import { gql } from "./graphql";
+import { gql } from "~/libs/apollo/graphql";
 
-export async function getArtistsPageData() {
-  const query = gql(/* GraphQL */ `
-    query artistPageData {
-      page: pageCollection(where: { slug: "artists" }) {
-        items {
-          metaTitle
-          metaDescription
-        }
-      }
-      artists: artistCollection(order: name_ASC, limit: 200) {
-        items {
-          name
-          slug
-          accentColor
-        }
+const query = gql(/* GraphQL */ `
+  query ArtistsPage {
+    page: pageCollection(where: { slug: "artists" }) {
+      items {
+        metaTitle
+        metaDescription
       }
     }
-  `);
+    artists: artistCollection(order: name_ASC, limit: 200) {
+      items {
+        name
+        slug
+        accentColor
+        pagePath @client
+      }
+    }
+  }
+`);
 
+export async function getArtistsPageData() {
   const { data } = await getClient().query({
     query,
   });

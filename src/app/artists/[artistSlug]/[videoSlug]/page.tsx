@@ -1,5 +1,5 @@
 import { getVideoPageData } from "~/api/getVideoPageData";
-import { Layout } from "~/components/Layout/Layout";
+import { Layout } from "~/components/Layout";
 import { Heading } from "~/libs/chakra-ui/react";
 import { getAllVideos } from "~/api/getAllVideos";
 

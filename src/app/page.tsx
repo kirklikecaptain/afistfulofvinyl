@@ -1,9 +1,10 @@
 import { Link } from "~/components/Link";
 
 import { Heading } from "~/libs/chakra-ui/react";
-import { Layout } from "~/components/Layout/Layout";
+import { Layout } from "~/components/Layout";
 import { BrandHero } from "~/components/BrandHero";
 import { getHomePageData } from "~/api/getHomePageData";
+import { VideoCard } from "~/components/VideoCard";
 
 export async function generateMetadata() {
   const { page } = await getHomePageData();
@@ -23,6 +24,7 @@ export default async function HomePage() {
       {recentVideos?.map((video) => (
         <div key={video?.slug}>
           <Link href={`/artists/${video?.artist?.slug}/${video?.slug}`}>{video?.title}</Link>
+          <VideoCard title={video?.title!} artistName={video?.artist?.name!} />
         </div>
       ))}
     </Layout>

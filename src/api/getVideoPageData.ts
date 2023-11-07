@@ -1,28 +1,23 @@
 import { getClient } from "~/libs/apollo/client.rsc";
-import { gql } from "./graphql";
+import { gql } from "~/libs/apollo/graphql";
 
-interface VideoPageVariables {
-  artistSlug: string;
-  videoSlug: string;
-}
-
-export async function getVideoPageData(variables: VideoPageVariables) {
-  const query = gql(/* GraphQL */ `
-    query videoPage($artistSlug: String!, $videoSlug: String!) {
-      page: videoCollection(where: { slug: $videoSlug, artist: { slug: $artistSlug } }) {
-        items {
-          title
+const query = gql(/* GraphQL */ `
+  query VideoPage($artistSlug: String!, $videoSlug: String!) {
+    page: videoCollection(where: { slug: $videoSlug, artist: { slug: $artistSlug } }) {
+      items {
+        title
+        slug
+        artist {
+          name
           slug
-          artist {
-            name
-            slug
-            accentColor
-          }
+          accentColor
         }
       }
     }
-  `);
+  }
+`);
 
+export async function getVideoPageData(variables: { artistSlug: string; videoSlug: string }) {
   const { data } = await getClient().query({
     query,
     variables,

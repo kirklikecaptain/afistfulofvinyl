@@ -1,17 +1,18 @@
 import { getClient } from "~/libs/apollo/client.rsc";
-import { gql } from "./graphql";
+import { gql } from "~/libs/apollo/graphql";
 
-export async function getAllArtists() {
-  const query = gql(/* GraphQL */ `
-    query allArtists {
-      artists: artistCollection(limit: 500) {
-        items {
-          slug
-        }
+const query = gql(/* GraphQL */ `
+  query AllArtists {
+    artists: artistCollection(limit: 500) {
+      items {
+        slug
+        pagePath @client
       }
     }
-  `);
+  }
+`);
 
+export async function getAllArtists() {
   const { data } = await getClient().query({
     query,
   });
