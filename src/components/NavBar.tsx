@@ -1,6 +1,6 @@
 import { Box, BoxProps, Flex } from "@chakra-ui/react";
-import { AFoVLogo } from "../AFoVLogo";
-import { Link } from "../Link";
+import { AFoVLogo } from "./AFoVLogo";
+import { Link } from "./Link";
 
 export interface NavBarProps {
   height?: BoxProps["height"];

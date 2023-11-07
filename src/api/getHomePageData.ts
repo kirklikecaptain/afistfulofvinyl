@@ -1,28 +1,29 @@
 import { getClient } from "~/libs/apollo/client.rsc";
-import { gql } from "./graphql";
+import { gql } from "~/libs/apollo/graphql";
 
-export async function getHomePageData() {
-  const query = gql(/* GraphQL */ `
-    query homePage {
-      page: pageCollection(where: { slug: "home" }) {
-        items {
-          metaTitle
-          metaDescription
-        }
+const query = gql(/* GraphQL */ `
+  query HomePage {
+    page: pageCollection(where: { slug: "home" }) {
+      items {
+        metaTitle
+        metaDescription
       }
-      recentVideos: videoCollection(limit: 15, order: uploadDate_DESC) {
-        items {
-          title
+    }
+    recentVideos: videoCollection(limit: 15, order: uploadDate_DESC) {
+      items {
+        title
+        slug
+        pagePath @client
+        artist {
+          name
           slug
-          artist {
-            name
-            slug
-          }
         }
       }
     }
-  `);
+  }
+`);
 
+export async function getHomePageData() {
   const { data } = await getClient().query({
     query,
   });

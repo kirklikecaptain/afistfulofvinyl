@@ -1,20 +1,21 @@
 import { getClient } from "~/libs/apollo/client.rsc";
-import { gql } from "./graphql";
+import { gql } from "~/libs/apollo/graphql";
 
-export async function getAllVideos() {
-  const query = gql(/* GraphQL */ `
-    query allVideos {
-      videos: videoCollection(limit: 500) {
-        items {
+const query = gql(/* GraphQL */ `
+  query AllVideos {
+    videos: videoCollection(limit: 500) {
+      items {
+        slug
+        pagePath @client
+        artist {
           slug
-          artist {
-            slug
-          }
         }
       }
     }
-  `);
+  }
+`);
 
+export async function getAllVideos() {
   const { data } = await getClient().query({
     query,
   });

@@ -1,0 +1,7 @@
+type Artist {
+  pagePath: String!
+}
+
+type Video {
+  pagePath: String!
+}
