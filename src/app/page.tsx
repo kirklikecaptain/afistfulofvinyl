@@ -1,10 +1,5 @@
-import { Link } from "~/components/Link";
-
-import { Heading } from "~/libs/chakra-ui/react";
-import { Layout } from "~/components/Layout";
-import { BrandHero } from "~/components/BrandHero";
-import { getHomePageData } from "~/api/getHomePageData";
-import { VideoCard } from "~/components/VideoCard";
+import { getHomePageData } from "~/api/queries/getHomePageData";
+import { BrandHero, Layout, VideoCard, VideoCardList } from "~/components";
 
 export async function generateMetadata() {
   const { page } = await getHomePageData();
@@ -15,18 +10,25 @@ export async function generateMetadata() {
 }
 
 export default async function HomePage() {
-  const { recentVideos } = await getHomePageData();
+  const { recentVideos = [] } = await getHomePageData();
 
   return (
     <Layout>
       <BrandHero />
-      <Heading size="md">Recent</Heading>
-      {recentVideos?.map((video) => (
-        <div key={video?.slug}>
-          <Link href={`/artists/${video?.artist?.slug}/${video?.slug}`}>{video?.title}</Link>
-          <VideoCard title={video?.title!} artistName={video?.artist?.name!} />
-        </div>
-      ))}
+      <VideoCardList heading="Recent">
+        {recentVideos.length > 0 &&
+          recentVideos.map((v) => (
+            <VideoCard
+              key={v?.sys.id}
+              title={v?.title}
+              subtitle={v?.subtitle}
+              thumbnailUrl={v?.thumbnail?.url}
+              artistName={v?.artist?.name}
+              color={v?.artist?.accentColor}
+              linkTo={v?.pagePath!}
+            />
+          ))}
+      </VideoCardList>
     </Layout>
   );
 }

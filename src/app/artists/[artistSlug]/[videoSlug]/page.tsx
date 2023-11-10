@@ -1,7 +1,7 @@
-import { getVideoPageData } from "~/api/getVideoPageData";
-import { Layout } from "~/components/Layout";
+import { getVideoPageData } from "~/api/queries/getVideoPageData";
+import { getAllVideos } from "~/api/queries/getAllVideos";
 import { Heading } from "~/libs/chakra-ui/react";
-import { getAllVideos } from "~/api/getAllVideos";
+import { Layout } from "~/components/Layout";
 
 export async function generateStaticParams() {
   const { videos } = await getAllVideos();
@@ -12,12 +12,12 @@ export async function generateStaticParams() {
   }));
 }
 
-type VideoPageProps = {
+interface VideoPageProps {
   params: {
     artistSlug: string;
     videoSlug: string;
   };
-};
+}
 
 export async function generateMetadata({ params }: VideoPageProps) {
   const { artistSlug, videoSlug } = params;
