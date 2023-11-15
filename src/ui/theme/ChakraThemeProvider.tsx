@@ -1,11 +1,11 @@
 "use client";
 
 import { type PropsWithChildren } from "react";
-import { CacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "~/components/chakra-ui/theme";
+import { CacheProvider } from "@chakra-ui/next-js";
+import { theme } from "./theme";
 
-export function Providers({ children }: PropsWithChildren) {
+export function ChakraThemeProvider({ children }: PropsWithChildren) {
   return (
     <CacheProvider>
       <ChakraProvider theme={theme}>{children}</ChakraProvider>

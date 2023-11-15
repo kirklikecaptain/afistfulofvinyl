@@ -1,7 +1,7 @@
 import Color from "color";
-import { Artist } from "~/api/__generated__/graphql";
+import type { Artist } from "~/api";
 
-export function createArtistColorsScheme(artistColor?: Artist["accentColor"]) {
+export function createArtistColorsScheme(artistColor: Artist["accentColor"]) {
   const h = Color(artistColor || "#000000").hue();
 
   return {

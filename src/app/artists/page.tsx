@@ -1,5 +1,5 @@
-import { Layout } from "~/components/Layout";
-import { ArtistCard } from "~/components/ArtistCard";
+import { Layout } from "~/ui/components/Layout";
+import { ArtistCard } from "~/ui/components/ArtistCard";
 import { ArtistsPageDocument, get } from "~/api";
 
 async function getArtistsPageData() {
