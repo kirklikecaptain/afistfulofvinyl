@@ -6,7 +6,7 @@ export enum Slug {
 }
 
 export function isValidSlug(value: any): value is string {
-  return typeof value === "string";
+  return typeof value === "string" && value.length > 0;
 }
 
 export function buildPagePath(paths: string[]) {

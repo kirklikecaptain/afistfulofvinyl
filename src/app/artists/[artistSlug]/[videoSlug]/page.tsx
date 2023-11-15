@@ -1,22 +1,38 @@
-import { getVideoPageData } from "~/api/queries/getVideoPageData";
-import { getAllVideos } from "~/api/queries/getAllVideos";
-import { Heading } from "~/libs/chakra-ui/react";
+import { get, AllVideoSlugsDocument, VideoPageDocument } from "~/api";
+import { Heading } from "~/components/chakra-ui/react";
 import { Layout } from "~/components/Layout";
 
-export async function generateStaticParams() {
-  const { videos } = await getAllVideos();
+async function getAllVideoSlugs() {
+  const { data } = await get(AllVideoSlugsDocument);
 
-  return videos?.map((video) => ({
+  return data.videos?.items || [];
+}
+
+export async function generateStaticParams() {
+  const videos = await getAllVideoSlugs();
+  const params = videos.map((video) => ({
     artistSlug: video?.artist?.slug,
     videoSlug: video?.slug,
   }));
+
+  return params;
+}
+
+interface VideoPageParams {
+  artistSlug: string;
+  videoSlug: string;
+}
+
+async function getVideoPageData({ artistSlug, videoSlug }: VideoPageParams) {
+  const { data } = await get(VideoPageDocument, { artistSlug, videoSlug });
+  const page = data.page?.items[0] || {};
+  const moreVideos = data.moreVideos?.items || [];
+
+  return { page, moreVideos };
 }
 
 interface VideoPageProps {
-  params: {
-    artistSlug: string;
-    videoSlug: string;
-  };
+  params: VideoPageParams;
 }
 
 export async function generateMetadata({ params }: VideoPageProps) {
@@ -26,6 +42,8 @@ export async function generateMetadata({ params }: VideoPageProps) {
     artistSlug,
     videoSlug,
   });
+
+  const title = page?.title;
 
   return {
     title: page?.title,

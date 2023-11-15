@@ -1,0 +1,16 @@
+type ArtistColors {
+  lightest: String!
+  light: String!
+  mid: String!
+  dark: String!
+  darkest: String!
+}
+
+extend type Artist {
+  pagePath: String! @client
+  colors: ArtistColors! @client
+}
+
+extend type Video {
+  pagePath: String! @client
+}

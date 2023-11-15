@@ -1,5 +1,5 @@
 import NextLink, { type LinkProps as NextLinkProps } from "next/link";
-import { Link as ChakraLink, type LinkProps as ChakraLinkProps } from "~/libs/chakra-ui/react";
+import { Link as ChakraLink, type LinkProps as ChakraLinkProps } from "~/components/chakra-ui/react";
 
 type LinkProps = ChakraLinkProps & NextLinkProps;
 

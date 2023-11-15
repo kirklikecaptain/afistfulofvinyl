@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typegen:gql": "graphql-codegen --config codegen.ts",
-    "watch:gql": "graphql-codegen --config codegen.ts --watch"
+    "typegen:gql": "DOTENV_CONFIG_PATH=./.env.local graphql-codegen --config codegen.ts -r dotenv/config",
+    "watch:gql": "DOTENV_CONFIG_PATH=./.env.local graphql-codegen --config codegen.ts -r dotenv/config --watch"
   },
   "dependencies": {
     "@apollo/client": "^3.8.7",
@@ -22,7 +22,7 @@
     "contentful": "^10.6.2",
     "framer-motion": "^10.16.4",
     "graphql": "^16.8.1",
-    "next": "14.0.1",
+    "next": "^14.0.2",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0"

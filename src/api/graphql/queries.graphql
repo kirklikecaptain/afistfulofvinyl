@@ -1,0 +1,201 @@
+fragment VideoCard on Video {
+  title
+  subtitle
+  uploadDate
+  videoType
+  pagePath @client
+  thumbnail {
+    title
+    description
+    width
+    height
+    url
+    fileName
+    contentType
+  }
+  artist {
+    name
+    accentColor
+    colors @client {
+      lightest
+      light
+      mid
+      dark
+      darkest
+    }
+  }
+}
+
+fragment ArtistCard on Artist {
+  name
+  slug
+  pagePath @client
+  accentColor
+  colors @client {
+    lightest
+    light
+    mid
+    dark
+    darkest
+  }
+  photo {
+    title
+    description
+    width
+    height
+    url
+    fileName
+    contentType
+  }
+}
+
+query HomePage {
+  page: pageCollection(where: { slug: "home" }) {
+    items {
+      metaTitle
+      metaDescription
+      slug
+    }
+  }
+  recentVideos: videoCollection(limit: 15, order: uploadDate_DESC) {
+    items {
+      ...VideoCard
+    }
+  }
+}
+
+query VideoPage($artistSlug: String!, $videoSlug: String!) {
+  page: videoCollection(
+    where: { slug: $videoSlug, artist: { slug: $artistSlug } }
+  ) {
+    items {
+      title
+      uploadDate
+      shortDescription
+      longDescription {
+        json
+      }
+      videoType
+      videoUrl
+      thumbnail {
+        title
+        description
+        width
+        height
+        url
+        fileName
+        contentType
+      }
+      artist {
+        name
+      }
+    }
+  }
+  moreVideos: videoCollection(
+    where: { slug_not: $videoSlug, artist: { slug: $artistSlug } }
+    order: uploadDate_DESC
+  ) {
+    items {
+      ...VideoCard
+    }
+  }
+}
+
+query ArtistsPage {
+  page: pageCollection(where: { slug: "artists" }) {
+    items {
+      metaTitle
+      metaDescription
+    }
+  }
+  artists: artistCollection(order: name_ASC, limit: 500) {
+    items {
+      ...ArtistCard
+    }
+  }
+}
+
+query AllVideoSlugs {
+  videos: videoCollection(limit: 500) {
+    items {
+      slug
+      artist {
+        slug
+      }
+    }
+  }
+}
+
+query AllVideos {
+  videos: videoCollection(limit: 500, order: uploadDate_DESC) {
+    items {
+      title
+      uploadDate
+      shortDescription
+      longDescription {
+        json
+      }
+      videoType
+      videoUrl
+      thumbnail {
+        title
+        description
+        width
+        height
+        url
+        fileName
+        contentType
+      }
+      artist {
+        name
+      }
+      sys {
+        id
+      }
+    }
+  }
+}
+
+query ArtistPage($artistSlug: String!) {
+  page: artistCollection(where: { slug: $artistSlug }) {
+    items {
+      name
+      accentColor
+      slug
+      pagePath @client
+      colors @client {
+        lightest
+        light
+        mid
+        dark
+        darkest
+      }
+      photo {
+        title
+        description
+        width
+        height
+        url
+        fileName
+        contentType
+      }
+      shortBio
+      bio {
+        json
+      }
+      websiteUrl
+      twitterUrl
+      tiktokUrl
+      facebookUrl
+      instagramUrl
+      bandcampUrl
+      soundcloudUrl
+      youtubeUrl
+    }
+  }
+  videos: videoCollection(where: { artist: { slug: $artistSlug } }) {
+    items {
+      ...VideoCard
+    }
+  }
+}

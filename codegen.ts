@@ -1,20 +1,27 @@
-import type { CodegenConfig } from "@graphql-codegen/cli";
-import { loadEnvConfig } from "@next/env";
+import { type CodegenConfig } from "@graphql-codegen/cli";
+import { contentful } from "./src/api/client/contentful";
 
-loadEnvConfig(process.cwd());
-
-const { CONTENTFUL_SPACE_ID, CONTENTFUL_ENV, CONTENTFUL_ACCESS_TOKEN } = process.env;
+const localSchema = "./src/api/graphql/schema.graphql";
+const contentfulSchema = {
+  [contentful.graphqlEndpoint]: {
+    headers: {
+      Authorization: contentful.authorizationHeader,
+    },
+  },
+};
 
 const config: CodegenConfig = {
-  schema: [
-    `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENV}?access_token=${CONTENTFUL_ACCESS_TOKEN}`,
-    "./src/api/schemas/*.graphql",
-  ],
   ignoreNoDocuments: true,
-  documents: ["./src/**/*.ts", "./src/api/documents/*.graphql"],
+  overwrite: true,
+  schema: [contentfulSchema, localSchema],
+  documents: ["./src/api/graphql/queries.graphql"],
   generates: {
-    "./src/api/__generated__/": {
+    "./src/api/graphql/generated/": {
       preset: "client",
+      presetConfig: {
+        avoidOptionals: true,
+        fragmentMasking: { unmaskFunctionName: "getFragmentData" },
+      },
     },
   },
   hooks: {
