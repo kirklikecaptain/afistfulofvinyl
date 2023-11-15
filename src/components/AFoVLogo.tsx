@@ -1,4 +1,4 @@
-import { Icon, type IconProps } from "~/libs/chakra-ui/react";
+import { Icon, type IconProps } from "~/components/chakra-ui/react";
 
 const logoConfig = {
   primary: {

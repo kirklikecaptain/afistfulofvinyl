@@ -1,16 +1,23 @@
-import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import {
+  ApolloClient,
+  ApolloQueryResult,
+  HttpLink,
+  InMemoryCache,
+  OperationVariables,
+  TypedDocumentNode,
+} from "@apollo/client";
 import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
-import { Artist, Video } from "~/api/__generated__/graphql";
-import { CONTENTFUL } from "~/libs/contentful/constants";
-import { buildArtistPagePath, buildVideoPagePath } from "~/utils/buildPagePaths";
-import { createArtistColorsScheme } from "~/utils/createArtistColorScheme";
+import { Artist, Video } from "../graphql/generated/graphql";
+import { buildArtistPagePath, buildVideoPagePath } from "~/utils/pagePaths";
+import { createArtistColorsScheme } from "~/utils/colorScheme";
+import { contentful } from "./contentful";
 
-export const { getClient } = registerApolloClient(() => {
+const apollo = registerApolloClient(() => {
   return new ApolloClient({
     link: new HttpLink({
-      uri: CONTENTFUL.gqlEndpoint,
+      uri: contentful.graphqlEndpoint,
       headers: {
-        Authorization: CONTENTFUL.authorizationHeader,
+        Authorization: contentful.authorizationHeader,
       },
     }),
     cache: new InMemoryCache({
@@ -52,3 +59,13 @@ export const { getClient } = registerApolloClient(() => {
     }),
   });
 });
+
+export async function get<
+  TDocument = any,
+  TVariables extends OperationVariables = OperationVariables,
+>(
+  document: TypedDocumentNode<TDocument, TVariables>,
+  variables?: TVariables,
+): Promise<ApolloQueryResult<TDocument>> {
+  return await apollo.getClient().query({ query: document, variables });
+}

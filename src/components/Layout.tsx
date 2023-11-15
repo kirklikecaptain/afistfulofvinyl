@@ -1,4 +1,4 @@
-import { Box } from "~/libs/chakra-ui/react";
+import { Box } from "~/components/chakra-ui/react";
 import { NavBar, type NavBarProps } from "./NavBar";
 import { Footer } from "./Footer";
 import { PropsWithChildren } from "react";

@@ -1,4 +1,4 @@
-import { Box, Heading } from "~/libs/chakra-ui/react";
+import { Box, Heading } from "~/components/chakra-ui/react";
 import { PropsWithChildren } from "react";
 
 interface VideoCardListProps extends PropsWithChildren {

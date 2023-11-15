@@ -1,26 +1,25 @@
+import { FragmentType, VideoCardFragmentDoc, getFragmentData } from "~/api";
 import { Image } from "./Image";
-import { Box } from "~/libs/chakra-ui/react";
-import { Artist, Asset, Video } from "~/api/__generated__/graphql";
+import { Box } from "~/components/chakra-ui/react";
 
 interface VideoCardProps {
-  title: Video["title"];
-  subtitle: Video["subtitle"];
-  artistName: Artist["name"];
-  thumbnailUrl: Asset["url"];
-  color?: Artist["accentColor"];
-  linkTo: string;
+  fragment: FragmentType<typeof VideoCardFragmentDoc> | null;
 }
 
-export function VideoCard(props: VideoCardProps) {
-  const { title, subtitle, artistName, thumbnailUrl, color } = props;
+export function VideoCard({ fragment }: VideoCardProps) {
+  if (!fragment) {
+    return null;
+  }
+
+  const { artist, thumbnail, title, subtitle } = getFragmentData(VideoCardFragmentDoc, fragment);
 
   return (
     <Box>
-      <Box height={10} bg={color || "red"} />
-      {thumbnailUrl && <Image src={thumbnailUrl} width="600" height="400" alt="" />}
+      <Box height={10} bg={artist?.accentColor || "red"} />
+      {thumbnail?.url && <Image src={thumbnail?.url} width="600" height="400" alt="" />}
       <Box>{title}</Box>
       <Box>{subtitle}</Box>
-      <Box>{artistName}</Box>
+      <Box>{artist?.name}</Box>
     </Box>
   );
 }
