@@ -1,6 +1,6 @@
 import { Document as RichTextDocument } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { Box, BoxProps } from "~/components/chakra-ui/react";
+import { Box, BoxProps } from "~/ui/chakra/react";
 
 interface RichTextProps extends BoxProps {
   document: RichTextDocument | null;

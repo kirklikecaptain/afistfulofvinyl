@@ -1,5 +1,5 @@
-import { Heading } from "~/components/chakra-ui/react";
-import { Layout, VideoCard } from "~/components";
+import { Heading } from "~/ui/chakra/react";
+import { Layout, VideoCardList } from "~/ui/components";
 import { ArtistPageDocument, get } from "~/api";
 import { notFound } from "next/navigation";
 
@@ -41,7 +41,7 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
   return (
     <Layout>
       <Heading>{artist.name}</Heading>
-      {videos?.map((video, i) => <VideoCard key={`card_${i}`} fragment={video} />)}
+      <VideoCardList heading="Videos" videos={videos} />
     </Layout>
   );
 }

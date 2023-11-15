@@ -1,4 +1,4 @@
-import { Box, Heading } from "~/components/chakra-ui/react";
+import { Box, Heading } from "~/ui/chakra/react";
 
 export function Footer() {
   return (

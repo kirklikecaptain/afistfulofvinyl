@@ -1,6 +1,6 @@
 import { get, AllVideoSlugsDocument, VideoPageDocument } from "~/api";
-import { Heading } from "~/components/chakra-ui/react";
-import { Layout } from "~/components/Layout";
+import { Heading } from "~/ui/chakra/react";
+import { Layout } from "~/ui/components/Layout";
 
 async function getAllVideoSlugs() {
   const { data } = await get(AllVideoSlugsDocument);

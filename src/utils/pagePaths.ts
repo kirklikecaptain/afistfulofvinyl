@@ -1,4 +1,4 @@
-import { Artist, Video } from "~/api/__generated__/graphql";
+import type { Artist, Video } from "~/api";
 
 export enum Slug {
   Artists = "artists",

@@ -1,4 +1,4 @@
-import { Box, Center } from "~/components/chakra-ui/react";
+import { Box, Center } from "~/ui/chakra/react";
 import { AFoVLogo } from "./AFoVLogo";
 
 export function BrandHero() {

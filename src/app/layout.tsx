@@ -1,13 +1,11 @@
 import { PropsWithChildren } from "react";
-import { Providers } from "./providers";
+import { ChakraThemeProvider } from "~/ui/theme/ChakraThemeProvider";
 
-export default function AppLayout(props: PropsWithChildren) {
-  const { children } = props;
-
+export default function AppLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en" data-theme="dark" style={{ colorScheme: "dark" }}>
       <body className="chakra-ui-dark">
-        <Providers>{children}</Providers>
+        <ChakraThemeProvider>{children}</ChakraThemeProvider>
       </body>
     </html>
   );
