@@ -1,13 +1,6 @@
 import type { StorybookConfig } from "@storybook/nextjs";
-import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 
-interface Config extends StorybookConfig {
-  features: StorybookConfig["features"] & {
-    emotionAlias: boolean;
-  };
-}
-
-const config: Config = {
+const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
@@ -19,28 +12,20 @@ const config: Config = {
     name: "@storybook/nextjs",
     options: {},
   },
-  docs: {
-    autodocs: "tag",
+  refs: {
+    "@chakra-ui/react": {
+      disable: true,
+    },
   },
-  features: { emotionAlias: false },
-  webpackFinal: async (config) => {
-    if (config.module?.rules) {
-      config.module.rules.push({
-        test: /\.mjs$/,
-        include: /node_modules/,
-        type: 'javascript/auto',
-      })
-    }
+  // webpackFinal: async (config) => {
+  //   config.module?.rules?.push({
+  //     test: /\.mjs$/,
+  //     include: /node_modules/,
+  //     type: "javascript/auto",
+  //   });
 
-    if (config.resolve) {
-      config.resolve.plugins = [
-        ...(config.resolve.plugins || []),
-        new TsConfigPathsPlugin({
-          extensions: config.resolve.extensions,
-        }),
-      ];
-    }
-    return config;
-  },
+  //   return config;
+  // },
 };
+
 export default config;
