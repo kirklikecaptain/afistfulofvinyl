@@ -1,6 +1,7 @@
 import { Box, BoxProps, Flex } from "@chakra-ui/react";
 import { AFoVLogo } from "./AFoVLogo";
 import { Link } from "./Link";
+import { Button } from "./Button/Button";
 
 export interface NavBarProps {
   height?: BoxProps["height"];
@@ -16,6 +17,7 @@ export function NavBar(props: NavBarProps) {
           <AFoVLogo width="120px" />
         </Link>
         <Link href="/artists">Artists</Link>
+        <Button>Log In</Button>
       </Flex>
     </Box>
   );

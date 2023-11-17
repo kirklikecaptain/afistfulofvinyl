@@ -8,7 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "typegen:gql": "DOTENV_CONFIG_PATH=./.env.local graphql-codegen --config codegen.ts -r dotenv/config",
-    "watch:gql": "DOTENV_CONFIG_PATH=./.env.local graphql-codegen --config codegen.ts -r dotenv/config --watch"
+    "watch:gql": "DOTENV_CONFIG_PATH=./.env.local graphql-codegen --config codegen.ts -r dotenv/config --watch",
+    "typegen:theme": "chakra-cli tokens ./src/ui/theme/theme.ts",
+    "watch:theme": "chakra-cli tokens ./src/ui/theme/theme.ts --watch",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@apollo/client": "^3.8.7",
@@ -29,6 +33,7 @@
   },
   "devDependencies": {
     "@chakra-ui/cli": "^2.4.1",
+    "@chakra-ui/storybook-addon": "^5.1.0",
     "@contentful/rich-text-types": "^16.3.0",
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.1.0",
@@ -36,6 +41,14 @@
     "@graphql-eslint/eslint-plugin": "^3.20.1",
     "@graphql-typed-document-node/core": "^3.2.0",
     "@parcel/watcher": "^2.3.0",
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/nextjs": "^7.5.3",
+    "@storybook/react": "^7.5.3",
+    "@storybook/testing-library": "^0.2.2",
     "@types/color": "^3.0.5",
     "@types/graphql": "^14.5.0",
     "@types/node": "^20",
@@ -50,8 +63,12 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-storybook": "^0.6.15",
     "prettier": "^3.0.3",
+    "storybook": "^7.5.3",
+    "storybook-dark-mode": "^3.0.1",
     "ts-node": "^10.9.1",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.2.2",
     "vercel": "^32.5.2"
   }
