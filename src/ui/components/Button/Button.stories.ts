@@ -2,21 +2,16 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Button } from "./Button";
 
-// https://storybook.js.org/docs/react/configure/
-
-const meta = {
-  title: "Example/Button",
+const meta: Meta<typeof Button> = {
+  title: "Button",
   component: Button,
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
   argTypes: {
     backgroundColor: { control: "color" },
   },
-} satisfies Meta<typeof Button>;
-
-export default meta;
+};
 
 type Story = StoryObj<typeof meta>;
 
@@ -32,3 +27,5 @@ export const Secondary: Story = {
     children: "Button",
   },
 };
+
+export default meta;

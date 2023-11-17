@@ -29,7 +29,7 @@
     "next": "^14.0.2",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.12.0"
   },
   "devDependencies": {
     "@chakra-ui/cli": "^2.4.1",
@@ -44,7 +44,6 @@
     "@storybook/addon-essentials": "^7.5.3",
     "@storybook/addon-interactions": "^7.5.3",
     "@storybook/addon-links": "^7.5.3",
-    "@storybook/addon-onboarding": "^1.0.8",
     "@storybook/blocks": "^7.5.3",
     "@storybook/nextjs": "^7.5.3",
     "@storybook/react": "^7.5.3",
@@ -66,9 +65,7 @@
     "eslint-plugin-storybook": "^0.6.15",
     "prettier": "^3.0.3",
     "storybook": "^7.5.3",
-    "storybook-dark-mode": "^3.0.1",
     "ts-node": "^10.9.1",
-    "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.2.2",
     "vercel": "^32.5.2"
   }
