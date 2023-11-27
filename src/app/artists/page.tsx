@@ -1,18 +1,6 @@
 import { Layout } from "~/ui/components/Layout";
-import { ArtistCard } from "~/ui/components/ArtistCard";
-import { ArtistsPageDocument, get } from "~/api";
-
-async function getArtistsPageData() {
-  const { data } = await get(ArtistsPageDocument);
-
-  const page = data.page?.items[0];
-  const artists = data.artists?.items;
-
-  return {
-    page,
-    artists,
-  };
-}
+import { ArtistCard } from "~/ui/components";
+import { getArtistsPageData } from "~/api/queries/getArtistsPageData";
 
 export async function generateMetadata() {
   const { page } = await getArtistsPageData();
@@ -28,7 +16,9 @@ export default async function ArtistsPage() {
   return (
     <Layout>
       <h1>All Artists Page</h1>
-      {artists?.map((artist, i) => <ArtistCard key={`artist_${i}`} fragment={artist} />)}
+      {artists.map((artist, i) => (
+        <ArtistCard key={`artist_${i}`} name={artist.name} />
+      ))}
     </Layout>
   );
 }

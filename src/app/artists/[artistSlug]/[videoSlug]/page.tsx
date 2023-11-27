@@ -1,38 +1,24 @@
-import { get, AllVideoSlugsDocument, VideoPageDocument } from "~/api";
+import { nullFilter } from "~/api";
+import { getAllVideos } from "~/api/queries/getAllVideos";
+import { getVideoPageData } from "~/api/queries/getVideoPageData";
 import { Heading } from "~/ui/chakra/react";
 import { Layout } from "~/ui/components/Layout";
 
-async function getAllVideoSlugs() {
-  const { data } = await get(AllVideoSlugsDocument);
-
-  return data.videos?.items || [];
-}
-
 export async function generateStaticParams() {
-  const videos = await getAllVideoSlugs();
-  const params = videos.map((video) => ({
-    artistSlug: video?.artist?.slug,
-    videoSlug: video?.slug,
+  const videos = await getAllVideos();
+  const params = videos.filter(nullFilter).map((video) => ({
+    artistSlug: video.artist?.slug,
+    videoSlug: video.slug,
   }));
 
   return params;
 }
 
-interface VideoPageParams {
-  artistSlug: string;
-  videoSlug: string;
-}
-
-async function getVideoPageData({ artistSlug, videoSlug }: VideoPageParams) {
-  const { data } = await get(VideoPageDocument, { artistSlug, videoSlug });
-  const page = data.page?.items[0] || {};
-  const moreVideos = data.moreVideos?.items || [];
-
-  return { page, moreVideos };
-}
-
 interface VideoPageProps {
-  params: VideoPageParams;
+  params: {
+    artistSlug: string;
+    videoSlug: string;
+  };
 }
 
 export async function generateMetadata({ params }: VideoPageProps) {
@@ -42,8 +28,6 @@ export async function generateMetadata({ params }: VideoPageProps) {
     artistSlug,
     videoSlug,
   });
-
-  const title = page?.title;
 
   return {
     title: page?.title,

@@ -1,7 +1,7 @@
-import type { StorybookConfig } from "@storybook/nextjs";
+import { type StorybookConfig } from "@storybook/nextjs";
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: ["../src/**/*.stories.tsx"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -17,15 +17,6 @@ const config: StorybookConfig = {
       disable: true,
     },
   },
-  // webpackFinal: async (config) => {
-  //   config.module?.rules?.push({
-  //     test: /\.mjs$/,
-  //     include: /node_modules/,
-  //     type: "javascript/auto",
-  //   });
-
-  //   return config;
-  // },
 };
 
 export default config;
