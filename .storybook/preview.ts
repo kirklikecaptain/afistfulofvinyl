@@ -1,4 +1,5 @@
-import type { Preview } from "@storybook/react";
+import { type Preview } from "@storybook/react";
+
 import { theme } from "../src/ui/theme/theme";
 
 const preview: Preview = {

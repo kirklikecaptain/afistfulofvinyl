@@ -1,26 +1,11 @@
-import { Heading } from "~/ui/chakra/react";
-import { Layout, VideoCardList } from "~/ui/components";
-import { ArtistPageDocument, get } from "~/api";
 import { notFound } from "next/navigation";
 
-interface ArtistPageParams {
-  artistSlug: string;
-}
-
-async function getArtistPageData({ artistSlug }: ArtistPageParams) {
-  const { data } = await get(ArtistPageDocument, { artistSlug });
-
-  const artist = data.page?.items[0];
-  const videos = data.videos?.items;
-
-  return {
-    artist,
-    videos,
-  };
-}
+import { getArtistPageData } from "~/api/queries/getArtistPageData";
+import { Heading } from "~/ui/chakra/react";
+import { Layout, VideoCardList } from "~/ui/components";
 
 interface ArtistPageProps {
-  params: ArtistPageParams;
+  params: { artistSlug: string };
 }
 
 export async function generateMetadata({ params }: ArtistPageProps) {

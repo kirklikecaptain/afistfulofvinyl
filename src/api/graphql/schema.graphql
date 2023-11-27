@@ -7,10 +7,10 @@ type ArtistColors {
 }
 
 extend type Artist {
-  pagePath: String! @client
-  colors: ArtistColors! @client
+  pagePath: String!
+  colors: ArtistColors!
 }
 
 extend type Video {
-  pagePath: String! @client
+  pagePath: String!
 }

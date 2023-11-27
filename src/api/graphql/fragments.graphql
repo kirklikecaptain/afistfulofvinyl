@@ -1,0 +1,99 @@
+fragment AllAssetFields on Asset {
+  __typename
+  title
+  description
+  width
+  height
+  url
+  fileName
+  contentType
+}
+
+fragment AllVideoFields on Video {
+  __typename
+  title
+  subtitle
+  uploadDate
+  videoType
+  pagePath @client
+  thumbnail {
+    url
+  }
+  artist {
+    ...AllArtistFields
+  }
+}
+
+fragment VideoCardFields on Video {
+  __typename
+  title
+  subtitle
+  uploadDate
+  videoType
+  slug
+  pagePath @client
+  thumbnail {
+    url
+  }
+  artist {
+    name
+    accentColor
+    slug
+    pagePath @client
+    colors @client {
+      lightest
+      light
+      mid
+      dark
+      darkest
+    }
+  }
+}
+
+fragment AllArtistFields on Artist {
+  __typename
+  name
+  slug
+  pagePath @client
+  accentColor
+  colors @client {
+    lightest
+    light
+    mid
+    dark
+    darkest
+  }
+  photo {
+    url
+  }
+  shortBio
+  bio {
+    json
+  }
+  websiteUrl
+  twitterUrl
+  tiktokUrl
+  facebookUrl
+  instagramUrl
+  bandcampUrl
+  soundcloudUrl
+  youtubeUrl
+}
+
+fragment ArtistCardFields on Artist {
+  __typename
+  name
+  accentColor
+  colors @client {
+    lightest
+    light
+    mid
+    dark
+    darkest
+  }
+  slug
+  pagePath @client
+  photo {
+    url
+  }
+}

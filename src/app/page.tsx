@@ -1,17 +1,5 @@
-import { get, HomePageDocument } from "~/api";
+import { getHomePageData } from "~/api/queries/getHomePageData";
 import { BrandHero, Layout, VideoCardList } from "~/ui/components";
-
-async function getHomePageData() {
-  const { data } = await get(HomePageDocument);
-
-  const page = data.page?.items[0];
-  const recentVideos = data.recentVideos?.items;
-
-  return {
-    page,
-    recentVideos,
-  };
-}
 
 export async function generateMetadata() {
   const { page } = await getHomePageData();
