@@ -1,7 +1,7 @@
 import { Box, Container, Grid, Heading, VStack } from "~/ui/chakra/react";
 import { VideoCardFieldsFragment } from "~/api";
 
-import { VideoCard } from "./VideoCard/VideoCard";
+import { VideoCard } from "./VideoCard";
 
 interface VideoCardListProps {
   heading: string;

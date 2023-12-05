@@ -7,4 +7,4 @@ export { NavBar } from "./NavBar";
 export { RichText } from "./RichText";
 export { VideoCardList } from "./VideoCardList";
 export { ArtistCard } from "./ArtistCard/ArtistCard";
-export { VideoCard } from "./VideoCard/VideoCard";
+export { VideoCard } from "./VideoCard";

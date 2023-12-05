@@ -1,8 +1,8 @@
 import { Text, Box, Heading, LinkBox, AspectRatio, Flex } from "~/ui/chakra/react";
 import type { Video, Artist, Asset } from "~/api";
 
-import { Image } from "../Image";
-import { LinkOverlay } from "../Link";
+import { Image } from "./Image";
+import { LinkOverlay } from "./Link";
 
 interface VideoCardProps {
   title: Video["title"];
