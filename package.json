@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -o src/libs/contentful/types && eslint --fix src/libs/contentful/types"
   },
   "dependencies": {
+    "@contentful/rich-text-types": "^16.3.4",
     "contentful": "^10.6.21",
     "next": "14.1.0",
     "react": "^18",
