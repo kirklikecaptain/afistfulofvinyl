@@ -1,4 +1,8 @@
+import "@mantine/core/styles.css";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import type { Metadata } from "next";
+
+import { theme } from "~/components/theme";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",
@@ -9,7 +13,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        <ColorSchemeScript defaultColorScheme="dark" />
+      </head>
+      <body>
+        <MantineProvider theme={theme}>{children}</MantineProvider>
+      </body>
     </html>
   );
 }
