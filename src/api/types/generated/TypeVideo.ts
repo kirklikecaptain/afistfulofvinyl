@@ -11,7 +11,7 @@ import type { TypeContributorSkeleton } from "./TypeContributor";
 import type { TypeVenueSkeleton } from "./TypeVenue";
 
 export interface TypeVideoFields {
-  title?: EntryFieldTypes.Symbol;
+  title: EntryFieldTypes.Symbol;
   subtitle?: EntryFieldTypes.Symbol;
   slug: EntryFieldTypes.Symbol;
   videoUrl: EntryFieldTypes.Symbol;
