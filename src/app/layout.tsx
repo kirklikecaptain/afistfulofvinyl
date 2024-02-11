@@ -1,12 +1,28 @@
-import { type PropsWithChildren } from "react";
+import "@mantine/core/styles.css";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import type { Metadata } from "next";
+import { draftMode } from "next/headers";
 
-import { ChakraThemeProvider } from "~/ui/theme/ChakraThemeProvider";
+import { theme } from "~/components/theme";
+import { ExitPreviewButton } from "~/components/ExitPreviewButton";
 
-export default function AppLayout({ children }: PropsWithChildren) {
+export const metadata: Metadata = {
+  title: "A Fistful of Vinyl",
+  description:
+    "Live sessions and interviews with independent and DIY artists from all music genres",
+};
+
+export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en" data-theme="dark" style={{ colorScheme: "dark" }}>
-      <body className="chakra-ui-dark">
-        <ChakraThemeProvider>{children}</ChakraThemeProvider>
+    <html lang="en">
+      <head>
+        <ColorSchemeScript defaultColorScheme="dark" />
+      </head>
+      <body>
+        <MantineProvider theme={theme}>
+          {children}
+          {draftMode().isEnabled && <ExitPreviewButton />}
+        </MantineProvider>
       </body>
     </html>
   );

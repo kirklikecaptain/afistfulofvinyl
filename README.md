@@ -1,1 +1,3 @@
-# A Fistful of Vinyl - afistfulofvinyl.com
+# afistfulofvinyl.com
+
+Website for A Fistful of Vinyl

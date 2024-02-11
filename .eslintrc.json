@@ -1,20 +1,16 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "plugin:storybook/recommended",
     "prettier"
   ],
-  "plugins": ["import", "prettier"],
-  "ignorePatterns": ["!.storybook"],
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
     "prettier/prettier": [
       "error",
       {
-        "semi": true,
-        "tabWidth": 2,
-        "printWidth": 100,
-        "singleQuote": false,
-        "bracketSpacing": true
+        "printWidth": 100
       }
     ],
     "import/order": [

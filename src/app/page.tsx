@@ -1,21 +1,27 @@
-import { getHomePageData } from "~/api/queries/getHomePageData";
-import { BrandHero, Layout, VideoCardList } from "~/ui/components";
+import { draftMode } from "next/headers";
 
-export async function generateMetadata() {
-  const { page } = await getHomePageData();
+import { getLatestVideos } from "~/api/contentful/queries";
 
-  return {
-    title: page?.metaTitle,
-  };
+async function getHomePageData(preview: boolean) {
+  return await getLatestVideos({ preview });
 }
 
 export default async function HomePage() {
-  const { recentVideos } = await getHomePageData();
+  const data = await getHomePageData(draftMode().isEnabled);
 
   return (
-    <Layout>
-      <BrandHero />
-      <VideoCardList heading="Recent" videos={recentVideos} />
-    </Layout>
+    <main>
+      <h1>Home Page</h1>
+      <h2>Latest Videos</h2>
+      <ul>
+        {data.map((video) => (
+          <li key={video.sys.id}>
+            <h3>
+              {video.fields.title} - {video.fields.artist?.fields.name}
+            </h3>
+          </li>
+        ))}
+      </ul>
+    </main>
   );
 }
