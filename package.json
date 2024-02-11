@@ -6,15 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -o src/api/contentful/types/generated && eslint --fix src/api/contentful/types/generated"
   },
   "dependencies": {
+    "@contentful/rich-text-types": "^16.3.4",
     "@mantine/carousel": "^7.5.2",
     "@mantine/core": "^7.5.2",
     "@mantine/form": "^7.5.2",
     "@mantine/hooks": "^7.5.2",
     "@mantine/modals": "^7.5.2",
     "@mantine/spotlight": "^7.5.2",
+    "contentful": "^10.6.21",
     "embla-carousel-react": "^7.1.0",
     "next": "14.1.0",
     "react": "^18",
@@ -24,6 +27,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cf-content-types-generator": "^2.14.0",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "^9.1.0",
