@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 
 import { theme } from "~/components/theme";
-import { ExitPreviewButton } from "~/components/ExitPreviewButton";
+import { ExitPreviewButton } from "~/components/ExitPreviewButton/ExitPreviewButton";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",
