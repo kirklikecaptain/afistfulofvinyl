@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -o src/api/contentful/types/generated && eslint --fix src/api/contentful/types/generated"
+    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -o src/api/contentful/types/generated && eslint --fix src/api/contentful/types/generated",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build"
   },
   "dependencies": {
     "@contentful/rich-text-types": "^16.3.4",
@@ -24,6 +26,14 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.14",
+    "@storybook/addon-interactions": "^7.6.14",
+    "@storybook/addon-links": "^7.6.14",
+    "@storybook/addon-styling-webpack": "^0.0.6",
+    "@storybook/blocks": "^7.6.14",
+    "@storybook/nextjs": "^7.6.14",
+    "@storybook/react": "^7.6.14",
+    "@storybook/test": "^7.6.14",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -32,10 +42,13 @@
     "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-storybook": "^0.6.15",
     "postcss": "^8.4.35",
     "postcss-preset-mantine": "^1.13.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.2.5",
+    "storybook": "^7.6.14",
+    "storybook-dark-mode": "^3.0.3",
     "typescript": "^5"
   }
 }

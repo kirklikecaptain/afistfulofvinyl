@@ -1,11 +1,13 @@
 {
   "extends": [
     "next/core-web-vitals",
+    "plugin:storybook/recommended",
     "prettier"
   ],
   "plugins": [
     "prettier"
   ],
+  "ignorePatterns": ["!.storybook"],
   "rules": {
     "prettier/prettier": [
       "error",
