@@ -1,3 +1,4 @@
+import { Title } from "@mantine/core";
 import { draftMode } from "next/headers";
 
 import { getLatestVideos } from "~/api/contentful/queries";
@@ -11,8 +12,8 @@ export default async function HomePage() {
 
   return (
     <div>
-      <h1>Home Page</h1>
-      <h2>Latest Videos</h2>
+      <Title>Home Page</Title>
+      <Title order={2}>Latest Videos</Title>
       <ul>
         {data.map((video) => (
           <li key={video.sys.id}>

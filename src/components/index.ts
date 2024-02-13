@@ -1,8 +1,7 @@
 export { AFoVLogo } from "./AFoVLogo/AFoVLogo";
-export { AppLayout } from "./AppLayout/AppLayout";
 export { ColorModeButton } from "./ColorModeButton/ColorModeButton";
-export { ExitPreviewButton } from "./ExitPreviewButton/ExitPreviewButton";
-export { Link } from "./Link/Link";
-export { LinkBlock } from "./LinkBlock/LinkBlock";
-export { Search } from "./Search/Search";
+export { ExitPreview } from "./ExitPreview/ExitPreview";
+export { NextLink } from "./NextLink/NextLink";
+export { NextNavLink } from "./NextNavLink/NextNavLink";
+export { SearchModal } from "./SearchModal/SearchModal";
 export { SearchButton } from "./SearchButton/SearchButton";

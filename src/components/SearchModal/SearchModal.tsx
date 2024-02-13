@@ -14,7 +14,7 @@ const actions: SpotlightActionData[] = [
   },
 ];
 
-export function Search() {
+export function SearchModal() {
   return (
     <Spotlight
       actions={actions}

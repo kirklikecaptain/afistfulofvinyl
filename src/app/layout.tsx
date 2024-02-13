@@ -6,7 +6,8 @@ import { draftMode } from "next/headers";
 
 import "~/styles/global.css";
 import { theme } from "~/styles/theme";
-import { AppLayout, Search, ExitPreviewButton } from "~/components";
+import { AppLayout } from "~/layouts";
+import { SearchModal, ExitPreview } from "~/components";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",
@@ -14,17 +15,20 @@ export const metadata: Metadata = {
     "Live sessions and interviews with independent and DIY artists from all music genres",
 };
 
-export default function RootLayout({ children }: React.PropsWithChildren) {
+export default function Layout({ children }: React.PropsWithChildren) {
+  const preview = draftMode().isEnabled;
+  const defaultColorScheme = "dark";
+
   return (
     <html lang="en">
       <head>
-        <ColorSchemeScript defaultColorScheme="dark" />
+        <ColorSchemeScript defaultColorScheme={defaultColorScheme} />
       </head>
       <body>
-        <MantineProvider defaultColorScheme="dark" theme={theme}>
+        <MantineProvider defaultColorScheme={defaultColorScheme} theme={theme}>
           <AppLayout>{children}</AppLayout>
-          {draftMode().isEnabled && <ExitPreviewButton />}
-          <Search />
+          <SearchModal />
+          {preview && <ExitPreview />}
         </MantineProvider>
       </body>
     </html>
