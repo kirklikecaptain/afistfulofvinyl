@@ -1,10 +1,12 @@
 import "@mantine/core/styles.css";
+import "@mantine/spotlight/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 
-import { theme } from "~/components/theme";
-import { ExitPreviewButton } from "~/components/ExitPreviewButton/ExitPreviewButton";
+import "~/styles/global.css";
+import { theme } from "~/styles/theme";
+import { AppLayout, Search, ExitPreviewButton } from "~/components";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",
@@ -19,9 +21,10 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <ColorSchemeScript defaultColorScheme="dark" />
       </head>
       <body>
-        <MantineProvider theme={theme}>
-          {children}
+        <MantineProvider defaultColorScheme="dark" theme={theme}>
+          <AppLayout>{children}</AppLayout>
           {draftMode().isEnabled && <ExitPreviewButton />}
+          <Search />
         </MantineProvider>
       </body>
     </html>

@@ -8,7 +8,6 @@ const nextConfig = {
       "@mantine/form",
       "@mantine/hooks",
       "@mantine/modals",
-      "@mantine/spotlight",
     ],
   },
 };

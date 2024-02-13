@@ -10,7 +10,7 @@ export default async function HomePage() {
   const data = await getHomePageData(draftMode().isEnabled);
 
   return (
-    <main>
+    <div>
       <h1>Home Page</h1>
       <h2>Latest Videos</h2>
       <ul>
@@ -22,6 +22,6 @@ export default async function HomePage() {
           </li>
         ))}
       </ul>
-    </main>
+    </div>
   );
 }
