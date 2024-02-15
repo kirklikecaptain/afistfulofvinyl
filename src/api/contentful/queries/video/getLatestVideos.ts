@@ -8,10 +8,10 @@ interface Options {
 
 export async function getLatestVideos({ preview, limit }: Options) {
   const client = contentfulClient({ preview });
-  const entries = await client.withoutUnresolvableLinks.getEntries<TypeVideoSkeleton>({
+  const entries = await client.getEntries<TypeVideoSkeleton>({
     content_type: "video",
     order: ["-fields.uploadDate"],
-    include: 2,
+    include: 4,
     limit: limit ?? 12,
   });
 

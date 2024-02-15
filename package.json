@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -o src/api/contentful/types/generated && eslint --fix src/api/contentful/types/generated",
+    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -g -o src/api/contentful/types/generated && eslint --fix src/api/contentful/types/generated",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build"
   },

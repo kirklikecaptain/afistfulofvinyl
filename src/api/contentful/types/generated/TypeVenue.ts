@@ -20,3 +20,9 @@ export type TypeVenue<Modifiers extends ChainModifiers, Locales extends LocaleCo
   Modifiers,
   Locales
 >;
+
+export function isTypeVenue<Modifiers extends ChainModifiers, Locales extends LocaleCode>(
+  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
+): entry is TypeVenue<Modifiers, Locales> {
+  return entry.sys.contentType.sys.id === "venue";
+}

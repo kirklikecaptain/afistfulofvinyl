@@ -30,5 +30,7 @@ const previewClient = createClient({
 });
 
 export function contentfulClient({ preview } = { preview: false }) {
-  return preview ? previewClient : publishedClient;
+  return preview
+    ? previewClient.withoutUnresolvableLinks
+    : publishedClient.withoutUnresolvableLinks;
 }

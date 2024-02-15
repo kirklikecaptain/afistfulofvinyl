@@ -21,3 +21,9 @@ export type TypeContributor<Modifiers extends ChainModifiers, Locales extends Lo
   Modifiers,
   Locales
 >;
+
+export function isTypeContributor<Modifiers extends ChainModifiers, Locales extends LocaleCode>(
+  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
+): entry is TypeContributor<Modifiers, Locales> {
+  return entry.sys.contentType.sys.id === "contributor";
+}

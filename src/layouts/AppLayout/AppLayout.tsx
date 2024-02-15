@@ -13,7 +13,6 @@ export function AppLayout({ children }: React.PropsWithChildren) {
   return (
     <AppShell
       layout="alt"
-      padding="md"
       header={{
         height: { sm: 0, base: rem(mobileHeaderHeight) },
       }}
