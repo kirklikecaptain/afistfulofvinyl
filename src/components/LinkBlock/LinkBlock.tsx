@@ -1,6 +1,9 @@
-import NextLink, { type LinkProps } from "next/link";
-import clsx from "clsx";
+"use client";
 
-export function LinkBlock({ className, ...otherProps }: LinkProps<unknown>) {
-  return <NextLink className={clsx("mantine-focus-auto", className)} {...otherProps} />;
+import { Link, type LinkProps } from "../Link/Link";
+
+export interface LinkBlockProps<T extends string = string> extends LinkProps<T> {}
+
+export function LinkBlock<T extends string>(props: LinkBlockProps<T>) {
+  return <Link display="block" c="inherit" underline="never" {...props} />;
 }

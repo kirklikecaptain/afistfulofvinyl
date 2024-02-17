@@ -1,11 +1,9 @@
 import { ActionIcon, useMantineColorScheme, useComputedColorScheme, Tooltip } from "@mantine/core";
 import { IconSun, IconMoon } from "@tabler/icons-react";
 
-import css from "./ColorModeButton.module.css";
-
 export function ColorModeButton() {
   const { setColorScheme } = useMantineColorScheme();
-  const computedColorScheme = useComputedColorScheme("light", { getInitialValueInEffect: true });
+  const computedColorScheme = useComputedColorScheme("dark", { getInitialValueInEffect: true });
   const toggleScheme = () => setColorScheme(computedColorScheme === "light" ? "dark" : "light");
 
   return (
@@ -14,7 +12,7 @@ export function ColorModeButton() {
         events={{ hover: true, focus: true, touch: false }}
         withArrow
         label="Toggle Light Mode"
-        className={css.light}
+        className="hide-from-light"
       >
         <ActionIcon onClick={toggleScheme} variant="default" aria-label="Toggle color mode">
           <IconSun size="65%" />
@@ -24,7 +22,7 @@ export function ColorModeButton() {
         events={{ hover: true, focus: true, touch: false }}
         withArrow
         label="Toggle Dark Mode"
-        className={css.dark}
+        className="hide-from-dark"
       >
         <ActionIcon onClick={toggleScheme} variant="default">
           <IconMoon size="65%" />

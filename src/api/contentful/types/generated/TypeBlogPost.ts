@@ -18,3 +18,9 @@ export type TypeBlogPost<Modifiers extends ChainModifiers, Locales extends Local
   Modifiers,
   Locales
 >;
+
+export function isTypeBlogPost<Modifiers extends ChainModifiers, Locales extends LocaleCode>(
+  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
+): entry is TypeBlogPost<Modifiers, Locales> {
+  return entry.sys.contentType.sys.id === "blogPost";
+}

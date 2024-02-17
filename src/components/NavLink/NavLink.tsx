@@ -1,10 +1,10 @@
 "use client";
 
 import NextLink from "next/link";
-import { Anchor, type AnchorProps } from "@mantine/core";
-import { type Route } from "next";
+import { NavLink as MantineNavLink, type NavLinkProps as MantineNavLinkProps } from "@mantine/core";
+import { Route } from "next";
 
-export interface LinkProps<T extends string = string> extends AnchorProps {
+export interface NavLinkProps<T extends string = string> extends MantineNavLinkProps {
   href: Route<T> | URL;
   replace?: boolean;
   prefetch?: boolean;
@@ -12,12 +12,12 @@ export interface LinkProps<T extends string = string> extends AnchorProps {
   children?: React.ReactNode;
 }
 
-export function Link<T extends string>(props: LinkProps<T>) {
-  const { href, replace, prefetch, scroll, ...anchorProps } = props;
+export function NavLink<T extends string>(props: NavLinkProps<T>) {
+  const { href, replace, prefetch, scroll, ...navLinkProps } = props;
 
   return (
-    <Anchor
-      {...anchorProps}
+    <MantineNavLink
+      {...navLinkProps}
       renderRoot={(rootProps) => (
         <NextLink
           href={href}

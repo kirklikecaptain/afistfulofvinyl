@@ -1,8 +1,11 @@
 export { AFoVLogo } from "./AFoVLogo/AFoVLogo";
-export { AppLayout } from "./AppLayout/AppLayout";
 export { ColorModeButton } from "./ColorModeButton/ColorModeButton";
-export { ExitPreviewButton } from "./ExitPreviewButton/ExitPreviewButton";
+export { ExitPreview } from "./ExitPreview/ExitPreview";
 export { Link } from "./Link/Link";
 export { LinkBlock } from "./LinkBlock/LinkBlock";
-export { Search } from "./Search/Search";
+export { NavLink } from "./NavLink/NavLink";
+export { SearchModal } from "./SearchModal/SearchModal";
 export { SearchButton } from "./SearchButton/SearchButton";
+export { Footer } from "./Footer/Footer";
+export { Image } from "./Image/Image";
+export { VideoCardLink } from "./VideoCardLink/VideoCardLink";

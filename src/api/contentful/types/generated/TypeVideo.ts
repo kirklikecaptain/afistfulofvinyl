@@ -31,3 +31,9 @@ export type TypeVideo<Modifiers extends ChainModifiers, Locales extends LocaleCo
   Modifiers,
   Locales
 >;
+
+export function isTypeVideo<Modifiers extends ChainModifiers, Locales extends LocaleCode>(
+  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
+): entry is TypeVideo<Modifiers, Locales> {
+  return entry.sys.contentType.sys.id === "video";
+}
