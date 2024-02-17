@@ -1,6 +1,6 @@
 import { Title, SimpleGrid, Box, Divider } from "@mantine/core";
 
-interface GridSectionProps extends React.PropsWithChildren {
+interface GridSectionProps {
   title: string;
   children: React.ReactNode;
 }

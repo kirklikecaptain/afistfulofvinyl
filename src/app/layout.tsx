@@ -6,7 +6,6 @@ import { draftMode } from "next/headers";
 
 import "~/styles/global.css";
 import { theme } from "~/styles/theme";
-import { AppLayout } from "~/layouts";
 import { SearchModal, ExitPreview } from "~/components";
 
 export const metadata: Metadata = {
@@ -15,8 +14,8 @@ export const metadata: Metadata = {
     "Live sessions and interviews with independent and DIY artists from all music genres",
 };
 
-export default function Layout({ children }: React.PropsWithChildren) {
-  const preview = draftMode().isEnabled;
+export default function RootLayout({ children }: React.PropsWithChildren) {
+  const previewMode = draftMode().isEnabled;
   const defaultColorScheme = "dark";
 
   return (
@@ -26,9 +25,9 @@ export default function Layout({ children }: React.PropsWithChildren) {
       </head>
       <body>
         <MantineProvider defaultColorScheme={defaultColorScheme} theme={theme}>
-          <AppLayout>{children}</AppLayout>
+          {children}
           <SearchModal />
-          {preview && <ExitPreview />}
+          {previewMode && <ExitPreview />}
         </MantineProvider>
       </body>
     </html>

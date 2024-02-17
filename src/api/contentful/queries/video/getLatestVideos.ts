@@ -1,18 +1,16 @@
-import { contentfulClient } from "~/api/contentful/config/client";
+import { contentful } from "~/api/contentful/config/client";
 import type { TypeVideoSkeleton } from "~/api/contentful/types/generated";
 
 interface Options {
-  preview: boolean;
   limit?: number;
 }
 
-export async function getLatestVideos({ preview, limit }: Options) {
-  const client = contentfulClient({ preview });
-  const entries = await client.getEntries<TypeVideoSkeleton>({
+export async function getLatestVideos({ limit }: Options = { limit: 12 }) {
+  const entries = await contentful.getEntries<TypeVideoSkeleton>({
     content_type: "video",
     order: ["-fields.uploadDate"],
     include: 4,
-    limit: limit ?? 12,
+    limit,
   });
 
   return entries.items;

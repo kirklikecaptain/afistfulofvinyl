@@ -1,17 +1,20 @@
 import { createClient } from "contentful";
+import { draftMode } from "next/headers";
 
 const {
   CONTENTFUL_SPACE_ID,
   CONTENTFUL_ENV,
   CONTENTFUL_ACCESS_TOKEN,
   CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+  CONTENTFUL_PREVIEW_HOST,
 } = process.env;
 
 if (
   !CONTENTFUL_SPACE_ID ||
   !CONTENTFUL_ENV ||
   !CONTENTFUL_ACCESS_TOKEN ||
-  !CONTENTFUL_PREVIEW_ACCESS_TOKEN
+  !CONTENTFUL_PREVIEW_ACCESS_TOKEN ||
+  !CONTENTFUL_PREVIEW_HOST
 ) {
   throw new Error("Required Contentful variables not found in `.env.local`");
 }
@@ -26,11 +29,9 @@ const previewClient = createClient({
   space: CONTENTFUL_SPACE_ID,
   accessToken: CONTENTFUL_PREVIEW_ACCESS_TOKEN,
   environment: CONTENTFUL_ENV,
-  host: "preview.contentful.com",
+  host: CONTENTFUL_PREVIEW_HOST,
 });
 
-export function contentfulClient({ preview } = { preview: false }) {
-  return preview
-    ? previewClient.withoutUnresolvableLinks
-    : publishedClient.withoutUnresolvableLinks;
-}
+export const contentful = draftMode().isEnabled
+  ? previewClient.withoutUnresolvableLinks
+  : publishedClient.withoutUnresolvableLinks;
