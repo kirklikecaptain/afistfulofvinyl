@@ -1,13 +1,10 @@
-import { ActionIcon } from "@mantine/core";
 import { spotlight } from "@mantine/spotlight";
 import { IconSearch } from "@tabler/icons-react";
 
-export function SearchButton() {
-  const openSpotlight = () => spotlight.open();
+import { IconButton, type IconButtonProps } from "../IconButton";
 
-  return (
-    <ActionIcon onClick={openSpotlight} aria-label="Search" variant="default">
-      <IconSearch size="65%" />
-    </ActionIcon>
-  );
+interface SearchButtonProps extends Omit<IconButtonProps, "label" | "onClick" | "icon"> {}
+
+export function SearchButton(props: SearchButtonProps) {
+  return <IconButton label="Search" onClick={spotlight.open} icon={IconSearch} {...props} />;
 }

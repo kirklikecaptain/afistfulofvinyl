@@ -4,21 +4,21 @@ import { Button } from "@mantine/core";
 import { IconEyeOff } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 
-import { Link } from "~/components";
+export interface ExitPreviewProps {
+  enabled: boolean;
+}
 
-export function ExitPreview() {
+export function ExitPreviewButton({ enabled }: ExitPreviewProps) {
   const currentPath = usePathname();
-  const linkTo = {
-    pathname: "/api/preview/exit",
-    query: { redirect: currentPath },
-  };
+  const linkTo = `/api/preview/exit?redirect=${currentPath}`;
+
+  if (!enabled) return null;
 
   return (
     <Button
       href={linkTo}
-      component={Link}
+      component="a"
       pos="fixed"
-      underline="never"
       bottom={16}
       right={16}
       leftSection={<IconEyeOff size={14} />}

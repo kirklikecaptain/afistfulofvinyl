@@ -1,18 +1,11 @@
-"use client";
-
-import NextLink from "next/link";
+import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import { NavLink as MantineNavLink, type NavLinkProps as MantineNavLinkProps } from "@mantine/core";
-import { Route } from "next";
 
-export interface NavLinkProps<T extends string = string> extends MantineNavLinkProps {
-  href: Route<T> | URL;
-  replace?: boolean;
-  prefetch?: boolean;
-  scroll?: boolean;
-  children?: React.ReactNode;
-}
+export interface NavLinkProps<T extends string>
+  extends MantineNavLinkProps,
+    Omit<NextLinkProps<T>, keyof MantineNavLinkProps | "ref"> {}
 
-export function NavLink<T extends string>(props: NavLinkProps<T>) {
+export function NavbarLink<T extends string>(props: NavLinkProps<T>) {
   const { href, replace, prefetch, scroll, ...navLinkProps } = props;
 
   return (

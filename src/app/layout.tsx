@@ -6,7 +6,7 @@ import { draftMode } from "next/headers";
 
 import "~/styles/global.css";
 import { theme } from "~/styles/theme";
-import { SearchModal, ExitPreview } from "~/components";
+import { SearchModal, ExitPreviewButton } from "~/components";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
-  const previewMode = draftMode().isEnabled;
   const defaultColorScheme = "dark";
 
   return (
@@ -27,7 +26,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <MantineProvider defaultColorScheme={defaultColorScheme} theme={theme}>
           {children}
           <SearchModal />
-          {previewMode && <ExitPreview />}
+          <ExitPreviewButton enabled={draftMode().isEnabled} />
         </MantineProvider>
       </body>
     </html>

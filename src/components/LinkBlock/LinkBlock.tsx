@@ -2,8 +2,10 @@
 
 import { Link, type LinkProps } from "../Link/Link";
 
-export interface LinkBlockProps<T extends string = string> extends LinkProps<T> {}
+export type LinkBlockProps<T extends string> = LinkProps<T>;
 
 export function LinkBlock<T extends string>(props: LinkBlockProps<T>) {
-  return <Link display="block" c="inherit" underline="never" {...props} />;
+  const { display = "block", underline = "never", c = "inherit", ...otherProps } = props;
+
+  return <Link display={display} underline={underline} c={c} {...otherProps} />;
 }
