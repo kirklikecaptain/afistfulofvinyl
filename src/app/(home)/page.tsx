@@ -1,9 +1,8 @@
-import { Box } from "@mantine/core";
-
 import { getLatestVideos } from "~/api/contentful/queries";
-import { GridSection } from "~/components/GridSection";
+import { GridSection } from "~/components/GridSection/GridSection";
 import { VideoCardLink } from "~/components";
 import { resolveVideoCardLinkProps } from "~/api/contentful/utils/resolvers";
+import { BrandHeroSection } from "~/components/BrandHeroSection/BrandHeroSection";
 
 async function getHomePageData() {
   const latestVideos = await getLatestVideos();
@@ -18,13 +17,13 @@ export default async function HomePage() {
   const { latestVideoLinks } = await getHomePageData();
 
   return (
-    <Box>
-      {/* <BrandHero /> */}
+    <>
+      <BrandHeroSection />
       <GridSection title="Latest Videos">
         {latestVideoLinks.map((video, i) => (
           <VideoCardLink key={i} {...video} />
         ))}
       </GridSection>
-    </Box>
+    </>
   );
 }

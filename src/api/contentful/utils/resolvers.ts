@@ -1,7 +1,7 @@
 import { type Route } from "next";
 
 import { type ImageProps } from "~/components/Image/Image";
-import type { VideoCardLinkProps } from "~/components/VideoCardLink/VideoCardLink";
+import type { VideoCardLinkProps } from "~/components/VideoCardLink";
 
 import type { LinkedAsset, VideoEntry } from "../types";
 

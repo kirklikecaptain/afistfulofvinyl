@@ -1,29 +1,22 @@
-"use client";
-
-import { useMemo } from "react";
+import { memo } from "react";
 import NextImage, { type ImageProps as NextImageProps } from "next/image";
-import { Image as MantineImage, type ImageProps as MantineImageProps } from "@mantine/core";
+import { AspectRatio } from "@mantine/core";
 
-import { parseSrc } from "./Image.utils";
-
-export interface ImageProps
-  extends Omit<NextImageProps, keyof MantineImageProps>,
-    MantineImageProps {}
-
-export function Image(props: ImageProps) {
-  const { src, alt = "", h = "auto", w = "100%", ...rest } = props;
-
-  const { href, loader } = useMemo(() => parseSrc(src), [src]);
-
-  return (
-    <MantineImage
-      src={href}
-      component={NextImage}
-      loader={loader}
-      h={h}
-      w={w}
-      alt={alt}
-      {...rest}
-    />
-  );
+import { parseImageProps } from "./Image.utils";
+export interface ImageProps extends NextImageProps {
+  aspectRatio?: "16:9" | "4:3" | "3:2" | "1:1";
 }
+
+export const Image = memo(function Image(props: ImageProps) {
+  const { src, loader, aspectRatio, ...otherProps } = parseImageProps(props);
+
+  if (aspectRatio) {
+    return (
+      <AspectRatio ratio={aspectRatio}>
+        <NextImage fill src={src} loader={loader} {...otherProps} />
+      </AspectRatio>
+    );
+  }
+
+  return <NextImage src={src} loader={loader} {...otherProps} />;
+});

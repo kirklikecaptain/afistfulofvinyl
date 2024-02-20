@@ -2,28 +2,68 @@ import { type ImageLoaderProps } from "next/image";
 
 import { type ImageProps } from "./Image";
 
-interface ParsedSrc {
-  href: ImageProps["src"];
-  loader?: ImageProps["loader"];
-}
-
-export function parseSrc(src: ImageProps["src"]): ParsedSrc {
-  if (typeof src === "string" && src.startsWith("//images.ctfassets.net")) {
-    return {
-      href: `https:${src}`,
-      loader: contentfulImageLoader,
-    };
+function parseAspectRatio(aspectRatio?: ImageProps["aspectRatio"]) {
+  if (!aspectRatio) {
+    return;
   }
 
-  return { href: src };
+  if (typeof aspectRatio !== "string" || !aspectRatio.includes(":")) {
+    throw new Error("Invalid aspect ratio syntax. Must be in the format `w:h`. ex: 16:9 or 1:1");
+  }
+
+  const [w, h] = aspectRatio.split(":");
+  const ratio = Number(w) / Number(h);
+
+  return Math.round(ratio * 100) / 100;
 }
 
-export function contentfulImageLoader({ src, width, quality = 75 }: ImageLoaderProps): string {
+interface LoaderOptions {
+  aspectRatio?: number;
+}
+
+function contentfulLoader(props: ImageLoaderProps, options: LoaderOptions): string {
+  const { src, width, quality = 80 } = props;
+  const { aspectRatio } = options;
+
   const url = new URL(src);
 
-  url.searchParams.set("fm", "webp");
-  url.searchParams.set("w", width.toString());
+  if (/\.gif$/gi.test(url.href)) {
+    return url.href;
+  }
+
+  url.searchParams.set("fm", "jpg");
+  url.searchParams.set("fl", "progressive");
   url.searchParams.set("q", quality.toString());
+  url.searchParams.set("w", width.toString());
+
+  if (aspectRatio) {
+    const height = Math.floor(width / aspectRatio);
+
+    url.searchParams.set("h", height.toString());
+    url.searchParams.set("fit", "fill");
+    url.searchParams.set("f", "faces");
+  }
 
   return url.href;
+}
+
+export function parseImageProps(props: ImageProps) {
+  const { src: _src, loader: _loader, aspectRatio: _aspectRatio, ...otherProps } = props;
+
+  let src = _src;
+  let loader = _loader;
+  const aspectRatio = parseAspectRatio(_aspectRatio);
+
+  // Contentful Image
+  if (typeof src === "string" && src.startsWith("//images.ctfassets.net")) {
+    src = `https:${src}`;
+    loader = (loaderProps) => contentfulLoader(loaderProps, { aspectRatio });
+  }
+
+  return {
+    src,
+    loader,
+    aspectRatio,
+    ...otherProps,
+  };
 }

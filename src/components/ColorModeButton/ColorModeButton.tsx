@@ -1,33 +1,33 @@
-import { ActionIcon, useMantineColorScheme, useComputedColorScheme, Tooltip } from "@mantine/core";
+import { useMantineColorScheme, useComputedColorScheme } from "@mantine/core";
 import { IconSun, IconMoon } from "@tabler/icons-react";
 
-export function ColorModeButton() {
+import { IconButton, type IconButtonProps } from "../IconButton";
+
+export interface ColorModeButtonProps extends Omit<IconButtonProps, "label" | "onClick" | "icon"> {}
+
+export function ColorModeButton({ variant, size }: ColorModeButtonProps) {
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme("dark", { getInitialValueInEffect: true });
   const toggleScheme = () => setColorScheme(computedColorScheme === "light" ? "dark" : "light");
 
   return (
     <>
-      <Tooltip
-        events={{ hover: true, focus: true, touch: false }}
-        withArrow
+      <IconButton
         label="Toggle Light Mode"
         className="hide-from-light"
-      >
-        <ActionIcon onClick={toggleScheme} variant="default" aria-label="Toggle color mode">
-          <IconSun size="65%" />
-        </ActionIcon>
-      </Tooltip>
-      <Tooltip
-        events={{ hover: true, focus: true, touch: false }}
-        withArrow
+        variant={variant}
+        size={size}
+        onClick={toggleScheme}
+        icon={IconSun}
+      />
+      <IconButton
         label="Toggle Dark Mode"
         className="hide-from-dark"
-      >
-        <ActionIcon onClick={toggleScheme} variant="default">
-          <IconMoon size="65%" />
-        </ActionIcon>
-      </Tooltip>
+        variant={variant}
+        size={size}
+        onClick={toggleScheme}
+        icon={IconMoon}
+      />
     </>
   );
 }

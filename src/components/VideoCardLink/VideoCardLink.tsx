@@ -1,8 +1,9 @@
 "use client";
 
-import NextLink from "next/link";
 import { Card, Title } from "@mantine/core";
 import { generateColors } from "@mantine/colors-generator";
+
+import { breakpoints } from "~/styles/theme";
 
 import { Image } from "../Image/Image";
 import { LinkBlock, type LinkBlockProps } from "../LinkBlock/LinkBlock";
@@ -19,10 +20,18 @@ export function VideoCardLink<T extends string>(props: VideoCardLinkProps<T>) {
   const scheme = generateColors(artistColor);
 
   return (
-    <Card renderRoot={(rootProps) => <NextLink href={href} {...rootProps} />} shadow="md">
-      <Image src={thumbnailSrc} alt={title} width={400} height={300} />
+    <Card shadow="md" renderRoot={(rootProps) => <LinkBlock href={href} {...rootProps} />}>
+      <Image
+        src={thumbnailSrc}
+        alt={title}
+        aspectRatio="16:9"
+        sizes={`100vw, (min-width: ${breakpoints.sm}) 50vw, (min-width: ${breakpoints.lg}) 33vw`}
+        priority
+      />
       <Title order={3}>{title}</Title>
-      <Title order={4}>{artistName}</Title>
+      <Title order={4} c={scheme[5]}>
+        {artistName}
+      </Title>
     </Card>
   );
 }
