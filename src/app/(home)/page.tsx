@@ -1,29 +1,28 @@
-import { getLatestVideos } from "~/api/contentful/queries";
-import { GridSection } from "~/components/GridSection/GridSection";
+import { Metadata } from "next";
+
 import { VideoCardLink } from "~/components";
-import { resolveVideoCardLinkProps } from "~/api/contentful/utils/resolvers";
-import { BrandHeroSection } from "~/components/BrandHeroSection/BrandHeroSection";
+import { AFoVHero, CardList } from "~/sections";
+import { Page } from "~/templates";
 
-async function getHomePageData() {
-  const latestVideos = await getLatestVideos();
-  const latestVideoLinks = latestVideos.map(resolveVideoCardLinkProps);
+import { getHomePageData } from "./page.data";
 
-  return {
-    latestVideoLinks,
-  };
-}
+export const metadata: Metadata = {
+  title: "A Fistful of Vinyl",
+  description:
+    "Live sessions and interviews with independent and DIY artists from all music genres",
+};
 
 export default async function HomePage() {
-  const { latestVideoLinks } = await getHomePageData();
+  const { latestVideoVideoCardLinks } = await getHomePageData();
 
   return (
-    <>
-      <BrandHeroSection />
-      <GridSection title="Latest Videos">
-        {latestVideoLinks.map((video, i) => (
+    <Page>
+      <AFoVHero />
+      <CardList title="Latest Videos">
+        {latestVideoVideoCardLinks.map((video, i) => (
           <VideoCardLink key={i} {...video} />
         ))}
-      </GridSection>
-    </>
+      </CardList>
+    </Page>
   );
 }

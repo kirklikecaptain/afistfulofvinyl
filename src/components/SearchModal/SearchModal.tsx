@@ -1,20 +1,36 @@
 "use client";
 
-import { rem } from "@mantine/core";
 import { Spotlight, SpotlightActionData } from "@mantine/spotlight";
-import { IconHome, IconSearch } from "@tabler/icons-react";
-
-const actions: SpotlightActionData[] = [
-  {
-    id: "home",
-    label: "Home",
-    description: "Get to home page",
-    onClick: () => console.log("Home"),
-    leftSection: <IconHome style={{ width: rem(24), height: rem(24) }} stroke={1.5} />,
-  },
-];
+import { IconHome, IconSearch, IconUsers, IconVideo } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
 export function SearchModal() {
+  const router = useRouter();
+
+  const actions: SpotlightActionData[] = [
+    {
+      id: "home",
+      label: "Home",
+      description: "Get to home page",
+      onClick: () => router.push("/"),
+      leftSection: <IconHome size={14} />,
+    },
+    {
+      id: "artists",
+      label: "Artists",
+      description: "Get to artists page",
+      onClick: () => router.push("/artists"),
+      leftSection: <IconUsers size={14} />,
+    },
+    {
+      id: "videos",
+      label: "Videos",
+      description: "Get to videos page",
+      onClick: () => router.push("/"),
+      leftSection: <IconVideo size={14} />,
+    },
+  ];
+
   return (
     <Spotlight
       actions={actions}

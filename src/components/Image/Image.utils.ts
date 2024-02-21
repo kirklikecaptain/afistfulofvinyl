@@ -2,21 +2,6 @@ import { type ImageLoaderProps } from "next/image";
 
 import { type ImageProps } from "./Image";
 
-function parseAspectRatio(aspectRatio?: ImageProps["aspectRatio"]) {
-  if (!aspectRatio) {
-    return;
-  }
-
-  if (typeof aspectRatio !== "string" || !aspectRatio.includes(":")) {
-    throw new Error("Invalid aspect ratio syntax. Must be in the format `w:h`. ex: 16:9 or 1:1");
-  }
-
-  const [w, h] = aspectRatio.split(":");
-  const ratio = Number(w) / Number(h);
-
-  return Math.round(ratio * 100) / 100;
-}
-
 interface LoaderOptions {
   aspectRatio?: number;
 }
@@ -45,6 +30,21 @@ function contentfulLoader(props: ImageLoaderProps, options: LoaderOptions): stri
   }
 
   return url.href;
+}
+
+function parseAspectRatio(aspectRatio?: ImageProps["aspectRatio"]) {
+  if (!aspectRatio) {
+    return;
+  }
+
+  if (typeof aspectRatio !== "string" || !aspectRatio.includes(":")) {
+    throw new Error("Invalid aspect ratio syntax. Must be in the format `w:h`. ex: 16:9 or 1:1");
+  }
+
+  const [w, h] = aspectRatio.split(":");
+  const ratio = Number(w) / Number(h);
+
+  return Math.round(ratio * 100) / 100;
 }
 
 export function parseImageProps(props: ImageProps) {

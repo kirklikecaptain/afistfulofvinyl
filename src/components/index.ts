@@ -1,13 +1,11 @@
 export { AFoVLogo } from "./AFoVLogo";
-export { AppLayout } from "./AppLayout";
-export { BrandHeroSection } from "./BrandHeroSection";
+export { ArtistCardLink } from "./ArtistCardLink";
 export { ColorModeButton } from "./ColorModeButton";
 export { ExitPreviewButton } from "./ExitPreviewButton";
-export { GridSection } from "./GridSection";
 export { IconButton } from "./IconButton";
 export { Image } from "./Image";
 export { Link } from "./Link";
-export { LinkBlock } from "./LinkBlock";
 export { SearchButton } from "./SearchButton";
 export { SearchModal } from "./SearchModal";
+export { Section } from "./Section";
 export { VideoCardLink } from "./VideoCardLink";

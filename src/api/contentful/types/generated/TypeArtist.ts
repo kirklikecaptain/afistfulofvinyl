@@ -8,7 +8,7 @@ import type {
 
 export interface TypeArtistFields {
   name: EntryFieldTypes.Symbol;
-  slug?: EntryFieldTypes.Symbol;
+  slug: EntryFieldTypes.Symbol;
   accentColor?: EntryFieldTypes.Symbol;
   photo?: EntryFieldTypes.AssetLink;
   shortBio?: EntryFieldTypes.Symbol;
