@@ -21,7 +21,7 @@ export function IconButton(props: IconButtonProps) {
       events={{ hover: true, focus: true, touch: false }}
     >
       <ActionIcon onClick={onClick} variant={variant} aria-label={label} size={size} c={iconColor}>
-        <Icon size="75%" />
+        <Icon size="70%" />
       </ActionIcon>
     </Tooltip>
   );

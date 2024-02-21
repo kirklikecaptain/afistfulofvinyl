@@ -1,0 +1,15 @@
+.debug {
+  border: dashed red 1px;
+}
+
+.hide-from-dark {
+  @mixin dark {
+    display: none;
+  }
+}
+
+.hide-from-light {
+  @mixin light {
+    display: none;
+  }
+}

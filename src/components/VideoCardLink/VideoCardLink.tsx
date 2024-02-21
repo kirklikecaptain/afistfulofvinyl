@@ -1,14 +1,14 @@
 "use client";
 
-import { Card, Title } from "@mantine/core";
+import { Title } from "@mantine/core";
 import { generateColors } from "@mantine/colors-generator";
 
-import { breakpoints } from "~/styles/theme";
+import { breakpoints } from "~/theme";
 
-import { Image } from "../Image/Image";
-import { LinkBlock, type LinkBlockProps } from "../LinkBlock/LinkBlock";
+import { Image } from "../Image";
+import { LinkCard, LinkCardProps } from "../LinkCard";
 
-export interface VideoCardLinkProps<T extends string = string> extends LinkBlockProps<T> {
+export interface VideoCardLinkProps<T extends string> extends LinkCardProps<T> {
   title: string;
   artistName: string;
   artistColor: string;
@@ -20,7 +20,7 @@ export function VideoCardLink<T extends string>(props: VideoCardLinkProps<T>) {
   const scheme = generateColors(artistColor);
 
   return (
-    <Card shadow="md" renderRoot={(rootProps) => <LinkBlock href={href} {...rootProps} />}>
+    <LinkCard href={href}>
       <Image
         src={thumbnailSrc}
         alt={title}
@@ -32,6 +32,6 @@ export function VideoCardLink<T extends string>(props: VideoCardLinkProps<T>) {
       <Title order={4} c={scheme[5]}>
         {artistName}
       </Title>
-    </Card>
+    </LinkCard>
   );
 }

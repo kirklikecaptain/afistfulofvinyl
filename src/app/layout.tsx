@@ -4,9 +4,10 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 
-import "~/styles/global.css";
-import { theme } from "~/styles/theme";
 import { SearchModal, ExitPreviewButton } from "~/components";
+import { theme } from "~/theme";
+
+import "./global.css";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   const defaultColorScheme = "dark";
+  const previewMode = draftMode().isEnabled;
 
   return (
     <html lang="en">
@@ -26,7 +28,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <MantineProvider defaultColorScheme={defaultColorScheme} theme={theme}>
           {children}
           <SearchModal />
-          <ExitPreviewButton enabled={draftMode().isEnabled} />
+          <ExitPreviewButton enabled={previewMode} />
         </MantineProvider>
       </body>
     </html>

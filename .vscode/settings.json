@@ -6,5 +6,6 @@
 	"cssVariables.lookupFiles": [
     "**/*.css",
     "node_modules/@mantine/core/styles.css"
-  ]
+	],
+	"typescript.tsdk": "node_modules/typescript/lib"
 }
