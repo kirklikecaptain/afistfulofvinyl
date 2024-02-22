@@ -1,20 +1,17 @@
 import { notFound } from "next/navigation";
 
-import { getAllArtists } from "~/api";
+import { Page } from "~/templates";
+import { CardList, Hero } from "~/sections";
+import { VideoCardLink } from "~/components";
 
 import { getArtistProfilePageData } from "./page.data";
 
-interface ArtistProfilePageParams {
+export interface ArtistProfilePageParams {
   artistSlug: string;
 }
-interface ArtistProfilePageProps {
+
+export interface ArtistProfilePageProps {
   params: ArtistProfilePageParams;
-}
-
-export async function generateStaticParams() {
-  const artists = await getAllArtists();
-
-  return artists.map((artist) => ({ artistSlug: artist.fields.slug }));
 }
 
 export default async function ArtistProfilePage(props: ArtistProfilePageProps) {
@@ -22,11 +19,20 @@ export default async function ArtistProfilePage(props: ArtistProfilePageProps) {
     params: { artistSlug },
   } = props;
 
-  const { artist } = await getArtistProfilePageData(artistSlug);
+  const { artist, videoLinkCards } = await getArtistProfilePageData(artistSlug);
 
   if (!artist) {
     return notFound();
   }
 
-  return <div>{artist.fields.name}</div>;
+  return (
+    <Page>
+      <Hero title={artist.fields.name} accentColor={artist.fields.accentColor} />
+      <CardList>
+        {videoLinkCards.map((video) => (
+          <VideoCardLink key={video.title} {...video} />
+        ))}
+      </CardList>
+    </Page>
+  );
 }

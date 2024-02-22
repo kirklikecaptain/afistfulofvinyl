@@ -1,18 +1,18 @@
 import { contentfulClient, type ContentfulClientOptions } from "../utils/client";
 import { TypeVideoSkeleton } from "../types/generated";
 
-export async function getVideoBySlugs(
+export async function getVideosByArtistSlug(
   artistSlug: string,
-  videoSlug: string,
   clientOptions?: ContentfulClientOptions,
 ) {
   const contentful = contentfulClient(clientOptions);
-  const artist = await contentful.getEntries<TypeVideoSkeleton>({
+  const videos = await contentful.getEntries<TypeVideoSkeleton>({
     content_type: "video",
-    "fields.slug": videoSlug,
+    order: ["fields.title"],
+    include: 2,
     "fields.artist.sys.contentType.sys.id": "artist",
     "fields.artist.fields.slug": artistSlug,
   });
 
-  return artist.items[0];
+  return videos.items;
 }

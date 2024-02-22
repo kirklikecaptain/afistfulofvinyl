@@ -1,6 +1,6 @@
 "use client";
 
-import { Title } from "@mantine/core";
+import { Box, Title } from "@mantine/core";
 import { generateColors } from "@mantine/colors-generator";
 
 import { breakpoints } from "~/theme";
@@ -21,13 +21,16 @@ export function VideoCardLink<T extends string>(props: VideoCardLinkProps<T>) {
 
   return (
     <LinkCard href={href}>
-      <Image
-        src={thumbnailSrc}
-        alt={title}
-        aspectRatio="16:9"
-        sizes={`100vw, (min-width: ${breakpoints.sm}) 50vw, (min-width: ${breakpoints.lg}) 33vw`}
-        priority
-      />
+      <Box mb={4}>
+        <Image
+          src={thumbnailSrc}
+          alt={title}
+          aspectRatio="16:9"
+          sizes={`100vw, (min-width: ${breakpoints.sm}) 50vw, (min-width: ${breakpoints.lg}) 33vw`}
+          priority
+        />
+      </Box>
+
       <Title order={3}>{title}</Title>
       <Title order={4} c={scheme[5]}>
         {artistName}
