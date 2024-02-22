@@ -2,7 +2,6 @@
 
 import { BLOCKS, INLINES, MARKS, type Document, type Inline } from "@contentful/rich-text-types";
 import {
-  Options,
   RenderMark,
   RenderNode,
   RenderText,
@@ -11,20 +10,21 @@ import {
 import { ReactNode } from "react";
 import { Blockquote, Code, Divider, List, Stack, Table, Text, Title } from "@mantine/core";
 
+import { Image } from "../Image";
 import { Link } from "../Link";
 
-function inline(_type: string, node: Inline): ReactNode {
+function inline(type: string, node: Inline): ReactNode {
   return (
     <span key={node.data.target.sys.id}>
-      type: {node.nodeType} id: {node.data.target.sys.id}
+      type: {type} {node.nodeType} id: {node.data.target.sys.id}
     </span>
   );
 }
 
-function inlineResource(_type: string, node: Inline) {
+function inlineResource(type: string, node: Inline) {
   return (
     <span key={node.data.target.sys.urn}>
-      type: {node.nodeType} urn: {node.data.target.sys.urn}
+      type: {type} {node.nodeType} urn: {node.data.target.sys.urn}
     </span>
   );
 }
@@ -42,7 +42,7 @@ const renderNode: RenderNode = {
   [BLOCKS.OL_LIST]: (_node, children) => <List type="ordered">{children}</List>,
   [BLOCKS.LIST_ITEM]: (_node, children) => <List.Item>{children}</List.Item>,
   [BLOCKS.QUOTE]: (_node, children) => <Blockquote>{children}</Blockquote>,
-  [BLOCKS.HR]: () => <Divider my="md" />,
+  [BLOCKS.HR]: () => <Divider my="lg" />,
   [BLOCKS.TABLE]: (_node, children) => (
     <Table.ScrollContainer minWidth={500}>
       <Table striped withTableBorder withColumnBorders>
@@ -66,6 +66,14 @@ const renderNode: RenderNode = {
         type: {node.nodeType} id: {node.data.target.sys.id}
       </span>
     </div>
+  ),
+  [BLOCKS.EMBEDDED_ASSET]: (node, _children) => (
+    <Image
+      src={node.data.target.fields.file.url}
+      alt={node.data.target.fields.description}
+      height={node.data.target.fields.file.details.image.height}
+      width={node.data.target.fields.file.details.image.width}
+    />
   ),
   [INLINES.ASSET_HYPERLINK]: (node) => inline(INLINES.ASSET_HYPERLINK, node as Inline),
   [INLINES.ENTRY_HYPERLINK]: (node) => inline(INLINES.ENTRY_HYPERLINK, node as Inline),
@@ -112,15 +120,13 @@ const renderText: RenderText = (text) => {
   }, []);
 };
 
-const options: Options = {
-  renderNode,
-  renderMark,
-  renderText,
-  preserveWhitespace: false,
-};
-
 export function RichText({ field }: { field?: Document }) {
   if (!field) return null;
 
-  return documentToReactComponents(field, options);
+  return documentToReactComponents(field, {
+    renderNode,
+    renderMark,
+    renderText,
+    preserveWhitespace: false,
+  });
 }
