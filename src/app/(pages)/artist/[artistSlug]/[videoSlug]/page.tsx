@@ -1,5 +1,6 @@
 import { Page } from "~/templates";
 import { getAllVideos } from "~/api";
+import { RichText } from "~/components/RichText";
 
 import { ArtistProfilePageParams } from "../page";
 
@@ -28,5 +29,10 @@ export default async function VideoPage(props: VideoPageProps) {
 
   const { video } = await getVideoPageData(artistSlug, videoSlug);
 
-  return <Page>{video.fields.title}</Page>;
+  return (
+    <Page>
+      {video.fields.title}
+      <RichText field={video.fields.longDescription} />
+    </Page>
+  );
 }
