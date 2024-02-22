@@ -5,6 +5,8 @@ export { ExitPreviewButton } from "./ExitPreviewButton";
 export { IconButton } from "./IconButton";
 export { Image } from "./Image";
 export { Link } from "./Link";
+export { LinkCard } from "./LinkCard";
+export { RichText } from "./RichText";
 export { SearchButton } from "./SearchButton";
 export { SearchModal } from "./SearchModal";
 export { Section } from "./Section";

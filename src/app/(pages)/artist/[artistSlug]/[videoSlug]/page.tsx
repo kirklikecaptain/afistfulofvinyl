@@ -1,6 +1,8 @@
+import { notFound } from "next/navigation";
+
 import { Page } from "~/templates";
 import { getAllVideos } from "~/api";
-import { RichText } from "~/components/RichText";
+import { RichText } from "~/components";
 
 import { ArtistProfilePageParams } from "../page";
 
@@ -28,6 +30,10 @@ export default async function VideoPage(props: VideoPageProps) {
   } = props;
 
   const { video } = await getVideoPageData(artistSlug, videoSlug);
+
+  if (!video) {
+    return notFound();
+  }
 
   return (
     <Page>
