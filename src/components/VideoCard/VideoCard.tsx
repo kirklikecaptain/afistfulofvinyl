@@ -3,19 +3,19 @@
 import { Box, Title } from "@mantine/core";
 import { generateColors } from "@mantine/colors-generator";
 
-import { breakpoints } from "~/theme";
+import { breakpoints } from "~/theme/config";
 
 import { Image } from "../Image";
 import { LinkCard, LinkCardProps } from "../LinkCard";
 
-export interface VideoCardLinkProps<T extends string> extends LinkCardProps<T> {
+export type VideoCardProps<T extends string> = LinkCardProps<T> & {
   title: string;
   artistName: string;
   artistColor: string;
   thumbnailSrc: string;
-}
+};
 
-export function VideoCardLink<T extends string>(props: VideoCardLinkProps<T>) {
+export function VideoCard<T extends string>(props: VideoCardProps<T>) {
   const { title, artistName, artistColor, thumbnailSrc, href } = props;
   const scheme = generateColors(artistColor);
 
@@ -30,7 +30,6 @@ export function VideoCardLink<T extends string>(props: VideoCardLinkProps<T>) {
           priority
         />
       </Box>
-
       <Title order={3}>{title}</Title>
       <Title order={4} c={scheme[5]}>
         {artistName}

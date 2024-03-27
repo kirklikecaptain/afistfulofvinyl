@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { VideoCardLink } from "~/components";
+import { VideoCard } from "~/components";
 import { AFoVHero, CardList } from "~/sections";
 import { Page } from "~/templates";
 
@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const { latestVideoVideoCardLinks } = await getHomePageData();
+  const { latestVideoVideoCards } = await getHomePageData();
 
   return (
     <Page>
       <AFoVHero />
       <CardList title="Latest Videos">
-        {latestVideoVideoCardLinks.map((video, i) => (
-          <VideoCardLink key={i} {...video} />
+        {latestVideoVideoCards.map((props) => (
+          <VideoCard key={props.href} {...props} />
         ))}
       </CardList>
     </Page>

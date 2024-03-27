@@ -1,5 +1,5 @@
 export { AFoVLogo } from "./AFoVLogo";
-export { ArtistCardLink } from "./ArtistCardLink";
+export { ArtistCard } from "./ArtistCard";
 export { ColorModeButton } from "./ColorModeButton";
 export { ExitPreviewButton } from "./ExitPreviewButton";
 export { IconButton } from "./IconButton";
@@ -10,4 +10,5 @@ export { RichText } from "./RichText";
 export { SearchButton } from "./SearchButton";
 export { SearchModal } from "./SearchModal";
 export { Section } from "./Section";
-export { VideoCardLink } from "./VideoCardLink";
+export { VideoCard } from "./VideoCard";
+export { VideoPlayer } from "./VideoPlayer";

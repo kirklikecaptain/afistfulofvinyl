@@ -12,7 +12,7 @@ function Footer() {
         <ColorModeButton />
       </GridCol>
       <GridCol span={{ base: 12, sm: 6, lg: 4 }}>
-        <Link variant="inline-block" href="/" anchor={{ lh: 0 }}>
+        <Link variant="inline-block" href="/" lh={0}>
           <AFoVLogo w="160px" />
         </Link>
       </GridCol>

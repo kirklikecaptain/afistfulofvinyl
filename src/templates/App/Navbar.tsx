@@ -19,7 +19,7 @@ export function Navbar() {
   return (
     <>
       <AppShellSection mb="md" visibleFrom="sm">
-        <Link variant="inline-block" href="/" anchor={{ lh: 0, p: "sm" }}>
+        <Link variant="inline-block" href="/" lh={0} p="lg">
           <AFoVLogo />
         </Link>
       </AppShellSection>

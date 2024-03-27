@@ -83,7 +83,7 @@ const renderNode: RenderNode = {
   [INLINES.EMBEDDED_RESOURCE]: (node, _children) =>
     inlineResource(INLINES.EMBEDDED_RESOURCE, node as Inline),
   [INLINES.HYPERLINK]: (node, children) => (
-    <Link href={node.data.uri} anchor={{ fw: 700 }}>
+    <Link href={node.data.uri} fw={700}>
       {children}
     </Link>
   ),
