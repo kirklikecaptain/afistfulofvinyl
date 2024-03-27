@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { draftMode } from "next/headers";
 
 import { getLatestVideos } from "~/api";
-import { resolveVideoCardLinkProps } from "~/api/contentful/utils/propResolvers";
+import { resolveVideoCardProps } from "~/api/contentful/utils/propResolvers";
 
 export const homePageMetadata: Metadata = {
   title: "A Fistful of Vinyl",
@@ -11,11 +11,10 @@ export const homePageMetadata: Metadata = {
 };
 
 export async function getHomePageData() {
-  const previewMode = draftMode().isEnabled;
-  const latestVideos = await getLatestVideos({ previewMode });
-  const latestVideoVideoCardLinks = latestVideos.map(resolveVideoCardLinkProps);
+  const latestVideos = await getLatestVideos({ previewMode: draftMode().isEnabled });
+  const latestVideoVideoCards = latestVideos.map(resolveVideoCardProps);
 
   return {
-    latestVideoVideoCardLinks,
+    latestVideoVideoCards,
   };
 }

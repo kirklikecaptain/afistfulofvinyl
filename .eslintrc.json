@@ -1,13 +1,6 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:storybook/recommended",
-    "prettier"
-  ],
-  "plugins": [
-    "prettier"
-  ],
-  "ignorePatterns": ["!.storybook"],
+  "plugins": ["prettier"],
+  "extends": ["next/core-web-vitals", "prettier"],
   "rules": {
     "prettier/prettier": [
       "error",

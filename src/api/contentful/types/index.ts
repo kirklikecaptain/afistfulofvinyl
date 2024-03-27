@@ -9,14 +9,16 @@ import type {
   TypeVideo,
 } from "./generated";
 
-type Modifier = "WITHOUT_UNRESOLVABLE_LINKS";
+export type DefaultModifier = "WITHOUT_UNRESOLVABLE_LINKS";
 
-export type LinkedAsset = Asset<Modifier, string>;
-export type VideoEntry = TypeVideo<Modifier, string>;
-export type ArtistEntry = TypeArtist<Modifier, string>;
-export type ContributorEntry = TypeContributor<Modifier, string>;
-export type VenueEntry = TypeVenue<Modifier, string>;
-export type PageEntry = TypePage<Modifier, string>;
-export type BlogPostEntry = TypeBlogPost<Modifier, string>;
+export type LinkedAsset = Asset<DefaultModifier, string>;
+export type VideoEntry = TypeVideo<DefaultModifier, string>;
+export type ArtistEntry = TypeArtist<DefaultModifier, string>;
+export type ContributorEntry = TypeContributor<DefaultModifier, string>;
+export type VenueEntry = TypeVenue<DefaultModifier, string>;
+export type PageEntry = TypePage<DefaultModifier, string>;
+export type BlogPostEntry = TypeBlogPost<DefaultModifier, string>;
 
 export type WithId<T> = T & { id: string };
+
+export type Slug = string;

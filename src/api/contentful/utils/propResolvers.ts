@@ -1,6 +1,6 @@
 import type { ImageProps } from "~/components/Image";
-import type { VideoCardLinkProps } from "~/components/VideoCardLink";
-import { ArtistCardLinkProps } from "~/components/ArtistCardLink";
+import type { VideoCardProps } from "~/components/VideoCard";
+import { ArtistCardProps } from "~/components/ArtistCard";
 
 import type { ArtistEntry, LinkedAsset, VideoEntry } from "../types";
 
@@ -17,35 +17,36 @@ export function resolveImageProps(asset?: LinkedAsset): ImageProps | null {
   };
 }
 
-function resolveArtistPageLink(artist: ArtistEntry) {
-  return `/artist/${artist.fields.slug}` as const;
+export function resolveArtistPagePath(artist: ArtistEntry) {
+  const artistSlug = artist.fields.slug || "404";
+
+  return `/artists/${artistSlug}` as const;
 }
 
-function resolveVideoPageLink(video: VideoEntry) {
+export function resolveVideoPagePath(video: VideoEntry) {
   const artistSlug = video.fields.artist?.fields.slug || "404";
   const videoSlug = video.fields.slug || "404";
 
-  return `/artist/${artistSlug}/${videoSlug}` as const;
+  return `/artists/${artistSlug}/${videoSlug}` as const;
 }
 
-export function resolveVideoCardLinkProps(video: VideoEntry): VideoCardLinkProps<typeof link> {
-  const link = resolveVideoPageLink(video);
+export function resolveVideoCardProps(video: VideoEntry): VideoCardProps<typeof videoPage> {
+  const videoPage = resolveVideoPagePath(video);
 
   return {
     title: video.fields.title,
-    href: link,
+    href: videoPage,
     artistName: video.fields.artist?.fields.name || "",
-    artistColor: video.fields.artist?.fields.accentColor || "",
     thumbnailSrc: video.fields.thumbnail?.fields.file?.url || "",
+    artistColor: video.fields.artist?.fields.accentColor || "",
   };
 }
 
-export function resolveArtistCardLinkProps(artist: ArtistEntry): ArtistCardLinkProps<typeof link> {
-  const link = resolveArtistPageLink(artist);
+export function resolveArtistCardProps(artist: ArtistEntry): ArtistCardProps<typeof artistPage> {
+  const artistPage = resolveArtistPagePath(artist);
 
   return {
-    title: artist.fields.name,
-    href: link,
     name: artist.fields.name,
+    href: artistPage,
   };
 }

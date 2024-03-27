@@ -1,8 +1,9 @@
 import { contentfulClient, type ContentfulClientOptions } from "../utils/client";
 import { TypeVideoSkeleton } from "../types/generated";
+import { Slug } from "../types";
 
 export async function getVideosByArtistSlug(
-  artistSlug: string,
+  artistSlug: Slug,
   clientOptions?: ContentfulClientOptions,
 ) {
   const contentful = contentfulClient(clientOptions);

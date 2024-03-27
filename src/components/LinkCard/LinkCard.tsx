@@ -1,16 +1,23 @@
 "use client";
 
 import { Card, type CardProps } from "@mantine/core";
+import { Route } from "next";
+import NextLink, { type LinkProps as NextLinkProps } from "next/link";
 
-import { Link, type LinkProps } from "../Link";
+export type LinkCardProps<T extends string = string> = CardProps & {
+  href: Route<T>;
+  nextLinkProps?: Omit<NextLinkProps<T>, "href">;
+};
 
-export interface LinkCardProps<T extends string> extends LinkProps<T> {
-  card?: CardProps;
-}
+export function LinkCard<T extends string>(props: LinkCardProps<T>) {
+  const { href, nextLinkProps, children, ...cardProps } = props;
 
-export function LinkCard<T extends string>({ card, children, ...linkProps }: LinkCardProps<T>) {
   return (
-    <Card withBorder {...card} renderRoot={(rootProps) => <Link {...linkProps} {...rootProps} />}>
+    <Card
+      withBorder
+      renderRoot={(rootProps) => <NextLink href={href} {...nextLinkProps} {...rootProps} />}
+      {...cardProps}
+    >
       {children}
     </Card>
   );

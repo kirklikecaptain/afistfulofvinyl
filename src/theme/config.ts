@@ -10,5 +10,4 @@ export const breakpoints = {
 
 export const theme = createTheme({
   breakpoints,
-  primaryColor: "indigo",
 });
