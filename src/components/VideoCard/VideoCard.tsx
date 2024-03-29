@@ -3,7 +3,7 @@
 import { Box, Title } from "@mantine/core";
 import { generateColors } from "@mantine/colors-generator";
 
-import { breakpoints } from "~/theme/config";
+import { breakpoints } from "~/styles/theme";
 
 import { Image } from "../Image";
 import { LinkCard, LinkCardProps } from "../LinkCard";

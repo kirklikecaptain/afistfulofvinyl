@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { draftMode } from "next/headers";
 
 import { getLatestVideos } from "~/api";
-import { resolveVideoCardProps } from "~/api/contentful/utils/propResolvers";
+import { resolveVideoCardProps } from "~/components/propResolvers";
 
 export const homePageMetadata: Metadata = {
   title: "A Fistful of Vinyl",

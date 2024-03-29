@@ -1,13 +1,16 @@
 import { notFound } from "next/navigation";
 
-import { Page } from "~/templates";
-import { RichText, VideoPlayer } from "~/components";
-import { ArtistBreadCrumbs } from "~/sections";
+import { ArtistBreadCrumbs, Page, RichText, VideoPlayer } from "~/components";
 
-import { VideoPageProps, getVideoPageData, getVideoPageMetadata, getVideoPageParams } from "./data";
+import {
+  VideoPageProps,
+  getVideoPageData,
+  generateVideoPageMetadata,
+  generateVideoPageParams,
+} from "./data";
 
-export const generateStaticParams = getVideoPageParams;
-export const generateMetadata = getVideoPageMetadata;
+export const generateStaticParams = generateVideoPageParams;
+export const generateMetadata = generateVideoPageMetadata;
 
 export default async function VideoPage(props: VideoPageProps) {
   const {

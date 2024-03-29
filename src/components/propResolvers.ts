@@ -1,8 +1,7 @@
 import type { ImageProps } from "~/components/Image";
 import type { VideoCardProps } from "~/components/VideoCard";
 import { ArtistCardProps } from "~/components/ArtistCard";
-
-import type { ArtistEntry, LinkedAsset, VideoEntry } from "../types";
+import { LinkedAsset, ArtistEntry, VideoEntry } from "~/libs/contentful/types";
 
 export function resolveImageProps(asset?: LinkedAsset): ImageProps | null {
   if (!asset || !asset.fields.file) {

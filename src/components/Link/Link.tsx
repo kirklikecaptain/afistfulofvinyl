@@ -2,16 +2,15 @@
 
 import NextLink, { type LinkProps as NextLinkProps } from "next/link";
 import { Anchor, type AnchorProps } from "@mantine/core";
-import { Route } from "next";
 
 export type LinkProps<T extends string> = AnchorProps & {
-  href: Route<T>;
+  href: NextLinkProps<T>["href"];
   nextLinkProps?: Omit<NextLinkProps<T>, "href">;
   children: React.ReactNode;
 };
 
-export function Link<T extends string = string>(props: LinkProps<T>) {
-  const { href, nextLinkProps, variant, children, ...otherAnchorProps } = props;
+export function Link<T extends string>(props: LinkProps<T>) {
+  const { href, nextLinkProps, children, ...otherAnchorProps } = props;
 
   return (
     <Anchor

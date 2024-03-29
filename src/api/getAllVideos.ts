@@ -1,5 +1,5 @@
-import { contentfulClient, type ContentfulClientOptions } from "../utils/client";
-import { type TypeVideoSkeleton } from "../types/generated";
+import { ContentfulClientOptions, contentfulClient } from "~/libs/contentful/client";
+import { TypeVideoSkeleton } from "~/libs/contentful/types";
 
 export async function getAllVideos(clientOptions?: ContentfulClientOptions) {
   const contentful = contentfulClient(clientOptions);

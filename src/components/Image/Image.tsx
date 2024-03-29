@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import NextImage, { type ImageProps as NextImageProps } from "next/image";
 import { AspectRatio } from "@mantine/core";
 
@@ -7,8 +7,11 @@ export interface ImageProps extends NextImageProps {
   aspectRatio?: "16:9" | "4:3" | "3:2" | "1:1";
 }
 
-export const Image = memo(function Image(props: ImageProps) {
-  const { src, loader, aspectRatio, ...otherProps } = parseImageProps(props);
+export function Image(props: ImageProps) {
+  const { src, loader, aspectRatio, ...otherProps } = useMemo(
+    () => parseImageProps(props),
+    [props],
+  );
 
   if (aspectRatio) {
     return (
@@ -19,4 +22,4 @@ export const Image = memo(function Image(props: ImageProps) {
   }
 
   return <NextImage src={src} loader={loader} {...otherProps} />;
-});
+}

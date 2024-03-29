@@ -1,4 +1,4 @@
-import { AppShellSection, Group } from "@mantine/core";
+import { AppShellNavbar, AppShellSection, Group } from "@mantine/core";
 import {
   TablerIconsProps,
   IconVideo,
@@ -8,8 +8,9 @@ import {
   IconUsers,
   IconMessage,
   IconInfoCircle,
+  IconDeviceTv,
 } from "@tabler/icons-react";
-import { LinkProps } from "next/link";
+import { Route } from "next";
 
 import { Link, AFoVLogo, ColorModeButton, SearchButton } from "~/components";
 
@@ -17,15 +18,31 @@ import { NavbarLink } from "./NavbarLink";
 
 export function Navbar() {
   return (
-    <>
-      <AppShellSection mb="md" visibleFrom="sm">
-        <Link variant="inline-block" href="/" lh={0} p="lg">
+    <AppShellNavbar
+      p="xl"
+      h={{
+        base: "calc(100dvh - var(--app-shell-header-offset, 80px))",
+        sm: "100dvh",
+      }}
+      top={{
+        base: "var(--app-shell-header-offset, 80px)",
+        sm: 0,
+      }}
+    >
+      <AppShellSection visibleFrom="sm" mb="xl">
+        <Link variant="inline-block" href="/" lh={0}>
           <AFoVLogo />
         </Link>
       </AppShellSection>
       <AppShellSection grow>
         {navLinkData.map(({ label, href, Icon, children }) => (
-          <NavbarLink key={label} href={href} label={label} leftSection={<Icon size={14} />}>
+          <NavbarLink
+            key={label}
+            href={href}
+            label={label}
+            leftSection={<Icon size={14} />}
+            defaultOpened
+          >
             {children?.map(({ label, href, Icon }) => (
               <NavbarLink key={label} href={href} label={label} leftSection={<Icon size={14} />} />
             ))}
@@ -36,23 +53,28 @@ export function Navbar() {
         <ColorModeButton />
         <SearchButton />
       </Group>
-    </>
+    </AppShellNavbar>
   );
 }
 
-interface NavLinkItem {
+type NavLinkItem = {
   label: string;
-  href: LinkProps<string>["href"];
+  href: Route<string>;
   Icon: (props: TablerIconsProps) => JSX.Element;
   children?: NavLinkItem[];
-}
+};
 
 const navLinkData: NavLinkItem[] = [
   {
-    label: "Videos",
-    href: "#videos",
+    label: "Sessions",
+    href: "/videos",
     Icon: IconVideo,
     children: [
+      {
+        label: "All Videos",
+        href: "#all",
+        Icon: IconDeviceTv,
+      },
       {
         label: "Songs",
         href: "#songs",
