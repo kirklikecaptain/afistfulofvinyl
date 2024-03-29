@@ -1,10 +1,8 @@
 import { Metadata } from "next";
 
-import { VideoCard } from "~/components";
-import { AFoVHero, CardList } from "~/sections";
-import { Page } from "~/templates";
+import { AFoVHero, CardList, Page, VideoCard } from "~/components";
 
-import { getHomePageData } from "./page.data";
+import { getHomePageData } from "./data";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",

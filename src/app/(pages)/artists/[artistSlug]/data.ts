@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { draftMode } from "next/headers";
 
 import { getAllArtists, getArtistBySlug, getVideosByArtistSlug } from "~/api";
-import { Slug } from "~/api/contentful/types";
-import { resolveVideoCardProps } from "~/api/contentful/utils/propResolvers";
+import { resolveVideoCardProps } from "~/components/propResolvers";
+import { Slug } from "~/libs/contentful/types";
 
 export type ArtistPageParams = {
   artistSlug: Slug;

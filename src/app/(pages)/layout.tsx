@@ -1,5 +1,5 @@
-import { App } from "~/templates";
+import { AppLayout } from "~/components";
 
 export default function PagesLayout({ children }: React.PropsWithChildren) {
-  return <App>{children}</App>;
+  return <AppLayout>{children}</AppLayout>;
 }

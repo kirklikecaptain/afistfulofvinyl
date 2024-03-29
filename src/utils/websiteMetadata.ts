@@ -10,7 +10,7 @@ export const websiteMetadata = {
     kxlu: "https://kxlu.com/dj/a-fistful-of-vinyl",
     patreon: "https://www.patreon.com/afistfulofvinyl",
   },
-  affiliateLinks: {
+  affiliates: {
     kxlu: "https://kxlu.com",
   },
 };

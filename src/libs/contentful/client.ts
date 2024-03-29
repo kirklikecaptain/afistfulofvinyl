@@ -35,10 +35,8 @@ export type ContentfulClientOptions = {
   previewMode?: boolean;
 };
 
-export function contentfulClient(
-  { previewMode }: ContentfulClientOptions = { previewMode: false },
-) {
-  if (previewMode) {
+export function contentfulClient(options: ContentfulClientOptions = {}) {
+  if (options?.previewMode) {
     return previewClient.withoutUnresolvableLinks;
   }
 

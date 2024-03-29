@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 
-import { Page } from "~/templates";
-import { CardList, Hero } from "~/sections";
-import { VideoCard } from "~/components";
+import { CardList, Hero, Page, VideoCard } from "~/components";
 
-import { ArtistPageProps, getArtistPageData } from "./data";
+import { ArtistPageProps, getArtistPageData, getArtistPageMetadata } from "./data";
+
+export const generateMetadata = getArtistPageMetadata;
 
 export default async function ArtistPage(props: ArtistPageProps) {
   const {

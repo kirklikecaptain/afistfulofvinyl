@@ -1,6 +1,5 @@
-import { contentfulClient, type ContentfulClientOptions } from "../utils/client";
-import { TypeVideoSkeleton } from "../types/generated";
-import { Slug } from "../types";
+import { ContentfulClientOptions, contentfulClient } from "~/libs/contentful/client";
+import { Slug, TypeVideoSkeleton } from "~/libs/contentful/types";
 
 export async function getVideosByArtistSlug(
   artistSlug: Slug,

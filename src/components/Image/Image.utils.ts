@@ -54,7 +54,6 @@ export function parseImageProps(props: ImageProps) {
   let loader = _loader;
   const aspectRatio = parseAspectRatio(_aspectRatio);
 
-  // Contentful Image
   if (typeof src === "string" && src.startsWith("//images.ctfassets.net")) {
     src = `https:${src}`;
     loader = (loaderProps) => contentfulLoader(loaderProps, { aspectRatio });

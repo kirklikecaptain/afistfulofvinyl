@@ -1,6 +1,5 @@
-import { contentfulClient, type ContentfulClientOptions } from "../utils/client";
-import { TypeArtistSkeleton } from "../types/generated";
-import { Slug } from "../types";
+import { ContentfulClientOptions, contentfulClient } from "~/libs/contentful/client";
+import { Slug, TypeArtistSkeleton } from "~/libs/contentful/types";
 
 export async function getArtistBySlug(artistSlug: Slug, clientOptions?: ContentfulClientOptions) {
   const contentful = contentfulClient(clientOptions);

@@ -4,9 +4,9 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { draftMode } from "next/headers";
 
 import { SearchModal, ExitPreviewButton } from "~/components";
-import { theme } from "~/theme/config";
+import { theme } from "~/styles/theme";
 
-import "~/theme/global.css";
+import "~/styles/global.css";
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
