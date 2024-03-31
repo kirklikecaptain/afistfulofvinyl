@@ -2,19 +2,16 @@ import { Center, Title } from "@mantine/core";
 
 import { Section } from "~/components";
 
-interface HeroProps {
+export type HeroProps = {
   title?: string;
-  accentColor?: string;
   bg?: string;
-}
+};
 
-export function Hero({
-  title = "Page Title",
-  accentColor,
-  bg = "var(--mantine-color-gray-light)",
-}: HeroProps) {
+export function Hero(props: HeroProps) {
+  const { title = "Page Title", bg = "var(--mantine-color-gray-light)" } = props;
+
   return (
-    <Section bg={accentColor || bg}>
+    <Section bg={bg}>
       <Center mih={300}>
         <Title order={1}>{title}</Title>
       </Center>

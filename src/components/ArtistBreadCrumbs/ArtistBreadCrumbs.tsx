@@ -1,23 +1,28 @@
-import { Anchor, Box, Breadcrumbs } from "@mantine/core";
-import NextLink, { type LinkProps as NextLinkProps } from "next/link";
+import { Text, Box, Breadcrumbs } from "@mantine/core";
 
 import { Link } from "~/components";
 
-interface BreadcrumbLink<T extends string> {
+import { LinkProps } from "../Link";
+
+type BreadcrumbLink<T extends string> = {
   label: string;
-  href: T;
-}
+  href: LinkProps<T>["href"];
+};
 
-interface ArtistBreadCrumbsProps<T extends string> {
+type ArtistBreadCrumbsProps<T extends string> = {
+  artistLink: BreadcrumbLink<T>;
+  videoTitle?: string;
   links?: BreadcrumbLink<T>[];
-}
+};
 
-export function ArtistBreadCrumbs<T extends string>({ links }: ArtistBreadCrumbsProps<T>) {
+export function ArtistBreadCrumbs<T extends string>(props: ArtistBreadCrumbsProps<T>) {
+  const { artistLink, videoTitle, links } = props;
+
   return (
     <Breadcrumbs p="lg">
-      <Link href="/artists">Artist</Link>
-      <Anchor href="/artists">Artist Name</Anchor>
-      <Anchor href="/artists">Video Title</Anchor>
+      <Link href="/artists">Artists</Link>
+      <Link href={artistLink.href}>{artistLink.label}</Link>
+      {videoTitle && <Text>{videoTitle}</Text>}
     </Breadcrumbs>
   );
 }

@@ -1,3 +1,16 @@
+.text-artist-color {
+  color: var(--artist-color-bright);
+}
+
+.bg-artist-color {
+  background-color: var(--artist-color-light);
+
+  @mixin dark {
+    background-color: var(--artist-color-dark);
+  }
+}
+
+
 .debug {
   border: dashed red 1px;
 }

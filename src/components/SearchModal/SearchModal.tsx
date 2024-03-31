@@ -1,10 +1,20 @@
 "use client";
 
-import { Spotlight, SpotlightActionData } from "@mantine/spotlight";
+import { Spotlight, SpotlightActionData, SpotlightActionGroupData } from "@mantine/spotlight";
 import { IconHome, IconSearch, IconUsers, IconVideo } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
+import { Route } from "next";
+import { useState } from "react";
 
-export function SearchModal() {
+export type SearchModalProps<T extends string> = {
+  artists: {
+    name: string;
+    href: Route<T>;
+  }[];
+  videos: unknown;
+};
+
+export function SearchModal<T extends string>(props: SearchModalProps<T>) {
   const router = useRouter();
 
   const actions: SpotlightActionData[] = [
@@ -26,9 +36,15 @@ export function SearchModal() {
       id: "videos",
       label: "Videos",
       description: "Get to videos page",
-      onClick: () => router.push("/"),
+      onClick: () => router.push("/videos"),
       leftSection: <IconVideo size={14} />,
     },
+    ...props.artists.map((artist) => ({
+      id: artist.name,
+      label: artist.name,
+      onClick: () => router.push(artist.href),
+      highlightColor: "green",
+    })),
   ];
 
   return (
@@ -36,7 +52,10 @@ export function SearchModal() {
       actions={actions}
       shortcut={["mod + K", "/"]}
       nothingFound="No results found..."
-      highlightQuery
+      limit={3}
+      // highlightQuery
+      scrollable
+      maxHeight={500}
       searchProps={{
         leftSection: <IconSearch />,
         placeholder: "Search by artist or song title...",
