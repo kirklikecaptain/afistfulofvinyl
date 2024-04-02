@@ -3,9 +3,9 @@
 import YouTube from "react-lite-youtube-embed";
 import "./VideoPlayer.css";
 
-export interface VideoPlayerProps {
+export type VideoPlayerProps = {
   url: string;
-}
+};
 
 export function VideoPlayer({ url }: VideoPlayerProps) {
   const { searchParams } = new URL(url);

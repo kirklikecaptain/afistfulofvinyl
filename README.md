@@ -7,8 +7,9 @@ Website for [A Fistful of Vinyl](https://www.afistfulofvinyl.com/), a media orga
 | Name | Description | Docs |
 | ---- | ----------- | ---- |
 | Next.js | Meta-framework for building server-rendered React applications | [API Reference](https://nextjs.org/docs/app/api-reference) |
-| Mantine | UI component library and theme provider | [Overview](https://mantine.dev/overview) |
 | Contentful | Headless CMS and content delivery API | [API Reference](https://www.contentful.com/developers/docs/references/) |
+| Mantine | UI component library and theme provider | [Overview](https://mantine.dev/overview) |
+| Tabler Icons | Icon library used throughout the app | [Icon List](https://tabler.io/icons) |
 
 
 ## Develop

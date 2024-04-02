@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { draftMode } from "next/headers";
 
 import { getAllArtists, getArtistBySlug, getVideosByArtistSlug } from "~/api";
-import { resolveVideoCardProps } from "~/components/propResolvers";
+import { resolveVideoCardProps } from "~/components";
 import { Slug } from "~/libs/contentful/types";
 
 export type ArtistPageParams = {
@@ -12,14 +12,6 @@ export type ArtistPageParams = {
 export type ArtistPageProps = {
   params: ArtistPageParams;
 };
-
-export async function getArtistPageParams(): Promise<ArtistPageParams[]> {
-  const artists = await getAllArtists();
-
-  return artists.map((artist) => ({
-    artistSlug: artist.fields.slug,
-  }));
-}
 
 export async function getArtistPageData({ artistSlug }: ArtistPageParams) {
   const previewMode = draftMode().isEnabled;
@@ -31,7 +23,15 @@ export async function getArtistPageData({ artistSlug }: ArtistPageParams) {
   return { artist, videoLinkCards };
 }
 
-export async function getArtistPageMetadata({
+export async function generateArtistPageParams(): Promise<ArtistPageParams[]> {
+  const artists = await getAllArtists();
+
+  return artists.map((artist) => ({
+    artistSlug: artist.fields.slug,
+  }));
+}
+
+export async function generateArtistPageMetadata({
   params: { artistSlug },
 }: ArtistPageProps): Promise<Metadata> {
   const { artist } = await getArtistPageData({ artistSlug });

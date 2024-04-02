@@ -28,6 +28,7 @@ export function Navbar() {
         base: "var(--app-shell-header-offset, 80px)",
         sm: 0,
       }}
+      style={{ transition: "none" }}
     >
       <AppShellSection visibleFrom="sm" mb="xl">
         <Link variant="inline-block" href="/" lh={0}>
@@ -59,7 +60,7 @@ export function Navbar() {
 
 type NavLinkItem = {
   label: string;
-  href: Route<string>;
+  href?: Route<string>;
   Icon: (props: TablerIconsProps) => JSX.Element;
   children?: NavLinkItem[];
 };
@@ -67,12 +68,11 @@ type NavLinkItem = {
 const navLinkData: NavLinkItem[] = [
   {
     label: "Sessions",
-    href: "/videos",
     Icon: IconVideo,
     children: [
       {
         label: "All Videos",
-        href: "#all",
+        href: "/videos",
         Icon: IconDeviceTv,
       },
       {

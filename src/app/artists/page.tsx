@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 };
 
 export default async function AllArtistsPage() {
-  const { artists, artistCards } = await getAllArtistsPageData();
+  const { artistCards } = await getAllArtistsPageData();
 
   return (
     <Page>
       <Hero title="Artists" />
-      <CardList>
+      <CardList cols={4}>
         {artistCards.map((cardProps) => (
           <ArtistCard key={cardProps.href} {...cardProps} />
         ))}

@@ -1,0 +1,42 @@
+.card {
+  position: relative;
+
+  & h4 {
+    transition: color 0.3s ease-out;
+    color: var(--artist-color-light);
+  }
+
+  &:focus-visible,
+  &:hover {
+    &::after {
+      opacity: 0;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: color;
+    background: var(--artist-color);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0px;
+  z-index: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: white;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.7) 90%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}

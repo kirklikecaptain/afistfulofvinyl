@@ -1,12 +1,12 @@
 import { ActionIcon, Tooltip, ActionIconProps } from "@mantine/core";
 import { TablerIconsProps } from "@tabler/icons-react";
 
-export interface IconButtonProps extends Pick<ActionIconProps, "variant" | "size" | "c"> {
+export type IconButtonProps = Pick<ActionIconProps, "variant" | "size" | "c"> & {
   icon: (props: TablerIconsProps) => JSX.Element;
   label: string;
   onClick?: () => void;
   className?: string;
-}
+};
 
 export function IconButton(props: IconButtonProps) {
   const { icon: Icon, label, onClick, variant = "default", size, c = "bright", className } = props;

@@ -3,12 +3,15 @@ import "@mantine/spotlight/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { draftMode } from "next/headers";
 
-import { SearchModal, ExitPreviewButton } from "~/components";
+import { AppLayout, ExitPreviewButton, SearchModal } from "~/components";
 import { theme } from "~/styles/theme";
 
 import "~/styles/global.css";
+import { getRootLayoutData } from "./data";
 
-export default function RootLayout({ children }: React.PropsWithChildren) {
+export default async function RootLayout({ children }: React.PropsWithChildren) {
+  const { searchData } = await getRootLayoutData();
+
   return (
     <html lang="en">
       <head>
@@ -16,8 +19,8 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       </head>
       <body>
         <MantineProvider theme={theme}>
-          {children}
-          <SearchModal />
+          <AppLayout>{children}</AppLayout>
+          <SearchModal data={searchData} />
           <ExitPreviewButton enabled={draftMode().isEnabled} />
         </MantineProvider>
       </body>

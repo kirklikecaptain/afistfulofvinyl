@@ -4,9 +4,9 @@ import { Button } from "@mantine/core";
 import { IconEyeOff } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 
-export interface ExitPreviewProps {
+export type ExitPreviewProps = {
   enabled: boolean;
-}
+};
 
 export function ExitPreviewButton({ enabled }: ExitPreviewProps) {
   const currentPath = usePathname();

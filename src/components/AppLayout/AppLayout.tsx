@@ -1,37 +1,36 @@
 "use client";
 
-import { AppShell, rem } from "@mantine/core";
+import { AppShell } from "@mantine/core";
 import { useDisclosure, useHeadroom, useWindowScroll } from "@mantine/hooks";
+import { usePathname } from "next/navigation";
 
 import { Header } from "./parts/Header";
 import { Navbar } from "./parts/Navbar";
 import { Main } from "./parts/Main";
 import { Footer } from "./parts/Footer";
 
-export type AppLayoutProps = {
-  isHomePage?: boolean;
-  children: React.ReactNode;
-};
-
-export function AppLayout({ isHomePage, children }: AppLayoutProps) {
+export function AppLayout({ children }: React.PropsWithChildren) {
+  const pathname = usePathname();
   const isPinned = useHeadroom();
   const [scroll] = useWindowScroll();
   const [navOpen, navControl] = useDisclosure();
 
-  const headerHeight = 80;
-  const offset = isHomePage ? 500 : 0;
-  const collapseHeader = scroll.y < offset || !isPinned;
+  const isHomePage = pathname === "/";
+  const scrollOffset = isHomePage ? 500 : 0;
+  const collapseHeader = scroll.y < scrollOffset || !isPinned;
+  const collapseDesktopNavbar = isHomePage ? !navOpen : false;
+  const collapseMobileNavbar = !navOpen;
 
   return (
     <AppShell
       layout="alt"
-      header={{ height: headerHeight, collapsed: collapseHeader, offset: false }}
+      header={{ height: 80, offset: false, collapsed: collapseHeader }}
       navbar={{
         width: 250,
         breakpoint: "sm",
         collapsed: {
-          desktop: isHomePage ? !navOpen : false,
-          mobile: !navOpen,
+          desktop: collapseDesktopNavbar,
+          mobile: collapseMobileNavbar,
         },
       }}
     >
