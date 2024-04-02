@@ -1,13 +1,9 @@
 import { draftMode } from "next/headers";
 
-import { getAllArtists } from "~/api";
-import { resolveArtistCardProps } from "~/components/ArtistCard/ArtistCard.utils";
+import { api } from "~/api";
 
 export async function getAllArtistsPageData() {
-  const previewMode = draftMode().isEnabled;
+  const artists = await api.artists.getAll({ preview: draftMode().isEnabled });
 
-  const artists = await getAllArtists({ previewMode });
-  const artistCards = artists.map(resolveArtistCardProps);
-
-  return { artists, artistCards };
+  return { artists };
 }

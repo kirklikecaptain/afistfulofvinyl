@@ -8,7 +8,7 @@
     "serve": "next start",
     "lint": "next lint",
     "format": "eslint --fix .",
-    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -g -o src/libs/contentful/types/generated && eslint --fix src/libs/contentful/types/generated"
+    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -g -o src/api/types/contentful/generated && npm run format"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "15.19.4",

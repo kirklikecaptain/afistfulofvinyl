@@ -1,5 +1,3 @@
-import { resolve } from "path";
-
 import { notFound } from "next/navigation";
 import { Title, Text, Breadcrumbs, Stack, Box, Flex, Group } from "@mantine/core";
 import { IconChevronRight } from "@tabler/icons-react";
@@ -77,7 +75,7 @@ export default async function VideoPage(props: VideoPageProps) {
           </Title>
           {moreVideos.map((video) => {
             const cardProps = resolveVideoCardProps(video);
-            return <VideoCard key={cardProps.title} {...cardProps} />;
+            return <VideoCard key={cardProps.title} {...cardProps} hideArtistName />;
           })}
         </Stack>
       </Flex>

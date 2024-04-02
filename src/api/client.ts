@@ -31,14 +31,12 @@ const previewClient = createClient({
   host: CONTENTFUL_PREVIEW_HOST,
 });
 
-export type ContentfulClientOptions = {
-  previewMode?: boolean;
+export type ClientOptions = {
+  preview?: boolean;
 };
 
-export function contentfulClient(options: ContentfulClientOptions = {}) {
-  if (options?.previewMode) {
-    return previewClient.withoutUnresolvableLinks;
-  }
-
-  return publishedClient.withoutUnresolvableLinks;
+export function contentfulClient(options?: ClientOptions) {
+  return options?.preview
+    ? previewClient.withoutUnresolvableLinks
+    : publishedClient.withoutUnresolvableLinks;
 }

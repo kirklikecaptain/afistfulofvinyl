@@ -1,6 +1,6 @@
 import { Route } from "next";
 
-import { ArtistEntry, VideoEntry } from "~/libs/contentful/types";
+import { ArtistEntry, VideoEntry } from "~/api/types";
 
 export function resolveArtistPagePath(artist: ArtistEntry): Route<typeof artistPath> {
   const artistSlug = artist.fields.slug || "404";

@@ -13,10 +13,11 @@ export type VideoCardProps<T extends string> = LinkCardProps<T> & {
   artistName: string;
   artistColor: string;
   thumbnailSrc: string;
+  hideArtistName?: boolean;
 };
 
 export function VideoCard<T extends string>(props: VideoCardProps<T>) {
-  const { title, artistName, artistColor, thumbnailSrc, href } = props;
+  const { title, artistName, artistColor, thumbnailSrc, href, hideArtistName } = props;
 
   const colors = resolveArtistColors(artistColor);
 
@@ -30,8 +31,10 @@ export function VideoCard<T extends string>(props: VideoCardProps<T>) {
         priority
       />
       <Box className={classes.overlay}>
-        <Title order={3}>{title}</Title>
-        <Title order={4}>{artistName}</Title>
+        <Title order={3} lh="1.2">
+          {title}
+        </Title>
+        {!hideArtistName && <Title order={4}>{artistName}</Title>}
       </Box>
     </LinkCard>
   );

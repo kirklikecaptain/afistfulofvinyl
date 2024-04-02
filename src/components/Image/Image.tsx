@@ -1,10 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
 import NextImage, { type ImageProps as NextImageProps } from "next/image";
 import { AspectRatio } from "@mantine/core";
 
-import { parseAspectRatio, parseImageProps } from "./Image.utils";
+import { contentfulLoader, parseAspectRatio } from "./Image.utils";
 
 export type ImageProps = NextImageProps & {
   aspectRatio?: "16:9" | "4:3" | "3:2" | "1:1";
@@ -12,19 +11,25 @@ export type ImageProps = NextImageProps & {
 };
 
 export function Image(props: ImageProps) {
-  const newProps = useMemo(() => parseImageProps(props), [props]);
+  const { src, loader, aspectRatio, maxWidth, width, ...otherProps } = props;
 
-  const { src, aspectRatio, width, maxWidth, loader, ...otherProps } = newProps;
+  let newSrc = src;
+  let newLoader = loader;
+
+  if (typeof src === "string" && src.startsWith("//images.ctfassets.net")) {
+    newSrc = `https:${src}`;
+    newLoader = (loaderProps) => contentfulLoader(loaderProps, aspectRatio);
+  }
 
   if (aspectRatio) {
     const ratio = parseAspectRatio(aspectRatio);
 
     return (
-      <AspectRatio ratio={ratio} w={width || "100%"} maw={maxWidth}>
-        <NextImage fill src={src} loader={loader} {...otherProps} />
+      <AspectRatio ratio={ratio} w={width} maw={maxWidth}>
+        <NextImage fill src={newSrc} loader={newLoader} {...otherProps} />
       </AspectRatio>
     );
   }
 
-  return <NextImage src={src} loader={loader} width={width} {...otherProps} />;
+  return <NextImage src={newSrc} loader={newLoader} width={width} {...otherProps} />;
 }
