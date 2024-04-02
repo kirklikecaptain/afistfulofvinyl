@@ -1,4 +1,4 @@
-import { VideoEntry } from "~/libs/contentful/types";
+import { VideoEntry } from "~/api/types";
 import { resolveVideoPagePath } from "~/utils/resolvePagePath";
 
 import { VideoCardProps } from "./VideoCard";

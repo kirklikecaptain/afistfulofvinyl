@@ -1,4 +1,4 @@
-import { ArtistEntry } from "~/libs/contentful/types";
+import { ArtistEntry } from "~/api/types";
 import { resolveArtistPagePath } from "~/utils/resolvePagePath";
 
 import { ArtistCardProps } from "./ArtistCard";

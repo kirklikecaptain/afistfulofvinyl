@@ -2,24 +2,24 @@ import { draftMode } from "next/headers";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getArtistBySlug, getVideosByArtistSlug } from "~/api";
-import { Slug } from "~/libs/contentful/types";
+import { api } from "~/api";
+import { Slug } from "~/api/types";
 
 import { ArtistPageParams, ArtistPageProps } from "../data";
 
-export type VideoPageParams = {
+export type VideoPageParams = ArtistPageParams & {
   videoSlug: Slug;
 };
 
 export type VideoPageProps = {
-  params: ArtistPageParams & VideoPageParams;
+  params: VideoPageParams;
 };
 
 export async function getVideoPageData({ artistSlug, videoSlug }: VideoPageProps["params"]) {
-  const previewMode = draftMode().isEnabled;
+  const options = { preview: draftMode().isEnabled };
 
-  const artist = await getArtistBySlug(artistSlug, { previewMode });
-  const videos = await getVideosByArtistSlug(artistSlug, { previewMode });
+  const artist = await api.artists.getOne(artistSlug, options);
+  const videos = await api.videos.getByArtist(artistSlug, options);
 
   return {
     artist,
@@ -29,13 +29,13 @@ export async function getVideoPageData({ artistSlug, videoSlug }: VideoPageProps
 }
 
 export async function generateVideoPageParams(
-  parentProps: ArtistPageProps,
-): Promise<VideoPageParams[]> {
+  props: ArtistPageProps,
+): Promise<Omit<VideoPageParams, "artistSlug">[]> {
   const {
     params: { artistSlug },
-  } = parentProps;
+  } = props;
 
-  const videos = await getVideosByArtistSlug(artistSlug);
+  const videos = await api.videos.getByArtist(artistSlug);
 
   return videos.map((artist) => ({
     videoSlug: artist.fields.slug,

@@ -1,16 +1,14 @@
 import { type ImageLoaderProps } from "next/image";
 
-import { LinkedAsset } from "~/libs/contentful/types";
+import { LinkedAsset } from "~/api/types";
 
 import { type ImageProps } from "./Image";
 
-type LoaderOptions = {
-  aspectRatio: ImageProps["aspectRatio"];
-};
-
-function contentfulLoader(props: ImageLoaderProps, options: LoaderOptions): string {
+export function contentfulLoader(
+  props: ImageLoaderProps,
+  aspectRatio?: ImageProps["aspectRatio"],
+): string {
   const { src, width, quality = 80 } = props;
-  const { aspectRatio } = options;
 
   const url = new URL(src);
 
@@ -44,26 +42,6 @@ export function parseAspectRatio(aspectRatio: ImageProps["aspectRatio"]) {
   const ratio = Number(w) / Number(h);
 
   return Math.round(ratio * 100) / 100;
-}
-
-export function parseImageProps(props: ImageProps): ImageProps {
-  const { src, loader, aspectRatio, ...otherProps } = props;
-
-  if (typeof src === "string" && src.startsWith("//images.ctfassets.net")) {
-    return {
-      src: `https:${src}`,
-      loader: (loaderProps) => contentfulLoader(loaderProps, { aspectRatio }),
-      aspectRatio,
-      ...otherProps,
-    };
-  }
-
-  return {
-    src,
-    loader,
-    aspectRatio,
-    ...otherProps,
-  };
 }
 
 export function resolveImageProps(asset?: LinkedAsset): ImageProps | null {

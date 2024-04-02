@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { CardList, Hero, Page, VideoCard } from "~/components";
+import { CardList, Hero, Page, VideoCard, resolveVideoCardProps } from "~/components";
 
 import { ArtistPageProps, getArtistPageData, generateArtistPageMetadata } from "./data";
 
@@ -11,7 +11,7 @@ export default async function ArtistPage(props: ArtistPageProps) {
     params: { artistSlug },
   } = props;
 
-  const { artist, videoLinkCards } = await getArtistPageData({ artistSlug });
+  const { artist, videos } = await getArtistPageData({ artistSlug });
 
   if (!artist) {
     return notFound();
@@ -21,9 +21,10 @@ export default async function ArtistPage(props: ArtistPageProps) {
     <Page>
       <Hero title={artist.fields.name} />
       <CardList title="Videos">
-        {videoLinkCards.map((video) => (
-          <VideoCard key={video.title} {...video} />
-        ))}
+        {videos.map((video) => {
+          const videoCardProps = resolveVideoCardProps(video);
+          return <VideoCard key={video.sys.id} {...videoCardProps} hideArtistName />;
+        })}
       </CardList>
     </Page>
   );

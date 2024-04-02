@@ -1,6 +1,7 @@
 import { MetadataRoute, Route } from "next";
 
-import { getAllArtists, getAllVideos } from "~/api";
+import { api } from "~/api";
+import { resolveArtistPagePath, resolveVideoPagePath } from "~/utils/resolvePagePath";
 
 const baseURL = "https://afistfulofvinyl.com";
 
@@ -36,11 +37,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const [artists, videos] = await Promise.all([getAllArtists(), getAllVideos()]);
+  const [artists, videos] = await Promise.all([api.artists.getAll(), api.videos.getAll()]);
 
   artists.forEach((artist) => {
     pages.push({
-      url: pageURL(`/artists/${artist.fields.slug}`),
+      url: pageURL(resolveArtistPagePath(artist)),
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,
@@ -50,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   videos.forEach((video) => {
     if (video.fields.artist) {
       pages.push({
-        url: pageURL(`/artists/${video.fields.artist.fields.slug}/${video.fields.slug}`),
+        url: pageURL(resolveVideoPagePath(video)),
         lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.5,

@@ -21,7 +21,7 @@ export function ArtistCard<T extends string>(props: ArtistCardProps<T>) {
             src={photoSrc || "/images/placeholder-headshot.svg"}
             alt={name}
             aspectRatio="1:1"
-            maxWidth={120}
+            width={120}
             style={{ borderRadius: "100%" }}
           />
         </Center>

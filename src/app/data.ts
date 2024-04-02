@@ -1,12 +1,11 @@
 import { draftMode } from "next/headers";
 
-import { getAllArtists, getAllVideos, getLatestVideos } from "~/api";
-import { resolveVideoCardProps } from "~/components";
+import { api } from "~/api";
 import { resolveArtistPagePath, resolveVideoPagePath } from "~/utils/resolvePagePath";
 
 export async function getRootLayoutData() {
-  const videos = await getAllVideos();
-  const artists = await getAllArtists();
+  const videos = await api.videos.getAll();
+  const artists = await api.artists.getAll();
 
   const searchData = {
     artists: artists.map((artist) => ({
@@ -25,10 +24,9 @@ export async function getRootLayoutData() {
 }
 
 export async function getHomePageData() {
-  const latestVideos = await getLatestVideos({ previewMode: draftMode().isEnabled });
-  const latestVideoVideoCards = latestVideos.map(resolveVideoCardProps);
+  const latestVideos = await api.videos.getLatest({ preview: draftMode().isEnabled });
 
   return {
-    latestVideoVideoCards,
+    latestVideos,
   };
 }

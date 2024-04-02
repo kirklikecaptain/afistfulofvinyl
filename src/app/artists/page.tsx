@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import { ArtistCard, CardList, Hero, Page } from "~/components";
+import { resolveArtistCardProps } from "~/components/ArtistCard/ArtistCard.utils";
 
 import { getAllArtistsPageData } from "./data";
 
@@ -10,15 +11,16 @@ export const metadata: Metadata = {
 };
 
 export default async function AllArtistsPage() {
-  const { artistCards } = await getAllArtistsPageData();
+  const { artists } = await getAllArtistsPageData();
 
   return (
     <Page>
       <Hero title="Artists" />
       <CardList cols={4}>
-        {artistCards.map((cardProps) => (
-          <ArtistCard key={cardProps.href} {...cardProps} />
-        ))}
+        {artists.map((artist) => {
+          const resolvedProps = resolveArtistCardProps(artist);
+          return <ArtistCard key={resolvedProps.href} {...resolvedProps} />;
+        })}
       </CardList>
     </Page>
   );
