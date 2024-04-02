@@ -22,10 +22,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: pageURL("/videos"),
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: pageURL("/contact"),
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 
-  const options = { previewMode: false };
-  const [artists, videos] = await Promise.all([getAllArtists(options), getAllVideos(options)]);
+  const [artists, videos] = await Promise.all([getAllArtists(), getAllVideos()]);
 
   artists.forEach((artist) => {
     pages.push({

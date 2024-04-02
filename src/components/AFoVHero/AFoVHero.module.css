@@ -1,0 +1,28 @@
+.logoContainer {
+  position: relative;
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    mix-blend-mode: screen;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    .logoRed {
+      transform: translate(-2px, -2px);
+    }
+
+    .logoBlue {
+      transform: translate(2px, 2px);
+    }
+  }
+
+}
+
+.logoGreen {
+  position: relative;
+  width: 400px;
+}

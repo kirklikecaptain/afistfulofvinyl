@@ -1,8 +1,11 @@
+import { resolve } from "path";
+
 import { notFound } from "next/navigation";
 import { Title, Text, Breadcrumbs, Stack, Box, Flex, Group } from "@mantine/core";
 import { IconChevronRight } from "@tabler/icons-react";
 
-import { Image, Link, Page, RichText, VideoPlayer } from "~/components";
+import { Image, Link, Page, RichText, VideoCard, VideoPlayer } from "~/components";
+import { resolveVideoCardProps } from "~/components/VideoCard/VideoCard.utils";
 
 import {
   VideoPageProps,
@@ -26,9 +29,8 @@ export default async function VideoPage(props: VideoPageProps) {
   }
 
   return (
-    <Page artistColor={artist.fields.accentColor}>
+    <Page>
       <Breadcrumbs
-        className="text-artist-color"
         p="md"
         separator={<IconChevronRight size={16} />}
         style={{ borderBottom: "solid 1px var(--mantine-color-default-border)" }}
@@ -41,7 +43,7 @@ export default async function VideoPage(props: VideoPageProps) {
         </Link>
         <Text>{video.fields.title}</Text>
       </Breadcrumbs>
-      <Flex direction={{ base: "column", lg: "row" }}>
+      <Flex flex={1} direction={{ base: "column", lg: "row" }}>
         <Box flex={1}>
           <VideoPlayer url={video.fields.videoUrl} />
           <Stack className="bg-artist-color" gap="md" p="md">
@@ -54,7 +56,7 @@ export default async function VideoPage(props: VideoPageProps) {
                   aspectRatio="1:1"
                   style={{
                     borderRadius: "100%",
-                    border: "solid 2px var(--mantine-color-gray-2)",
+                    border: "solid 2px var(--artist-color-bright)",
                   }}
                 />
               )}
@@ -65,13 +67,18 @@ export default async function VideoPage(props: VideoPageProps) {
           </Stack>
           <RichText field={video.fields.longDescription} />
         </Box>
-        <Stack w={{ lg: "350px" }} className="debug" component="aside" gap="lg" p="sm">
-          <Title order={2}>More by {artist.fields.name}</Title>
-          {moreVideos.map((video) => (
-            <Link key={video.sys.id} href={`/artists/${artistSlug}/${video.fields.slug}`}>
-              {video.fields.title}
-            </Link>
-          ))}
+        <Box
+          visibleFrom="lg"
+          style={{ borderRight: "solid 1px var(--mantine-color-default-border)" }}
+        />
+        <Stack w={{ lg: "400px" }} component="aside" gap="lg" p="sm">
+          <Title order={2} size="sm">
+            More by {artist.fields.name}
+          </Title>
+          {moreVideos.map((video) => {
+            const cardProps = resolveVideoCardProps(video);
+            return <VideoCard key={cardProps.title} {...cardProps} />;
+          })}
         </Stack>
       </Flex>
     </Page>

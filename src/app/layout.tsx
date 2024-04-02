@@ -3,22 +3,14 @@ import "@mantine/spotlight/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { draftMode } from "next/headers";
 
-import { ExitPreviewButton, SearchModal } from "~/components";
+import { AppLayout, ExitPreviewButton, SearchModal } from "~/components";
 import { theme } from "~/styles/theme";
 
 import "~/styles/global.css";
 import { getRootLayoutData } from "./data";
 
-export type RootLayoutProps = {
-  children: React.ReactNode;
-};
-
-export default async function RootLayout({ children }: RootLayoutProps) {
-  const { artists } = await getRootLayoutData();
-  const searchData = artists.map((artist) => ({
-    name: artist.fields.name,
-    href: `/artists/${artist.fields.slug}` as const,
-  }));
+export default async function RootLayout({ children }: React.PropsWithChildren) {
+  const { searchData } = await getRootLayoutData();
 
   return (
     <html lang="en">
@@ -27,8 +19,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body>
         <MantineProvider theme={theme}>
-          {children}
-          <SearchModal artists={searchData} videos={null} />
+          <AppLayout>{children}</AppLayout>
+          <SearchModal data={searchData} />
           <ExitPreviewButton enabled={draftMode().isEnabled} />
         </MantineProvider>
       </body>

@@ -1,10 +1,12 @@
 import { type ImageLoaderProps } from "next/image";
 
+import { LinkedAsset } from "~/libs/contentful/types";
+
 import { type ImageProps } from "./Image";
 
-interface LoaderOptions {
-  aspectRatio?: number;
-}
+type LoaderOptions = {
+  aspectRatio: ImageProps["aspectRatio"];
+};
 
 function contentfulLoader(props: ImageLoaderProps, options: LoaderOptions): string {
   const { src, width, quality = 80 } = props;
@@ -22,7 +24,8 @@ function contentfulLoader(props: ImageLoaderProps, options: LoaderOptions): stri
   url.searchParams.set("w", width.toString());
 
   if (aspectRatio) {
-    const height = Math.floor(width / aspectRatio);
+    const ratio = parseAspectRatio(aspectRatio);
+    const height = Math.floor(width / ratio);
 
     url.searchParams.set("h", height.toString());
     url.searchParams.set("fit", "fill");
@@ -32,11 +35,7 @@ function contentfulLoader(props: ImageLoaderProps, options: LoaderOptions): stri
   return url.href;
 }
 
-function parseAspectRatio(aspectRatio?: ImageProps["aspectRatio"]) {
-  if (!aspectRatio) {
-    return;
-  }
-
+export function parseAspectRatio(aspectRatio: ImageProps["aspectRatio"]) {
   if (typeof aspectRatio !== "string" || !aspectRatio.includes(":")) {
     throw new Error("Invalid aspect ratio syntax. Must be in the format `w:h`. ex: 16:9 or 1:1");
   }
@@ -47,16 +46,16 @@ function parseAspectRatio(aspectRatio?: ImageProps["aspectRatio"]) {
   return Math.round(ratio * 100) / 100;
 }
 
-export function parseImageProps(props: ImageProps) {
-  const { src: _src, loader: _loader, aspectRatio: _aspectRatio, ...otherProps } = props;
-
-  let src = _src;
-  let loader = _loader;
-  const aspectRatio = parseAspectRatio(_aspectRatio);
+export function parseImageProps(props: ImageProps): ImageProps {
+  const { src, loader, aspectRatio, ...otherProps } = props;
 
   if (typeof src === "string" && src.startsWith("//images.ctfassets.net")) {
-    src = `https:${src}`;
-    loader = (loaderProps) => contentfulLoader(loaderProps, { aspectRatio });
+    return {
+      src: `https:${src}`,
+      loader: (loaderProps) => contentfulLoader(loaderProps, { aspectRatio }),
+      aspectRatio,
+      ...otherProps,
+    };
   }
 
   return {
@@ -64,5 +63,18 @@ export function parseImageProps(props: ImageProps) {
     loader,
     aspectRatio,
     ...otherProps,
+  };
+}
+
+export function resolveImageProps(asset?: LinkedAsset): ImageProps | null {
+  if (!asset || !asset.fields.file) {
+    return null;
+  }
+
+  return {
+    src: asset.fields.file.url,
+    alt: asset.fields.description || "",
+    width: asset.fields.file.details.image?.width,
+    height: asset.fields.file.details.image?.height,
   };
 }

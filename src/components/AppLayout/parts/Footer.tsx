@@ -10,7 +10,7 @@ export function Footer() {
         sm: "var(--app-shell-navbar-offset)",
       }}
     >
-      <Grid p="md">
+      <Grid p="xl">
         <GridCol span={{ base: 12, sm: 6, lg: 4 }}>
           <Stack align="start" gap="0">
             <Link href="/videos">Videos</Link>

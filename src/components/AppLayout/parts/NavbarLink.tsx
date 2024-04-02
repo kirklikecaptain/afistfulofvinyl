@@ -1,25 +1,20 @@
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import { NavLink as MantineNavLink, type NavLinkProps as MantineNavLinkProps } from "@mantine/core";
 
-export interface NavLinkProps<T extends string>
-  extends MantineNavLinkProps,
-    Omit<NextLinkProps<T>, keyof MantineNavLinkProps | "ref"> {}
+export type NavLinkProps<T extends string> = MantineNavLinkProps & {
+  href?: NextLinkProps<T>["href"];
+  nextLinkProps?: Omit<NextLinkProps<T>, "href">;
+};
 
 export function NavbarLink<T extends string>(props: NavLinkProps<T>) {
-  const { href, replace, prefetch, scroll, ...navLinkProps } = props;
+  const { href, nextLinkProps, ...navLinkProps } = props;
 
   return (
     <MantineNavLink
       {...navLinkProps}
-      renderRoot={(rootProps) => (
-        <NextLink
-          href={href}
-          replace={replace}
-          prefetch={prefetch}
-          scroll={scroll}
-          {...rootProps}
-        />
-      )}
+      renderRoot={
+        href ? (rootProps) => <NextLink href={href} {...nextLinkProps} {...rootProps} /> : undefined
+      }
     />
   );
 }

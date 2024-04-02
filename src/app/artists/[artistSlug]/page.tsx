@@ -18,9 +18,9 @@ export default async function ArtistPage(props: ArtistPageProps) {
   }
 
   return (
-    <Page artistColor={artist.fields.accentColor}>
+    <Page>
       <Hero title={artist.fields.name} />
-      <CardList>
+      <CardList title="Videos">
         {videoLinkCards.map((video) => (
           <VideoCard key={video.title} {...video} />
         ))}

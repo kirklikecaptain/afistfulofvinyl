@@ -12,6 +12,7 @@ export function Main({ isHomePage, children }: MainProps) {
         base: isHomePage ? 0 : "var(--app-shell-header-offset, 80px)",
         sm: 0,
       }}
+      style={{ transition: "none" }}
     >
       {children}
     </AppShellMain>

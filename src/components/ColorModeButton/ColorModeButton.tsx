@@ -3,11 +3,14 @@ import { IconSun, IconMoon } from "@tabler/icons-react";
 
 import { IconButton, type IconButtonProps } from "../IconButton";
 
-export interface ColorModeButtonProps extends Omit<IconButtonProps, "label" | "onClick" | "icon"> {}
+export type ColorModeButtonProps = Omit<IconButtonProps, "label" | "onClick" | "icon">;
 
-export function ColorModeButton({ variant, size }: ColorModeButtonProps) {
+export function ColorModeButton(props: ColorModeButtonProps) {
+  const { variant, size } = props;
+
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme("dark", { getInitialValueInEffect: true });
+
   const toggleScheme = () => setColorScheme(computedColorScheme === "light" ? "dark" : "light");
 
   return (
