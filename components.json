@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema.json",
   "aliases": {
     "components": "~/components",
-    "ui": "~/components/ui",
+    "ui": "~/components/primitives",
     "utils": "~/lib/utils"
   },
   "rsc": true,
