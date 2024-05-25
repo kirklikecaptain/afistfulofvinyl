@@ -1,7 +1,7 @@
 "use client";
 
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { Button, DropdownMenu, VisuallyHidden } from "@radix-ui/themes";
+import { IconButton, DropdownMenu, VisuallyHidden } from "@radix-ui/themes";
 import { useTheme } from "next-themes";
 
 export function ColorModeToggle() {
@@ -10,11 +10,11 @@ export function ColorModeToggle() {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <Button variant="soft">
+        <IconButton variant="soft">
           <MoonIcon className="dark-only" />
           <SunIcon className="light-only" />
           <VisuallyHidden>Toggle Color Mode</VisuallyHidden>
-        </Button>
+        </IconButton>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
         <DropdownMenu.RadioGroup value={theme} onValueChange={(value) => setTheme(value)}>
