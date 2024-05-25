@@ -1,11 +1,14 @@
-import { ColorModeToggle } from "~/components/composites/color-mode-toggle";
+import { Heading } from "@radix-ui/themes";
+
+import { ColorModeToggle } from "~/components/elements/color-mode-toggle";
 
 export default function HomePage() {
   return (
     <main>
-      <h1>
-        A Fistful of Vinyl <ColorModeToggle />
-      </h1>
+      <Heading as="h1">A Fistful of Vinyl</Heading>
+      <div>
+        <ColorModeToggle />
+      </div>
     </main>
   );
 }

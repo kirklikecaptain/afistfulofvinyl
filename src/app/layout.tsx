@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { Theme } from "@radix-ui/themes";
+import { ThemeProvider } from "next-themes";
 
-import "./global.css";
-import { Providers } from "./providers";
+import "@radix-ui/themes/styles.css";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",
@@ -12,7 +13,9 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Providers>{children}</Providers>
+        <ThemeProvider enableSystem disableTransitionOnChange defaultTheme="dark" attribute="class">
+          <Theme accentColor="blue">{children}</Theme>
+        </ThemeProvider>
       </body>
     </html>
   );
