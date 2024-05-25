@@ -11,7 +11,8 @@ export function ColorModeToggle() {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
         <Button variant="soft">
-          {theme === "dark" ? <MoonIcon /> : <SunIcon />}
+          <MoonIcon className="dark-only" />
+          <SunIcon className="light-only" />
           <VisuallyHidden>Toggle Color Mode</VisuallyHidden>
         </Button>
       </DropdownMenu.Trigger>
