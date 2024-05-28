@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 html.light .dark-only {
   display: none;
 }

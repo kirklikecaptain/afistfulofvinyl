@@ -17,8 +17,8 @@ const publishedClient = createClient({
 const previewClient = createClient({
   space: CONTENTFUL_SPACE_ID!,
   accessToken: CONTENTFUL_PREVIEW_ACCESS_TOKEN!,
-  environment: CONTENTFUL_ENV,
-  host: CONTENTFUL_PREVIEW_HOST,
+  environment: CONTENTFUL_ENV!,
+  host: CONTENTFUL_PREVIEW_HOST!,
 });
 
 export type ClientOptions = {
@@ -26,7 +26,5 @@ export type ClientOptions = {
 };
 
 export function contentful(options?: ClientOptions) {
-  return options?.preview
-    ? previewClient.withoutUnresolvableLinks
-    : publishedClient.withoutUnresolvableLinks;
+  return options?.preview ? previewClient.withoutUnresolvableLinks : publishedClient.withoutUnresolvableLinks;
 }

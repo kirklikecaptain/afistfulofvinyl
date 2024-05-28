@@ -1,26 +1,22 @@
 "use client";
-
 import NextImage, { type ImageProps as NextImageProps, type ImageLoaderProps } from "next/image";
 
-type ImageProps = { aspectRatio?: number } & NextImageProps;
+export type ImageProps = { aspectRatio?: number } & NextImageProps;
 
 export function Image(props: ImageProps) {
-  const { src, loader, width, height, aspectRatio, ...otherProps } = props;
+  const { src, loader, aspectRatio, ...imageProps } = props;
+  let _src = props.src;
+  let _loader = props.loader;
 
-  let newSrc = src ?? "/images/placeholder-image.svg";
-  let newLoader = loader;
-
-  if (typeof src === "string" && src.startsWith("//images.ctfassets.net")) {
-    newSrc = `https:${src}`;
-    newLoader = (loaderProps) => contentfulLoader(loaderProps, aspectRatio);
+  if (typeof _src === "string" && _src.startsWith("//images.ctfassets.net")) {
+    _src = `https:${src}`;
+    _loader = (loaderProps) => contentfulLoader(loaderProps, props.aspectRatio);
   }
 
-  return (
-    <NextImage src={newSrc} loader={newLoader} width={width} height={height} {...otherProps} />
-  );
+  return <NextImage src={_src} loader={_loader} {...imageProps} />;
 }
 
-export function contentfulLoader(props: ImageLoaderProps, aspectRatio?: number): string {
+function contentfulLoader(props: ImageLoaderProps, aspectRatio?: number): string {
   const { src, width, quality = 80 } = props;
 
   const url = new URL(src);
