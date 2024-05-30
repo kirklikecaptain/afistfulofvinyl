@@ -4,6 +4,7 @@ const nextConfig = {
     typedRoutes: true,
   },
   images: {
+    imageSizes: [],
     deviceSizes: [520, 768, 1024, 1280, 1640],
     remotePatterns: [
       {

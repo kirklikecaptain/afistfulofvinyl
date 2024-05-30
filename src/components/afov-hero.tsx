@@ -6,7 +6,7 @@ export function AFoVHero() {
   return (
     <Section>
       <Container>
-        <Flex align="center" justify="center" minHeight="500px" height="60vh" width="100%">
+        <Flex align="center" justify="center" minHeight="400px" height="40vh" width="100%">
           <Heading>
             <AFoV width="20vw" minWidth="200px" />
             <VisuallyHidden>A Fistful of Vinyl</VisuallyHidden>

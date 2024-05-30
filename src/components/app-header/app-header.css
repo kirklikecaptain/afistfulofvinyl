@@ -1,0 +1,15 @@
+.app-header {
+  padding: 1rem;
+  border-bottom: solid 1px var(--gray-3);
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-link {
+    line-height: 0;
+    color: inherit;
+  }
+}

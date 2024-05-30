@@ -8,14 +8,16 @@
     "lint": "next lint",
     "start": "next start",
     "format": "eslint --fix .",
-    "typegen:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -g -o src/contentful/types && npm run format"
+    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -g -o src/types/contentful/generated && npm run format"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.21.0",
     "@contentful/rich-text-types": "^16.5.0",
     "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/themes": "^3.0.5",
     "@tabler/icons-react": "^3.5.0",
+    "classnames": "^2.5.1",
     "contentful": "^10.11.3",
     "next": "14.2.3",
     "next-themes": "^0.3.0",
@@ -27,7 +29,6 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "cf-content-types-generator": "^2.15.1",
-    "dotenv": "^16.4.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "eslint-config-prettier": "^9.1.0",

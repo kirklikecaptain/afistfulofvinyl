@@ -1,16 +1,18 @@
-import { Box, Reset, type BoxProps } from "@radix-ui/themes";
+import { Box, type BoxProps } from "@radix-ui/themes";
+import { type CSSProperties } from "react";
 
 export type AFoVProps = BoxProps & {
   variant?: "primary" | "square" | "mini";
+  color?: CSSProperties["color"];
 };
 
 export function AFoV(props: AFoVProps) {
-  const { variant = "primary", ...boxProps } = props;
+  const { variant = "primary", color = "currentColor", width = "200px", ...boxProps } = props;
   const { viewBox, d } = variants[variant];
 
   return (
-    <Box {...boxProps}>
-      <svg viewBox={viewBox} style={{ width: "100%", fill: "currentcolor" }} aria-label="A Fistful of Vinyl">
+    <Box width={width} {...boxProps}>
+      <svg viewBox={viewBox} style={{ width: "100%", fill: color }} aria-label="A Fistful of Vinyl">
         <path d={d} />
       </svg>
     </Box>

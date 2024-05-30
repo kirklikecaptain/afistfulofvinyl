@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+
+html.light .visible-dark {
+  display: none;
+}
+
+html.dark .visible-light {
+  display: none;
+}
+
+.debug {
+  border: 1px solid red;
+}

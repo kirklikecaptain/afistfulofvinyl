@@ -1,22 +1,20 @@
 "use client";
+
 import NextImage, { type ImageProps as NextImageProps, type ImageLoaderProps } from "next/image";
 
-export type ImageProps = { aspectRatio?: number } & NextImageProps;
+export type ImageProps = NextImageProps;
 
 export function Image(props: ImageProps) {
-  const { src, loader, aspectRatio, ...imageProps } = props;
-  let _src = props.src;
-  let _loader = props.loader;
+  const { src, loader, ...imageProps } = props;
 
-  if (typeof _src === "string" && _src.startsWith("//images.ctfassets.net")) {
-    _src = `https:${src}`;
-    _loader = (loaderProps) => contentfulLoader(loaderProps, props.aspectRatio);
+  if (typeof src === "string" && src.startsWith("//images.ctfassets.net")) {
+    return <NextImage src={`https:${src}`} loader={contentfulLoader} {...imageProps} />;
   }
 
-  return <NextImage src={_src} loader={_loader} {...imageProps} />;
+  return <NextImage src={src} loader={loader} {...imageProps} />;
 }
 
-function contentfulLoader(props: ImageLoaderProps, aspectRatio?: number): string {
+function contentfulLoader(props: ImageLoaderProps): string {
   const { src, width, quality = 80 } = props;
 
   const url = new URL(src);
@@ -25,18 +23,14 @@ function contentfulLoader(props: ImageLoaderProps, aspectRatio?: number): string
     return url.href;
   }
 
-  url.searchParams.set("fm", "jpg");
-  url.searchParams.set("fl", "progressive");
-  url.searchParams.set("q", quality.toString());
-  url.searchParams.set("w", width.toString());
+  const params = new URLSearchParams({
+    fm: "jpg",
+    fl: "progressive",
+    q: quality.toString(),
+    w: width.toString(),
+  });
 
-  if (aspectRatio) {
-    const height = Math.floor(width / aspectRatio);
-
-    url.searchParams.set("h", height.toString());
-    url.searchParams.set("fit", "fill");
-    url.searchParams.set("f", "faces");
-  }
+  url.search = params.toString();
 
   return url.href;
 }
