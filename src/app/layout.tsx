@@ -1,6 +1,7 @@
 import "@radix-ui/themes/styles.css";
 import { Theme, Flex, Box } from "@radix-ui/themes";
 import { ThemeProvider } from "next-themes";
+// import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { AppFooter, AppHeader } from "~/components";
 import "./app.css";
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
             </Flex>
           </Theme>
         </ThemeProvider>
+        {/* <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!} /> */}
       </body>
     </html>
   );

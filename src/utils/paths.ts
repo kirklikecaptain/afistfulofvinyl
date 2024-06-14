@@ -1,5 +1,3 @@
-import type { Route } from "next";
-
 import type { ArtistEntry, VideoEntry } from "~/types";
 
 export function resolveArtistPagePath(artist: ArtistEntry) {

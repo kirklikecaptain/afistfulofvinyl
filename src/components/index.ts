@@ -9,3 +9,4 @@ export * from "./image";
 export * from "./link";
 export * from "./page";
 export * from "./card-link/card-link";
+export * from "./youtube-player/youtube-player";
