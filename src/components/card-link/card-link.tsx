@@ -9,7 +9,7 @@ export type CardLinkProps<T extends string> = {
   title: string;
   subtitle?: string;
   href: LinkProps<T>["href"];
-  accentColor?: string | undefined;
+  accentColor?: string;
   image: ImageProps["src"] | undefined;
   aspectRatio?: number;
   hideArtistName?: boolean;
@@ -19,10 +19,10 @@ export function CardLink<T extends string>(props: CardLinkProps<T>) {
   const { title, subtitle, accentColor = "#000", image, href, aspectRatio = 16 / 9 } = props;
 
   return (
-    <Card asChild className="CardLink" style={{ "--color": accentColor } as React.CSSProperties}>
+    <Card asChild className="card-link" style={{ "--color": accentColor } as React.CSSProperties}>
       <Link href={href}>
         <AspectRatio className="frame" ratio={aspectRatio}>
-          {image && <Image fill priority src={image} alt={title} sizes="30vw" />}
+          {image && <Image fill priority src={image} alt={title} sizes="33vw" />}
           <div className="text">
             {title && (
               <Text as="p" weight="bold">

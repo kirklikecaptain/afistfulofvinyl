@@ -11,7 +11,7 @@ export function AppHeader() {
   return (
     <header className="app-header">
       <Container>
-        <nav>
+        <nav className="app-nav">
           <Link href="/" underline="none" className="logo-link">
             <AFoV width="120px" />
           </Link>
@@ -21,6 +21,12 @@ export function AppHeader() {
             </Link>
             <Link href="/videos" color="gray">
               Videos
+            </Link>
+            <Link href="/about" color="gray">
+              About
+            </Link>
+            <Link href="/contact" color="gray">
+              Contact
             </Link>
             <SearchButton color="gray" />
             <ColorModeButton color="gray" />

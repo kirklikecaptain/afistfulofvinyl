@@ -1,10 +1,12 @@
 import "@radix-ui/themes/styles.css";
-import { Theme, Flex, Box } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 import { ThemeProvider } from "next-themes";
-// import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
-import { AppFooter, AppHeader } from "~/components";
-import "./app.css";
+import "~/styles/global.css";
+import { AppLayout } from "~/components";
+
+const isDeployed = process.env.NODE_ENV !== "development";
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
@@ -12,14 +14,10 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       <body>
         <ThemeProvider defaultTheme="dark" attribute="class" enableSystem>
           <Theme accentColor="blue" asChild>
-            <Flex direction="column">
-              <AppHeader />
-              <Box flexGrow="1">{children}</Box>
-              <AppFooter />
-            </Flex>
+            <AppLayout>{children}</AppLayout>
           </Theme>
         </ThemeProvider>
-        {/* <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!} /> */}
+        {isDeployed && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!} />}
       </body>
     </html>
   );

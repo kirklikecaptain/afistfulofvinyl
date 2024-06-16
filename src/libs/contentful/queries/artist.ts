@@ -1,5 +1,6 @@
-import { contentful, type ClientOptions } from "~/contentful/client";
 import type { ArtistEntry, TypeArtistSkeleton } from "~/types";
+
+import { contentful, type ClientOptions } from "../client";
 
 export async function getAllArtists(options?: ClientOptions): Promise<ArtistEntry[]> {
   const client = contentful(options);

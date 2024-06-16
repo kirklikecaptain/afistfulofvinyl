@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { AFoVHero, CardLink, CardSection, Page } from "~/components";
-import { getLatestVideos } from "~/contentful";
+import { getLatestVideos } from "~/libs/contentful";
 import { resolveVideoPagePath } from "~/utils/paths";
 
 export const metadata: Metadata = {
@@ -15,8 +15,9 @@ export default async function HomePage() {
   return (
     <Page>
       <AFoVHero />
-      <CardSection title="Latest Videos">
-        {videos.map((video) => (
+      <CardSection
+        title="Latest Videos"
+        cards={videos.map((video) => (
           <CardLink
             key={video.sys.id}
             href={resolveVideoPagePath(video)}
@@ -26,7 +27,7 @@ export default async function HomePage() {
             accentColor={video.fields.artist?.fields.accentColor}
           />
         ))}
-      </CardSection>
+      />
     </Page>
   );
 }

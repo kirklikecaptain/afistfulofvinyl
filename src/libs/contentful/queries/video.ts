@@ -1,5 +1,6 @@
-import { contentful, type ClientOptions } from "~/contentful/client";
 import type { VideoEntry, TypeVideoSkeleton } from "~/types";
+
+import { contentful, type ClientOptions } from "../client";
 
 export async function getAllVideos(options?: ClientOptions): Promise<VideoEntry[]> {
   const client = contentful(options);
@@ -43,7 +44,7 @@ export async function getVideoBySlugs(params: GetVideoParams, options?: ClientOp
   return entries.items[0];
 }
 
-export async function getVideosByArtist(artistSlug: string, options?: ClientOptions) {
+export async function getVideosByArtist(artistSlug: string, options?: ClientOptions): Promise<VideoEntry[]> {
   const client = contentful(options);
   const entries = await client.getEntries<TypeVideoSkeleton>({
     content_type: "video",

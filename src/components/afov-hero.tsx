@@ -1,4 +1,4 @@
-import { Container, Flex, Heading, Section, VisuallyHidden } from "@radix-ui/themes";
+import { Container, Flex, Grid, Heading, Section, VisuallyHidden } from "@radix-ui/themes";
 
 import { AFoV } from "~/components";
 
