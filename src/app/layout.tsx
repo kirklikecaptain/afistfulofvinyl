@@ -1,28 +1,23 @@
-import "@mantine/core/styles.css";
-import "@mantine/spotlight/styles.css";
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import { draftMode } from "next/headers";
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
+import { ThemeProvider } from "next-themes";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
-import { AppLayout, ExitPreviewButton, SearchModal } from "~/components";
-import { theme } from "~/styles/theme";
 import "~/styles/global.css";
+import { AppLayout } from "~/components";
 
-import { getRootLayoutData } from "./data";
+const isDeployed = process.env.NODE_ENV !== "development";
 
-export default async function RootLayout({ children }: React.PropsWithChildren) {
-  const { searchData } = await getRootLayoutData();
-
+export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en">
-      <head>
-        <ColorSchemeScript defaultColorScheme="dark" />
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <MantineProvider theme={theme}>
-          <AppLayout>{children}</AppLayout>
-          <SearchModal data={searchData} />
-          <ExitPreviewButton enabled={draftMode().isEnabled} />
-        </MantineProvider>
+        <ThemeProvider defaultTheme="dark" attribute="class" enableSystem>
+          <Theme accentColor="blue" asChild>
+            <AppLayout>{children}</AppLayout>
+          </Theme>
+        </ThemeProvider>
+        {isDeployed && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID!} />}
       </body>
     </html>
   );

@@ -1,27 +1,33 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
-import { AFoVHero, CardList, Page, VideoCard, resolveVideoCardProps } from "~/components";
-
-import { getHomePageData } from "./data";
+import { BrandHero, CardLink, CardSection, Page } from "~/components";
+import { getLatestVideos } from "~/libs/contentful";
+import { resolveVideoPagePath } from "~/utils/paths";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",
-  description:
-    "Live sessions and interviews with independent and DIY artists from all music genres",
+  description: "Sessions and Interviews with the best in underground music",
 };
 
 export default async function HomePage() {
-  const { latestVideos } = await getHomePageData();
+  const videos = await getLatestVideos();
 
   return (
     <Page>
-      <AFoVHero />
-      <CardList title="Latest Videos">
-        {latestVideos.map((video) => {
-          const videoCardProps = resolveVideoCardProps(video);
-          return <VideoCard key={video.sys.id} {...videoCardProps} />;
-        })}
-      </CardList>
+      <BrandHero />
+      <CardSection
+        title="Latest Videos"
+        cards={videos.map((video) => (
+          <CardLink
+            key={video.sys.id}
+            href={resolveVideoPagePath(video)}
+            image={video.fields.thumbnail?.fields.file?.url}
+            title={video.fields.title}
+            subtitle={video.fields.artist?.fields.name}
+            accentColor={video.fields.artist?.fields.accentColor}
+          />
+        ))}
+      />
     </Page>
   );
 }

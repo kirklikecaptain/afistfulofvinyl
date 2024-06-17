@@ -1,9 +1,9 @@
 import { Hero, Page } from "~/components";
 
-export default function VideosPage() {
+export default function AboutPage() {
   return (
     <Page>
-      <Hero heading="All Videos" />
+      <Hero heading="About" />
     </Page>
   );
 }

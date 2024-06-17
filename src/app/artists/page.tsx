@@ -1,27 +1,26 @@
-import { Metadata } from "next";
-
-import { ArtistCard, CardList, Hero, Page } from "~/components";
-import { resolveArtistCardProps } from "~/components/ArtistCard/ArtistCard.utils";
-
-import { getAllArtistsPageData } from "./data";
-
-export const metadata: Metadata = {
-  title: "Artists",
-  description: "All artists featured on A Fistful of Vinyl",
-};
+import { CardLink, CardSection, Hero, Page } from "~/components";
+import { getAllArtists } from "~/libs/contentful";
+import { resolveArtistPagePath } from "~/utils/paths";
 
 export default async function AllArtistsPage() {
-  const { artists } = await getAllArtistsPageData();
+  const artists = await getAllArtists();
 
   return (
     <Page>
-      <Hero title="Artists" />
-      <CardList cols={4}>
-        {artists.map((artist) => {
-          const resolvedProps = resolveArtistCardProps(artist);
-          return <ArtistCard key={resolvedProps.href} {...resolvedProps} />;
-        })}
-      </CardList>
+      <Hero heading="Artists" />
+      <CardSection
+        columns="4"
+        cards={artists.map((artist) => (
+          <CardLink
+            key={artist.sys.id}
+            href={resolveArtistPagePath(artist)}
+            image={artist.fields.photo?.fields.file?.url}
+            title={artist.fields.name}
+            accentColor={artist.fields.accentColor}
+            aspectRatio={1}
+          />
+        ))}
+      />
     </Page>
   );
 }

@@ -1,15 +1,62 @@
+body {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+}
+
 .debug {
-  border: dashed red 1px;
+  border: 1px solid red;
 }
 
-.hide-from-dark {
-  @mixin dark {
-    display: none;
-  }
+html.light .visible-dark {
+  display: none;
 }
 
-.hide-from-light {
-  @mixin light {
-    display: none;
+html.dark .visible-light {
+  display: none;
+}
+
+.artist-theme {
+  --artist-color: red;
+  --artist-color-50: hsl(from var(--artist-color) h 60% 95%);
+  --artist-color-100: hsl(from var(--artist-color) h 70% 90%);
+  --artist-color-200: hsl(from var(--artist-color) h 70% 80%);
+  --artist-color-300: hsl(from var(--artist-color) h 80% 70%);
+  --artist-color-400: hsl(from var(--artist-color) h 80% 60%);
+  --artist-color-500: hsl(from var(--artist-color) h 80% 50%);
+  --artist-color-600: hsl(from var(--artist-color) h 80% 40%);
+  --artist-color-700: hsl(from var(--artist-color) h 70% 30%);
+  --artist-color-800: hsl(from var(--artist-color) h 70% 20%);
+  --artist-color-900: hsl(from var(--artist-color) h 60% 10%);
+}
+
+html.dark .artist-theme {
+  --artist-color-50: hsl(from var(--artist-color) h 60% 10%);
+  --artist-color-100: hsl(from var(--artist-color) h 70% 20%);
+  --artist-color-200: hsl(from var(--artist-color) h 70% 30%);
+  --artist-color-300: hsl(from var(--artist-color) h 80% 40%);
+  --artist-color-400: hsl(from var(--artist-color) h 80% 50%);
+  --artist-color-500: hsl(from var(--artist-color) h 80% 60%);
+  --artist-color-600: hsl(from var(--artist-color) h 80% 70%);
+  --artist-color-700: hsl(from var(--artist-color) h 70% 80%);
+  --artist-color-800: hsl(from var(--artist-color) h 70% 90%);
+  --artist-color-900: hsl(from var(--artist-color) h 60% 95%);
+}
+
+.artist-theme .with-color-overlay {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    mix-blend-mode: color;
+    background: var(--artist-color);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
   }
 }
