@@ -1,20 +1,29 @@
-import { Box, type BoxProps } from "@radix-ui/themes";
+import { Box, VisuallyHidden, type BoxProps } from "@radix-ui/themes";
 import { type CSSProperties } from "react";
 
 export type AFoVProps = BoxProps & {
   variant?: "primary" | "square" | "mini";
+  label?: string;
   color?: CSSProperties["color"];
 };
 
 export function AFoV(props: AFoVProps) {
-  const { variant = "primary", color = "currentColor", width = "200px", ...boxProps } = props;
+  const {
+    variant = "primary",
+    color = "currentColor",
+    width = "100%",
+    label = "A Fistful of Vinyl",
+    style,
+    ...boxProps
+  } = props;
   const { viewBox, d } = variants[variant];
 
   return (
-    <Box width={width} {...boxProps}>
-      <svg viewBox={viewBox} style={{ width: "100%", fill: color }} aria-label="A Fistful of Vinyl">
+    <Box {...boxProps} width={width} style={{ lineHeight: 0, ...style }}>
+      <svg viewBox={viewBox} style={{ width: "100%", fill: color }}>
         <path d={d} />
       </svg>
+      <VisuallyHidden>{label}</VisuallyHidden>
     </Box>
   );
 }

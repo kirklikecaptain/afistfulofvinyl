@@ -1,8 +1,8 @@
-import { AspectRatio, Card, Text } from "@radix-ui/themes";
+import { AspectRatio, Box, Card, Text } from "@radix-ui/themes";
 import Link from "next/link";
 
-import { LinkProps } from "~/components/link";
-import { Image, type ImageProps } from "~/components/image";
+import { LinkProps } from "../link";
+import { Image, type ImageProps } from "../image";
 import "./card-link.css";
 
 export type CardLinkProps<T extends string> = {
@@ -19,11 +19,11 @@ export function CardLink<T extends string>(props: CardLinkProps<T>) {
   const { title, subtitle, accentColor = "#000", image, href, aspectRatio = 16 / 9 } = props;
 
   return (
-    <Card asChild className="card-link" style={{ "--color": accentColor } as React.CSSProperties}>
+    <Card asChild className="card-link" style={{ "--color": accentColor }}>
       <Link href={href}>
         <AspectRatio className="frame" ratio={aspectRatio}>
-          {image && <Image fill priority src={image} alt={title} sizes="33vw" />}
-          <div className="text">
+          {image && <Image src={image} alt={title} fill priority sizes="33vw" />}
+          <Box className="text">
             {title && (
               <Text as="p" weight="bold">
                 {title}
@@ -34,7 +34,7 @@ export function CardLink<T extends string>(props: CardLinkProps<T>) {
                 {subtitle}
               </Text>
             )}
-          </div>
+          </Box>
         </AspectRatio>
       </Link>
     </Card>

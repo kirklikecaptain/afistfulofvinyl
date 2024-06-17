@@ -20,6 +20,7 @@
     "@tabler/icons-react": "^3.5.0",
     "classnames": "^2.5.1",
     "contentful": "^10.11.3",
+    "framer-motion": "^11.2.10",
     "next": "^14.2.3",
     "next-themes": "^0.3.0",
     "react": "^18",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { AFoVHero, CardLink, CardSection, Page } from "~/components";
+import { BrandHero, CardLink, CardSection, Page } from "~/components";
 import { getLatestVideos } from "~/libs/contentful";
 import { resolveVideoPagePath } from "~/utils/paths";
 
@@ -14,7 +14,7 @@ export default async function HomePage() {
 
   return (
     <Page>
-      <AFoVHero />
+      <BrandHero />
       <CardSection
         title="Latest Videos"
         cards={videos.map((video) => (

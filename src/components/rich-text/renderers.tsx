@@ -3,7 +3,9 @@ import { BLOCKS, INLINES, MARKS, type Block, type Inline } from "@contentful/ric
 import { RenderMark, RenderNode, RenderText } from "@contentful/rich-text-react-renderer";
 import { Children } from "react";
 
-import { Image, Link, Stack } from "~/components";
+import { Image } from "../image";
+import { Stack } from "../stack";
+import { Link } from "../link";
 
 function inline(type: string, node: Inline): React.ReactNode {
   return (
@@ -80,13 +82,10 @@ export const renderNode: RenderNode = {
       </Table.Root>
     );
   },
-  [BLOCKS.TABLE_ROW]: (_node, children) => {
-    console.log({ content: _node.content });
-    return <Table.Row>{children}</Table.Row>;
-  },
-  [BLOCKS.TABLE_HEADER_CELL]: (_node, children) => {
-    return <Table.ColumnHeaderCell>{children}</Table.ColumnHeaderCell>;
-  },
+  [BLOCKS.TABLE_ROW]: (_node, children) => <Table.Row>{children}</Table.Row>,
+  [BLOCKS.TABLE_HEADER_CELL]: (_node, children) => (
+    <Table.ColumnHeaderCell>{children}</Table.ColumnHeaderCell>
+  ),
   [BLOCKS.TABLE_CELL]: (_node, children) => <Table.Cell>{children}</Table.Cell>,
   [BLOCKS.EMBEDDED_ENTRY]: (node, _children) => (
     <div>
