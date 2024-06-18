@@ -8,7 +8,8 @@
     "lint": "next lint",
     "start": "next start",
     "format": "eslint --fix .",
-    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -g -o src/types/contentful/generated && npm run format"
+    "types:contentful": "export $(cat .env.local); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN --environment $CONTENTFUL_ENV -X -g -o src/types/contentful/generated && npm run format",
+    "codegen": "graphql-codegen --require dotenv/config --config codegen.ts dotenv_config_path=.env.local"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.21.0",
@@ -21,6 +22,8 @@
     "classnames": "^2.5.1",
     "contentful": "^10.11.3",
     "framer-motion": "^11.2.10",
+    "graphql": "^16.8.2",
+    "graphql-request": "^6.1.0",
     "next": "^14.2.3",
     "next-themes": "^0.3.0",
     "react": "^18",
@@ -28,6 +31,7 @@
     "react-lite-youtube-embed": "^2.4.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

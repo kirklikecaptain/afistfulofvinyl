@@ -1,0 +1,30 @@
+query VideoCardQuery($limit: Int!, $order: [VideoOrder]) {
+  videoCollection(limit: $limit, order: $order) {
+    items {
+      sys {
+        id
+      }
+      title
+      slug
+      subtitle
+      shortDescription
+      uploadDate
+      videoType
+      thumbnail {
+        url
+        description
+      }
+      artist {
+        name
+        accentColor
+        slug
+        photo {
+          url
+          width
+          height
+          description
+        }
+      }
+    }
+  }
+}

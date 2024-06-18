@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
 import { BrandHero, CardLink, CardSection, Page } from "~/components";
-import { getLatestVideos } from "~/libs/contentful";
-import { resolveVideoPagePath } from "~/utils/paths";
+import { getLatestVideoCards } from "~/graphql/queries/getVideoCards";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",
@@ -10,21 +9,21 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const videos = await getLatestVideos();
+  const videoCards = await getLatestVideoCards();
 
   return (
     <Page>
       <BrandHero />
       <CardSection
         title="Latest Videos"
-        cards={videos.map((video) => (
+        cards={videoCards.map((video) => (
           <CardLink
-            key={video.sys.id}
-            href={resolveVideoPagePath(video)}
-            image={video.fields.thumbnail?.fields.file?.url}
-            title={video.fields.title}
-            subtitle={video.fields.artist?.fields.name}
-            accentColor={video.fields.artist?.fields.accentColor}
+            key={video?.title}
+            href={`/artists/${video?.artist?.slug}/${video?.slug}`}
+            image={video?.thumbnail?.url}
+            title={video?.title || ""}
+            subtitle={video?.artist?.name}
+            accentColor={video?.artist?.accentColor}
           />
         ))}
       />

@@ -7,19 +7,19 @@ import "./card-link.css";
 
 export type CardLinkProps<T extends string> = {
   title: string;
-  subtitle?: string;
+  subtitle?: string | null;
   href: LinkProps<T>["href"];
-  accentColor?: string;
-  image: ImageProps["src"] | undefined;
+  accentColor?: string | null;
+  image?: ImageProps["src"] | null;
   aspectRatio?: number;
   hideArtistName?: boolean;
 };
 
 export function CardLink<T extends string>(props: CardLinkProps<T>) {
-  const { title, subtitle, accentColor = "#000", image, href, aspectRatio = 16 / 9 } = props;
+  const { title, subtitle, accentColor, image, href, aspectRatio = 16 / 9 } = props;
 
   return (
-    <Card asChild className="card-link" style={{ "--color": accentColor }}>
+    <Card asChild className="card-link" style={{ "--color": accentColor ?? "#000" }}>
       <Link href={href}>
         <AspectRatio className="frame" ratio={aspectRatio}>
           {image && <Image src={image} alt={title} fill priority sizes="33vw" />}
