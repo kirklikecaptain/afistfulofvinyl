@@ -13,8 +13,16 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  "query VideoCardQuery($limit: Int!, $order: [VideoOrder]) {\n  videoCollection(limit: $limit, order: $order) {\n    items {\n      sys {\n        id\n      }\n      title\n      slug\n      subtitle\n      shortDescription\n      uploadDate\n      videoType\n      thumbnail {\n        url\n        description\n      }\n      artist {\n        name\n        accentColor\n        slug\n        photo {\n          url\n          width\n          height\n          description\n        }\n      }\n    }\n  }\n}":
-    types.VideoCardQueryDocument,
+  "\n  query VideoPageQuery($videoSlug: String!, $artistSlug: String!) {\n    video: videoCollection(limit: 1, where: { slug: $videoSlug, artist: { slug: $artistSlug } }) {\n      items {\n        title\n        slug\n        subtitle\n        videoUrl\n        shortDescription\n        longDescription {\n          links {\n            entries {\n              inline {\n                sys {\n                  id\n                }\n              }\n              block {\n                sys {\n                  id\n                }\n              }\n            }\n            assets {\n              block {\n                sys {\n                  id\n                }\n                url\n                title\n                width\n                height\n                description\n              }\n            }\n          }\n          json\n        }\n        artist {\n          name\n          slug\n          accentColor\n          photo {\n            url\n          }\n        }\n        uploadDate\n        videoType\n        thumbnail {\n          url\n          description\n        }\n      }\n    }\n    relatedVideos: videoCollection(limit: 3, where: { artist: { slug: $artistSlug }, slug_not: $videoSlug }) {\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n":
+    types.VideoPageQueryDocument,
+  "\n  query ArtistProfilePageQuery($artistSlug: String!) {\n    artist: artistCollection(where: { slug: $artistSlug }) {\n      items {\n        name\n        slug\n        accentColor\n        photo {\n          url\n          width\n          height\n          description\n        }\n      }\n    }\n    videos: videoCollection(where: { artist: { slug: $artistSlug } }) {\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n":
+    types.ArtistProfilePageQueryDocument,
+  "\n  query AllArtistsPageQuery {\n    artists: artistCollection(limit: 150, order: name_ASC) {\n      items {\n        name\n        slug\n        accentColor\n        photo {\n          url\n        }\n        linkedFrom {\n          videoCollection(limit: 20) {\n            total\n          }\n        }\n      }\n    }\n  }\n":
+    types.AllArtistsPageQueryDocument,
+  "\n  query HomePageQuery {\n    recentVideos: videoCollection(limit: 12, order: uploadDate_DESC) {\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n":
+    types.HomePageQueryDocument,
+  "fragment VideoCardLink on Video {\n  slug\n  title\n  subtitle\n  videoType\n  thumbnail {\n    url\n    description\n  }\n  artist {\n    name\n    accentColor\n    slug\n    photo {\n      url\n      width\n      height\n      description\n    }\n  }\n}":
+    types.VideoCardLinkFragmentDoc,
 };
 
 /**
@@ -35,8 +43,32 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "query VideoCardQuery($limit: Int!, $order: [VideoOrder]) {\n  videoCollection(limit: $limit, order: $order) {\n    items {\n      sys {\n        id\n      }\n      title\n      slug\n      subtitle\n      shortDescription\n      uploadDate\n      videoType\n      thumbnail {\n        url\n        description\n      }\n      artist {\n        name\n        accentColor\n        slug\n        photo {\n          url\n          width\n          height\n          description\n        }\n      }\n    }\n  }\n}",
-): (typeof documents)["query VideoCardQuery($limit: Int!, $order: [VideoOrder]) {\n  videoCollection(limit: $limit, order: $order) {\n    items {\n      sys {\n        id\n      }\n      title\n      slug\n      subtitle\n      shortDescription\n      uploadDate\n      videoType\n      thumbnail {\n        url\n        description\n      }\n      artist {\n        name\n        accentColor\n        slug\n        photo {\n          url\n          width\n          height\n          description\n        }\n      }\n    }\n  }\n}"];
+  source: "\n  query VideoPageQuery($videoSlug: String!, $artistSlug: String!) {\n    video: videoCollection(limit: 1, where: { slug: $videoSlug, artist: { slug: $artistSlug } }) {\n      items {\n        title\n        slug\n        subtitle\n        videoUrl\n        shortDescription\n        longDescription {\n          links {\n            entries {\n              inline {\n                sys {\n                  id\n                }\n              }\n              block {\n                sys {\n                  id\n                }\n              }\n            }\n            assets {\n              block {\n                sys {\n                  id\n                }\n                url\n                title\n                width\n                height\n                description\n              }\n            }\n          }\n          json\n        }\n        artist {\n          name\n          slug\n          accentColor\n          photo {\n            url\n          }\n        }\n        uploadDate\n        videoType\n        thumbnail {\n          url\n          description\n        }\n      }\n    }\n    relatedVideos: videoCollection(limit: 3, where: { artist: { slug: $artistSlug }, slug_not: $videoSlug }) {\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query VideoPageQuery($videoSlug: String!, $artistSlug: String!) {\n    video: videoCollection(limit: 1, where: { slug: $videoSlug, artist: { slug: $artistSlug } }) {\n      items {\n        title\n        slug\n        subtitle\n        videoUrl\n        shortDescription\n        longDescription {\n          links {\n            entries {\n              inline {\n                sys {\n                  id\n                }\n              }\n              block {\n                sys {\n                  id\n                }\n              }\n            }\n            assets {\n              block {\n                sys {\n                  id\n                }\n                url\n                title\n                width\n                height\n                description\n              }\n            }\n          }\n          json\n        }\n        artist {\n          name\n          slug\n          accentColor\n          photo {\n            url\n          }\n        }\n        uploadDate\n        videoType\n        thumbnail {\n          url\n          description\n        }\n      }\n    }\n    relatedVideos: videoCollection(limit: 3, where: { artist: { slug: $artistSlug }, slug_not: $videoSlug }) {\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query ArtistProfilePageQuery($artistSlug: String!) {\n    artist: artistCollection(where: { slug: $artistSlug }) {\n      items {\n        name\n        slug\n        accentColor\n        photo {\n          url\n          width\n          height\n          description\n        }\n      }\n    }\n    videos: videoCollection(where: { artist: { slug: $artistSlug } }) {\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query ArtistProfilePageQuery($artistSlug: String!) {\n    artist: artistCollection(where: { slug: $artistSlug }) {\n      items {\n        name\n        slug\n        accentColor\n        photo {\n          url\n          width\n          height\n          description\n        }\n      }\n    }\n    videos: videoCollection(where: { artist: { slug: $artistSlug } }) {\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query AllArtistsPageQuery {\n    artists: artistCollection(limit: 150, order: name_ASC) {\n      items {\n        name\n        slug\n        accentColor\n        photo {\n          url\n        }\n        linkedFrom {\n          videoCollection(limit: 20) {\n            total\n          }\n        }\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query AllArtistsPageQuery {\n    artists: artistCollection(limit: 150, order: name_ASC) {\n      items {\n        name\n        slug\n        accentColor\n        photo {\n          url\n        }\n        linkedFrom {\n          videoCollection(limit: 20) {\n            total\n          }\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query HomePageQuery {\n    recentVideos: videoCollection(limit: 12, order: uploadDate_DESC) {\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query HomePageQuery {\n    recentVideos: videoCollection(limit: 12, order: uploadDate_DESC) {\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "fragment VideoCardLink on Video {\n  slug\n  title\n  subtitle\n  videoType\n  thumbnail {\n    url\n    description\n  }\n  artist {\n    name\n    accentColor\n    slug\n    photo {\n      url\n      width\n      height\n      description\n    }\n  }\n}",
+): (typeof documents)["fragment VideoCardLink on Video {\n  slug\n  title\n  subtitle\n  videoType\n  thumbnail {\n    url\n    description\n  }\n  artist {\n    name\n    accentColor\n    slug\n    photo {\n      url\n      width\n      height\n      description\n    }\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

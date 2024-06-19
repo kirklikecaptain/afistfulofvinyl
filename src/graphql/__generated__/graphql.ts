@@ -35,7 +35,7 @@ export type Scalars = {
 
 /** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/artist) */
 export type Artist = Entry & {
-  __typename?: "Artist";
+  __typename: "Artist";
   accentColor: Maybe<Scalars["String"]["output"]>;
   bandcampUrl: Maybe<Scalars["String"]["output"]>;
   bio: Maybe<ArtistBio>;
@@ -132,55 +132,55 @@ export type ArtistYoutubeUrlArgs = {
 };
 
 export type ArtistBio = {
-  __typename?: "ArtistBio";
+  __typename: "ArtistBio";
   json: Scalars["JSON"]["output"];
   links: ArtistBioLinks;
 };
 
 export type ArtistBioAssets = {
-  __typename?: "ArtistBioAssets";
+  __typename: "ArtistBioAssets";
   block: Array<Maybe<Asset>>;
   hyperlink: Array<Maybe<Asset>>;
 };
 
 export type ArtistBioEntries = {
-  __typename?: "ArtistBioEntries";
+  __typename: "ArtistBioEntries";
   block: Array<Maybe<Entry>>;
   hyperlink: Array<Maybe<Entry>>;
   inline: Array<Maybe<Entry>>;
 };
 
 export type ArtistBioLinks = {
-  __typename?: "ArtistBioLinks";
+  __typename: "ArtistBioLinks";
   assets: ArtistBioAssets;
   entries: ArtistBioEntries;
   resources: ArtistBioResources;
 };
 
 export type ArtistBioResources = {
-  __typename?: "ArtistBioResources";
+  __typename: "ArtistBioResources";
   block: Array<ArtistBioResourcesBlock>;
   hyperlink: Array<ArtistBioResourcesHyperlink>;
   inline: Array<ArtistBioResourcesInline>;
 };
 
 export type ArtistBioResourcesBlock = ResourceLink & {
-  __typename?: "ArtistBioResourcesBlock";
+  __typename: "ArtistBioResourcesBlock";
   sys: ResourceSys;
 };
 
 export type ArtistBioResourcesHyperlink = ResourceLink & {
-  __typename?: "ArtistBioResourcesHyperlink";
+  __typename: "ArtistBioResourcesHyperlink";
   sys: ResourceSys;
 };
 
 export type ArtistBioResourcesInline = ResourceLink & {
-  __typename?: "ArtistBioResourcesInline";
+  __typename: "ArtistBioResourcesInline";
   sys: ResourceSys;
 };
 
 export type ArtistCollection = {
-  __typename?: "ArtistCollection";
+  __typename: "ArtistCollection";
   items: Array<Maybe<Artist>>;
   limit: Scalars["Int"]["output"];
   skip: Scalars["Int"]["output"];
@@ -283,7 +283,7 @@ export type ArtistFilter = {
 };
 
 export type ArtistLinkingCollections = {
-  __typename?: "ArtistLinkingCollections";
+  __typename: "ArtistLinkingCollections";
   entryCollection: Maybe<EntryCollection>;
   videoCollection: Maybe<VideoCollection>;
 };
@@ -365,7 +365,7 @@ export enum ArtistOrder {
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type Asset = {
-  __typename?: "Asset";
+  __typename: "Asset";
   contentType: Maybe<Scalars["String"]["output"]>;
   contentfulMetadata: ContentfulMetadata;
   description: Maybe<Scalars["String"]["output"]>;
@@ -426,7 +426,7 @@ export type AssetWidthArgs = {
 };
 
 export type AssetCollection = {
-  __typename?: "AssetCollection";
+  __typename: "AssetCollection";
   items: Array<Maybe<Asset>>;
   limit: Scalars["Int"]["output"];
   skip: Scalars["Int"]["output"];
@@ -503,7 +503,7 @@ export type AssetFilter = {
 };
 
 export type AssetLinkingCollections = {
-  __typename?: "AssetLinkingCollections";
+  __typename: "AssetLinkingCollections";
   artistCollection: Maybe<ArtistCollection>;
   contributorCollection: Maybe<ContributorCollection>;
   entryCollection: Maybe<EntryCollection>;
@@ -579,7 +579,7 @@ export enum AssetOrder {
 
 /** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/blogPost) */
 export type BlogPost = Entry & {
-  __typename?: "BlogPost";
+  __typename: "BlogPost";
   content: Maybe<BlogPostContent>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom: Maybe<BlogPostLinkingCollections>;
@@ -609,7 +609,7 @@ export type BlogPostTitleArgs = {
 };
 
 export type BlogPostCollection = {
-  __typename?: "BlogPostCollection";
+  __typename: "BlogPostCollection";
   items: Array<Maybe<BlogPost>>;
   limit: Scalars["Int"]["output"];
   skip: Scalars["Int"]["output"];
@@ -617,50 +617,50 @@ export type BlogPostCollection = {
 };
 
 export type BlogPostContent = {
-  __typename?: "BlogPostContent";
+  __typename: "BlogPostContent";
   json: Scalars["JSON"]["output"];
   links: BlogPostContentLinks;
 };
 
 export type BlogPostContentAssets = {
-  __typename?: "BlogPostContentAssets";
+  __typename: "BlogPostContentAssets";
   block: Array<Maybe<Asset>>;
   hyperlink: Array<Maybe<Asset>>;
 };
 
 export type BlogPostContentEntries = {
-  __typename?: "BlogPostContentEntries";
+  __typename: "BlogPostContentEntries";
   block: Array<Maybe<Entry>>;
   hyperlink: Array<Maybe<Entry>>;
   inline: Array<Maybe<Entry>>;
 };
 
 export type BlogPostContentLinks = {
-  __typename?: "BlogPostContentLinks";
+  __typename: "BlogPostContentLinks";
   assets: BlogPostContentAssets;
   entries: BlogPostContentEntries;
   resources: BlogPostContentResources;
 };
 
 export type BlogPostContentResources = {
-  __typename?: "BlogPostContentResources";
+  __typename: "BlogPostContentResources";
   block: Array<BlogPostContentResourcesBlock>;
   hyperlink: Array<BlogPostContentResourcesHyperlink>;
   inline: Array<BlogPostContentResourcesInline>;
 };
 
 export type BlogPostContentResourcesBlock = ResourceLink & {
-  __typename?: "BlogPostContentResourcesBlock";
+  __typename: "BlogPostContentResourcesBlock";
   sys: ResourceSys;
 };
 
 export type BlogPostContentResourcesHyperlink = ResourceLink & {
-  __typename?: "BlogPostContentResourcesHyperlink";
+  __typename: "BlogPostContentResourcesHyperlink";
   sys: ResourceSys;
 };
 
 export type BlogPostContentResourcesInline = ResourceLink & {
-  __typename?: "BlogPostContentResourcesInline";
+  __typename: "BlogPostContentResourcesInline";
   sys: ResourceSys;
 };
 
@@ -689,7 +689,7 @@ export type BlogPostFilter = {
 };
 
 export type BlogPostLinkingCollections = {
-  __typename?: "BlogPostLinkingCollections";
+  __typename: "BlogPostLinkingCollections";
   entryCollection: Maybe<EntryCollection>;
 };
 
@@ -716,7 +716,7 @@ export enum BlogPostOrder {
 }
 
 export type ContentfulMetadata = {
-  __typename?: "ContentfulMetadata";
+  __typename: "ContentfulMetadata";
   tags: Array<Maybe<ContentfulTag>>;
 };
 
@@ -736,14 +736,14 @@ export type ContentfulMetadataTagsFilter = {
  *     Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-tags
  */
 export type ContentfulTag = {
-  __typename?: "ContentfulTag";
+  __typename: "ContentfulTag";
   id: Maybe<Scalars["String"]["output"]>;
   name: Maybe<Scalars["String"]["output"]>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/contributor) */
 export type Contributor = Entry & {
-  __typename?: "Contributor";
+  __typename: "Contributor";
   contentfulMetadata: ContentfulMetadata;
   email: Maybe<Scalars["String"]["output"]>;
   instagram: Maybe<Scalars["String"]["output"]>;
@@ -792,7 +792,7 @@ export type ContributorSummaryArgs = {
 };
 
 export type ContributorCollection = {
-  __typename?: "ContributorCollection";
+  __typename: "ContributorCollection";
   items: Array<Maybe<Contributor>>;
   limit: Scalars["Int"]["output"];
   skip: Scalars["Int"]["output"];
@@ -839,7 +839,7 @@ export type ContributorFilter = {
 };
 
 export type ContributorLinkingCollections = {
-  __typename?: "ContributorLinkingCollections";
+  __typename: "ContributorLinkingCollections";
   entryCollection: Maybe<EntryCollection>;
   videoCollection: Maybe<VideoCollection>;
 };
@@ -904,50 +904,50 @@ export enum ContributorOrder {
 }
 
 export type ContributorSummary = {
-  __typename?: "ContributorSummary";
+  __typename: "ContributorSummary";
   json: Scalars["JSON"]["output"];
   links: ContributorSummaryLinks;
 };
 
 export type ContributorSummaryAssets = {
-  __typename?: "ContributorSummaryAssets";
+  __typename: "ContributorSummaryAssets";
   block: Array<Maybe<Asset>>;
   hyperlink: Array<Maybe<Asset>>;
 };
 
 export type ContributorSummaryEntries = {
-  __typename?: "ContributorSummaryEntries";
+  __typename: "ContributorSummaryEntries";
   block: Array<Maybe<Entry>>;
   hyperlink: Array<Maybe<Entry>>;
   inline: Array<Maybe<Entry>>;
 };
 
 export type ContributorSummaryLinks = {
-  __typename?: "ContributorSummaryLinks";
+  __typename: "ContributorSummaryLinks";
   assets: ContributorSummaryAssets;
   entries: ContributorSummaryEntries;
   resources: ContributorSummaryResources;
 };
 
 export type ContributorSummaryResources = {
-  __typename?: "ContributorSummaryResources";
+  __typename: "ContributorSummaryResources";
   block: Array<ContributorSummaryResourcesBlock>;
   hyperlink: Array<ContributorSummaryResourcesHyperlink>;
   inline: Array<ContributorSummaryResourcesInline>;
 };
 
 export type ContributorSummaryResourcesBlock = ResourceLink & {
-  __typename?: "ContributorSummaryResourcesBlock";
+  __typename: "ContributorSummaryResourcesBlock";
   sys: ResourceSys;
 };
 
 export type ContributorSummaryResourcesHyperlink = ResourceLink & {
-  __typename?: "ContributorSummaryResourcesHyperlink";
+  __typename: "ContributorSummaryResourcesHyperlink";
   sys: ResourceSys;
 };
 
 export type ContributorSummaryResourcesInline = ResourceLink & {
-  __typename?: "ContributorSummaryResourcesInline";
+  __typename: "ContributorSummaryResourcesInline";
   sys: ResourceSys;
 };
 
@@ -957,7 +957,7 @@ export type Entry = {
 };
 
 export type EntryCollection = {
-  __typename?: "EntryCollection";
+  __typename: "EntryCollection";
   items: Array<Maybe<Entry>>;
   limit: Scalars["Int"]["output"];
   skip: Scalars["Int"]["output"];
@@ -1079,7 +1079,7 @@ export type ImageTransformOptions = {
 
 /** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/page) */
 export type Page = Entry & {
-  __typename?: "Page";
+  __typename: "Page";
   contentfulMetadata: ContentfulMetadata;
   linkedFrom: Maybe<PageLinkingCollections>;
   metaDescription: Maybe<Scalars["String"]["output"]>;
@@ -1122,7 +1122,7 @@ export type PageSlugArgs = {
 };
 
 export type PageCollection = {
-  __typename?: "PageCollection";
+  __typename: "PageCollection";
   items: Array<Maybe<Page>>;
   limit: Scalars["Int"]["output"];
   skip: Scalars["Int"]["output"];
@@ -1166,7 +1166,7 @@ export type PageFilter = {
 };
 
 export type PageLinkingCollections = {
-  __typename?: "PageLinkingCollections";
+  __typename: "PageLinkingCollections";
   entryCollection: Maybe<EntryCollection>;
 };
 
@@ -1197,7 +1197,7 @@ export enum PageOrder {
 }
 
 export type Query = {
-  __typename?: "Query";
+  __typename: "Query";
   _node: Maybe<_Node>;
   artist: Maybe<Artist>;
   artistCollection: Maybe<ArtistCollection>;
@@ -1341,13 +1341,13 @@ export type ResourceLink = {
 };
 
 export type ResourceSys = {
-  __typename?: "ResourceSys";
+  __typename: "ResourceSys";
   linkType: Scalars["String"]["output"];
   urn: Scalars["String"]["output"];
 };
 
 export type Sys = {
-  __typename?: "Sys";
+  __typename: "Sys";
   environmentId: Scalars["String"]["output"];
   firstPublishedAt: Maybe<Scalars["DateTime"]["output"]>;
   id: Scalars["String"]["output"];
@@ -1397,7 +1397,7 @@ export type SysFilter = {
 
 /** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/venue) */
 export type Venue = Entry & {
-  __typename?: "Venue";
+  __typename: "Venue";
   about: Maybe<Scalars["String"]["output"]>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom: Maybe<VenueLinkingCollections>;
@@ -1440,7 +1440,7 @@ export type VenueSlugArgs = {
 };
 
 export type VenueCollection = {
-  __typename?: "VenueCollection";
+  __typename: "VenueCollection";
   items: Array<Maybe<Venue>>;
   limit: Scalars["Int"]["output"];
   skip: Scalars["Int"]["output"];
@@ -1484,7 +1484,7 @@ export type VenueFilter = {
 };
 
 export type VenueLinkingCollections = {
-  __typename?: "VenueLinkingCollections";
+  __typename: "VenueLinkingCollections";
   entryCollection: Maybe<EntryCollection>;
   videoCollection: Maybe<VideoCollection>;
 };
@@ -1548,7 +1548,7 @@ export enum VenueOrder {
 
 /** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/video) */
 export type Video = Entry & {
-  __typename?: "Video";
+  __typename: "Video";
   artist: Maybe<Artist>;
   contentfulMetadata: ContentfulMetadata;
   contributorsCollection: Maybe<VideoContributorsCollection>;
@@ -1642,7 +1642,7 @@ export type VideoVideoUrlArgs = {
 };
 
 export type VideoCollection = {
-  __typename?: "VideoCollection";
+  __typename: "VideoCollection";
   items: Array<Maybe<Video>>;
   limit: Scalars["Int"]["output"];
   skip: Scalars["Int"]["output"];
@@ -1650,7 +1650,7 @@ export type VideoCollection = {
 };
 
 export type VideoContributorsCollection = {
-  __typename?: "VideoContributorsCollection";
+  __typename: "VideoContributorsCollection";
   items: Array<Maybe<Contributor>>;
   limit: Scalars["Int"]["output"];
   skip: Scalars["Int"]["output"];
@@ -1745,7 +1745,7 @@ export type VideoFilter = {
 };
 
 export type VideoLinkingCollections = {
-  __typename?: "VideoLinkingCollections";
+  __typename: "VideoLinkingCollections";
   entryCollection: Maybe<EntryCollection>;
 };
 
@@ -1757,50 +1757,50 @@ export type VideoLinkingCollectionsEntryCollectionArgs = {
 };
 
 export type VideoLongDescription = {
-  __typename?: "VideoLongDescription";
+  __typename: "VideoLongDescription";
   json: Scalars["JSON"]["output"];
   links: VideoLongDescriptionLinks;
 };
 
 export type VideoLongDescriptionAssets = {
-  __typename?: "VideoLongDescriptionAssets";
+  __typename: "VideoLongDescriptionAssets";
   block: Array<Maybe<Asset>>;
   hyperlink: Array<Maybe<Asset>>;
 };
 
 export type VideoLongDescriptionEntries = {
-  __typename?: "VideoLongDescriptionEntries";
+  __typename: "VideoLongDescriptionEntries";
   block: Array<Maybe<Entry>>;
   hyperlink: Array<Maybe<Entry>>;
   inline: Array<Maybe<Entry>>;
 };
 
 export type VideoLongDescriptionLinks = {
-  __typename?: "VideoLongDescriptionLinks";
+  __typename: "VideoLongDescriptionLinks";
   assets: VideoLongDescriptionAssets;
   entries: VideoLongDescriptionEntries;
   resources: VideoLongDescriptionResources;
 };
 
 export type VideoLongDescriptionResources = {
-  __typename?: "VideoLongDescriptionResources";
+  __typename: "VideoLongDescriptionResources";
   block: Array<VideoLongDescriptionResourcesBlock>;
   hyperlink: Array<VideoLongDescriptionResourcesHyperlink>;
   inline: Array<VideoLongDescriptionResourcesInline>;
 };
 
 export type VideoLongDescriptionResourcesBlock = ResourceLink & {
-  __typename?: "VideoLongDescriptionResourcesBlock";
+  __typename: "VideoLongDescriptionResourcesBlock";
   sys: ResourceSys;
 };
 
 export type VideoLongDescriptionResourcesHyperlink = ResourceLink & {
-  __typename?: "VideoLongDescriptionResourcesHyperlink";
+  __typename: "VideoLongDescriptionResourcesHyperlink";
   sys: ResourceSys;
 };
 
 export type VideoLongDescriptionResourcesInline = ResourceLink & {
-  __typename?: "VideoLongDescriptionResourcesInline";
+  __typename: "VideoLongDescriptionResourcesInline";
   sys: ResourceSys;
 };
 
@@ -2003,32 +2003,90 @@ export type CfVenueNestedFilter = {
   sys: InputMaybe<SysFilter>;
 };
 
-export type VideoCardQueryQueryVariables = Exact<{
-  limit: Scalars["Int"]["input"];
-  order: InputMaybe<Array<InputMaybe<VideoOrder>> | InputMaybe<VideoOrder>>;
+export type VideoPageQueryQueryVariables = Exact<{
+  videoSlug: Scalars["String"]["input"];
+  artistSlug: Scalars["String"]["input"];
 }>;
 
-export type VideoCardQueryQuery = {
-  __typename?: "Query";
-  videoCollection: {
-    __typename?: "VideoCollection";
+export type VideoPageQueryQuery = {
+  __typename: "Query";
+  video: {
+    __typename: "VideoCollection";
     items: Array<{
-      __typename?: "Video";
+      __typename: "Video";
       title: string | null;
       slug: string | null;
       subtitle: string | null;
+      videoUrl: string | null;
       shortDescription: string | null;
       uploadDate: any | null;
       videoType: string | null;
-      sys: { __typename?: "Sys"; id: string };
-      thumbnail: { __typename?: "Asset"; url: string | null; description: string | null } | null;
+      longDescription: {
+        __typename: "VideoLongDescription";
+        json: any;
+        links: {
+          __typename: "VideoLongDescriptionLinks";
+          entries: {
+            __typename: "VideoLongDescriptionEntries";
+            inline: Array<
+              | { __typename: "Artist"; sys: { __typename: "Sys"; id: string } }
+              | { __typename: "BlogPost"; sys: { __typename: "Sys"; id: string } }
+              | { __typename: "Contributor"; sys: { __typename: "Sys"; id: string } }
+              | { __typename: "Page"; sys: { __typename: "Sys"; id: string } }
+              | { __typename: "Venue"; sys: { __typename: "Sys"; id: string } }
+              | { __typename: "Video"; sys: { __typename: "Sys"; id: string } }
+              | null
+            >;
+            block: Array<
+              | { __typename: "Artist"; sys: { __typename: "Sys"; id: string } }
+              | { __typename: "BlogPost"; sys: { __typename: "Sys"; id: string } }
+              | { __typename: "Contributor"; sys: { __typename: "Sys"; id: string } }
+              | { __typename: "Page"; sys: { __typename: "Sys"; id: string } }
+              | { __typename: "Venue"; sys: { __typename: "Sys"; id: string } }
+              | { __typename: "Video"; sys: { __typename: "Sys"; id: string } }
+              | null
+            >;
+          };
+          assets: {
+            __typename: "VideoLongDescriptionAssets";
+            block: Array<{
+              __typename: "Asset";
+              url: string | null;
+              title: string | null;
+              width: number | null;
+              height: number | null;
+              description: string | null;
+              sys: { __typename: "Sys"; id: string };
+            } | null>;
+          };
+        };
+      } | null;
       artist: {
-        __typename?: "Artist";
+        __typename: "Artist";
+        name: string | null;
+        slug: string | null;
+        accentColor: string | null;
+        photo: { __typename: "Asset"; url: string | null } | null;
+      } | null;
+      thumbnail: { __typename: "Asset"; url: string | null; description: string | null } | null;
+    } | null>;
+  } | null;
+  relatedVideos: {
+    __typename: "VideoCollection";
+    items: Array<{
+      __typename: "Video";
+      slug: string | null;
+      title: string | null;
+      subtitle: string | null;
+      videoType: string | null;
+      thumbnail: { __typename: "Asset"; url: string | null; description: string | null } | null;
+      artist: {
+        __typename: "Artist";
         name: string | null;
         accentColor: string | null;
         slug: string | null;
         photo: {
-          __typename?: "Asset";
+          __typename: "Asset";
           url: string | null;
           width: number | null;
           height: number | null;
@@ -2039,26 +2097,198 @@ export type VideoCardQueryQuery = {
   } | null;
 };
 
-export const VideoCardQueryDocument = {
+export type ArtistProfilePageQueryQueryVariables = Exact<{
+  artistSlug: Scalars["String"]["input"];
+}>;
+
+export type ArtistProfilePageQueryQuery = {
+  __typename: "Query";
+  artist: {
+    __typename: "ArtistCollection";
+    items: Array<{
+      __typename: "Artist";
+      name: string | null;
+      slug: string | null;
+      accentColor: string | null;
+      photo: {
+        __typename: "Asset";
+        url: string | null;
+        width: number | null;
+        height: number | null;
+        description: string | null;
+      } | null;
+    } | null>;
+  } | null;
+  videos: {
+    __typename: "VideoCollection";
+    items: Array<{
+      __typename: "Video";
+      slug: string | null;
+      title: string | null;
+      subtitle: string | null;
+      videoType: string | null;
+      thumbnail: { __typename: "Asset"; url: string | null; description: string | null } | null;
+      artist: {
+        __typename: "Artist";
+        name: string | null;
+        accentColor: string | null;
+        slug: string | null;
+        photo: {
+          __typename: "Asset";
+          url: string | null;
+          width: number | null;
+          height: number | null;
+          description: string | null;
+        } | null;
+      } | null;
+    } | null>;
+  } | null;
+};
+
+export type AllArtistsPageQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+export type AllArtistsPageQueryQuery = {
+  __typename: "Query";
+  artists: {
+    __typename: "ArtistCollection";
+    items: Array<{
+      __typename: "Artist";
+      name: string | null;
+      slug: string | null;
+      accentColor: string | null;
+      photo: { __typename: "Asset"; url: string | null } | null;
+      linkedFrom: {
+        __typename: "ArtistLinkingCollections";
+        videoCollection: { __typename: "VideoCollection"; total: number } | null;
+      } | null;
+    } | null>;
+  } | null;
+};
+
+export type HomePageQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+export type HomePageQueryQuery = {
+  __typename: "Query";
+  recentVideos: {
+    __typename: "VideoCollection";
+    items: Array<{
+      __typename: "Video";
+      slug: string | null;
+      title: string | null;
+      subtitle: string | null;
+      videoType: string | null;
+      thumbnail: { __typename: "Asset"; url: string | null; description: string | null } | null;
+      artist: {
+        __typename: "Artist";
+        name: string | null;
+        accentColor: string | null;
+        slug: string | null;
+        photo: {
+          __typename: "Asset";
+          url: string | null;
+          width: number | null;
+          height: number | null;
+          description: string | null;
+        } | null;
+      } | null;
+    } | null>;
+  } | null;
+};
+
+export type VideoCardLinkFragment = {
+  __typename: "Video";
+  slug: string | null;
+  title: string | null;
+  subtitle: string | null;
+  videoType: string | null;
+  thumbnail: { __typename: "Asset"; url: string | null; description: string | null } | null;
+  artist: {
+    __typename: "Artist";
+    name: string | null;
+    accentColor: string | null;
+    slug: string | null;
+    photo: {
+      __typename: "Asset";
+      url: string | null;
+      width: number | null;
+      height: number | null;
+      description: string | null;
+    } | null;
+  } | null;
+};
+
+export const VideoCardLinkFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VideoCardLink" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Video" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "videoType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnail" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "artist" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "accentColor" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "height" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<VideoCardLinkFragment, unknown>;
+export const VideoPageQueryDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "VideoCardQuery" },
+      name: { kind: "Name", value: "VideoPageQuery" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+          variable: { kind: "Variable", name: { kind: "Name", value: "videoSlug" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
         {
           kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "order" } },
-          type: {
-            kind: "ListType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "VideoOrder" } },
-          },
+          variable: { kind: "Variable", name: { kind: "Name", value: "artistSlug" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
       ],
       selectionSet: {
@@ -2066,17 +2296,41 @@ export const VideoCardQueryDocument = {
         selections: [
           {
             kind: "Field",
+            alias: { kind: "Name", value: "video" },
             name: { kind: "Name", value: "videoCollection" },
             arguments: [
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "limit" },
-                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+                value: { kind: "IntValue", value: "1" },
               },
               {
                 kind: "Argument",
-                name: { kind: "Name", value: "order" },
-                value: { kind: "Variable", name: { kind: "Name", value: "order" } },
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "slug" },
+                      value: { kind: "Variable", name: { kind: "Name", value: "videoSlug" } },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "artist" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "slug" },
+                            value: { kind: "Variable", name: { kind: "Name", value: "artistSlug" } },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
               },
             ],
             selectionSet: {
@@ -2088,18 +2342,130 @@ export const VideoCardQueryDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "sys" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
-                        },
-                      },
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       { kind: "Field", name: { kind: "Name", value: "slug" } },
                       { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+                      { kind: "Field", name: { kind: "Name", value: "videoUrl" } },
                       { kind: "Field", name: { kind: "Name", value: "shortDescription" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "longDescription" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "links" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "entries" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "inline" },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "Field",
+                                                name: { kind: "Name", value: "sys" },
+                                                selectionSet: {
+                                                  kind: "SelectionSet",
+                                                  selections: [
+                                                    { kind: "Field", name: { kind: "Name", value: "id" } },
+                                                  ],
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "block" },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "Field",
+                                                name: { kind: "Name", value: "sys" },
+                                                selectionSet: {
+                                                  kind: "SelectionSet",
+                                                  selections: [
+                                                    { kind: "Field", name: { kind: "Name", value: "id" } },
+                                                  ],
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "assets" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "block" },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "Field",
+                                                name: { kind: "Name", value: "sys" },
+                                                selectionSet: {
+                                                  kind: "SelectionSet",
+                                                  selections: [
+                                                    { kind: "Field", name: { kind: "Name", value: "id" } },
+                                                  ],
+                                                },
+                                              },
+                                              { kind: "Field", name: { kind: "Name", value: "url" } },
+                                              { kind: "Field", name: { kind: "Name", value: "title" } },
+                                              { kind: "Field", name: { kind: "Name", value: "width" } },
+                                              { kind: "Field", name: { kind: "Name", value: "height" } },
+                                              { kind: "Field", name: { kind: "Name", value: "description" } },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "json" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "artist" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "name" } },
+                            { kind: "Field", name: { kind: "Name", value: "slug" } },
+                            { kind: "Field", name: { kind: "Name", value: "accentColor" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "photo" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "Field", name: { kind: "Name", value: "url" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
                       { kind: "Field", name: { kind: "Name", value: "uploadDate" } },
                       { kind: "Field", name: { kind: "Name", value: "videoType" } },
                       {
@@ -2113,26 +2479,351 @@ export const VideoCardQueryDocument = {
                           ],
                         },
                       },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "relatedVideos" },
+            name: { kind: "Name", value: "videoCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "IntValue", value: "3" },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "artist" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "slug" },
+                            value: { kind: "Variable", name: { kind: "Name", value: "artistSlug" } },
+                          },
+                        ],
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "slug_not" },
+                      value: { kind: "Variable", name: { kind: "Name", value: "videoSlug" } },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VideoCardLink" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VideoCardLink" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Video" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "videoType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnail" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "artist" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "accentColor" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "height" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<VideoPageQueryQuery, VideoPageQueryQueryVariables>;
+export const ArtistProfilePageQueryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "ArtistProfilePageQuery" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "artistSlug" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "artist" },
+            name: { kind: "Name", value: "artistCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "slug" },
+                      value: { kind: "Variable", name: { kind: "Name", value: "artistSlug" } },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                      { kind: "Field", name: { kind: "Name", value: "accentColor" } },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "artist" },
+                        name: { kind: "Name", value: "photo" },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [
-                            { kind: "Field", name: { kind: "Name", value: "name" } },
-                            { kind: "Field", name: { kind: "Name", value: "accentColor" } },
-                            { kind: "Field", name: { kind: "Name", value: "slug" } },
+                            { kind: "Field", name: { kind: "Name", value: "url" } },
+                            { kind: "Field", name: { kind: "Name", value: "width" } },
+                            { kind: "Field", name: { kind: "Name", value: "height" } },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "videos" },
+            name: { kind: "Name", value: "videoCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "artist" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "slug" },
+                            value: { kind: "Variable", name: { kind: "Name", value: "artistSlug" } },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VideoCardLink" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VideoCardLink" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Video" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "videoType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnail" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "artist" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "accentColor" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "height" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ArtistProfilePageQueryQuery, ArtistProfilePageQueryQueryVariables>;
+export const AllArtistsPageQueryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "AllArtistsPageQuery" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "artists" },
+            name: { kind: "Name", value: "artistCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "IntValue", value: "150" },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "order" },
+                value: { kind: "EnumValue", value: "name_ASC" },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                      { kind: "Field", name: { kind: "Name", value: "accentColor" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "photo" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "Field", name: { kind: "Name", value: "url" } }],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "linkedFrom" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
                             {
                               kind: "Field",
-                              name: { kind: "Name", value: "photo" },
+                              name: { kind: "Name", value: "videoCollection" },
+                              arguments: [
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "limit" },
+                                  value: { kind: "IntValue", value: "20" },
+                                },
+                              ],
                               selectionSet: {
                                 kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "url" } },
-                                  { kind: "Field", name: { kind: "Name", value: "width" } },
-                                  { kind: "Field", name: { kind: "Name", value: "height" } },
-                                  { kind: "Field", name: { kind: "Name", value: "description" } },
-                                ],
+                                selections: [{ kind: "Field", name: { kind: "Name", value: "total" } }],
                               },
                             },
                           ],
@@ -2148,4 +2839,99 @@ export const VideoCardQueryDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<VideoCardQueryQuery, VideoCardQueryQueryVariables>;
+} as unknown as DocumentNode<AllArtistsPageQueryQuery, AllArtistsPageQueryQueryVariables>;
+export const HomePageQueryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "HomePageQuery" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "recentVideos" },
+            name: { kind: "Name", value: "videoCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "IntValue", value: "12" },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "order" },
+                value: { kind: "EnumValue", value: "uploadDate_DESC" },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VideoCardLink" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VideoCardLink" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Video" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "videoType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnail" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "artist" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "accentColor" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      { kind: "Field", name: { kind: "Name", value: "height" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HomePageQueryQuery, HomePageQueryQueryVariables>;
