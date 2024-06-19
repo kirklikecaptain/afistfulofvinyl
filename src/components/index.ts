@@ -11,4 +11,3 @@ export { CardLink } from "./card-link/card-link";
 export { YouTubePlayer } from "./youtube-player/youtube-player";
 export { Stack } from "./stack";
 export { RichText } from "./rich-text/rich-text";
-export { ArtistStrip } from "./artist-strip";
