@@ -1,9 +1,10 @@
 import { CardLink, CardSection, Hero, Page } from "~/components";
-import { getAllArtists } from "~/libs/contentful";
-import { resolveArtistPagePath } from "~/utils/paths";
+import { getArtistPagePath } from "~/utils/paths";
+
+import { fetchAllArtistsPageData } from "./page.data";
 
 export default async function AllArtistsPage() {
-  const artists = await getAllArtists();
+  const { artists } = await fetchAllArtistsPageData();
 
   return (
     <Page>
@@ -12,11 +13,11 @@ export default async function AllArtistsPage() {
         columns="4"
         cards={artists.map((artist) => (
           <CardLink
-            key={artist.sys.id}
-            href={resolveArtistPagePath(artist)}
-            image={artist.fields.photo?.fields.file?.url}
-            title={artist.fields.name}
-            accentColor={artist.fields.accentColor}
+            key={artist.slug}
+            href={getArtistPagePath(artist.slug)}
+            image={artist.photo?.url}
+            title={artist.name}
+            accentColor={artist.accentColor}
             aspectRatio={1}
           />
         ))}

@@ -1,6 +1,6 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 
-import { contentfulApiUrl, contentfulHeaders } from "./src/graphql/queries/client";
+import { contentfulApiUrl, contentfulHeaders } from "./src/graphql/client";
 
 const config: CodegenConfig = {
   overwrite: true,
@@ -10,12 +10,17 @@ const config: CodegenConfig = {
       headers: contentfulHeaders,
     },
   },
-  documents: "src/graphql/documents/documents.graphql",
   generates: {
     "src/graphql/__generated__/": {
       preset: "client",
+      documents: ["src/**/*.ts", "src/**/*.graphql"],
       config: {
+        // defaultScalarType: "unknown",
+        nonOptionalTypename: true,
         avoidOptionals: true,
+      },
+      presetConfig: {
+        fragmentMasking: false,
       },
     },
   },

@@ -1,15 +1,12 @@
 import type { Document } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-import { renderNode, renderMark, renderText } from "./renderers";
+import { renderOptions } from "./renderers";
 
-export type RichTextProps = { field: Document };
+export type RichTextProps = { field: Document | null; links: any };
 
-export function RichText({ field }: RichTextProps) {
-  return documentToReactComponents(field, {
-    renderNode,
-    renderMark,
-    renderText,
-    preserveWhitespace: false,
-  });
+export function RichText({ field, links }: RichTextProps) {
+  if (!field) return null;
+
+  return documentToReactComponents(field, renderOptions(links));
 }

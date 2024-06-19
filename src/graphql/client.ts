@@ -9,4 +9,5 @@ export const contentfulHeaders = {
 
 export const contentful = new GraphQLClient(contentfulApiUrl, {
   headers: contentfulHeaders,
+  // errorPolicy: "all",
 });
