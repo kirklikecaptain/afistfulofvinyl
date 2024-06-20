@@ -5,16 +5,17 @@ import { AFoV } from "~/components/afov";
 import { ColorModeButton } from "~/components/color-mode-button";
 import { SearchButton } from "~/components/search-button/search-button";
 
-import "./app-header.css";
+import css from "./app-header.module.css";
 
 export function AppHeader() {
   return (
-    <header className="app-header">
+    <header className={css.header}>
       <Container>
-        <nav className="app-nav">
-          <Link href="/" underline="none" className="logo-link">
+        <nav className={css.nav}>
+          <Link href="/" underline="none" className={css.logoLink}>
             <AFoV width="120px" />
           </Link>
+
           <Flex gap="4" align="center">
             <Link href="/artists" color="gray">
               Artists

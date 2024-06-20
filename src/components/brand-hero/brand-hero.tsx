@@ -1,26 +1,28 @@
 import { Box, Container, Heading, Section } from "@radix-ui/themes";
+import classNames from "classnames";
 
 import { Stack } from "../stack";
 import { AFoV } from "../afov";
 
-import "./brand-hero.css";
+import css from "./brand-hero.module.css";
 
 export function BrandHero() {
   return (
-    <Section className="brand-hero" size="4">
+    <Section className={css.section}>
       <Container>
         <Stack align="center" justify="center" minHeight="400px" height="50vh" gap="5">
-          <Box className="afov-logo-group">
-            <AFoV className="afov-logo-layer" />
-            <AFoV className="afov-logo-layer" />
-            <AFoV className="afov-logo-layer" />
+          <Box className={css.afovLogoGroup}>
+            <AFoV className={classNames(css.afovLogoLayer, css.layer1)} />
+            <AFoV className={classNames(css.afovLogoLayer, css.layer2)} />
+            <AFoV className={classNames(css.afovLogoLayer, css.layer3)} />
+            <AFoV className={classNames(css.afovLogoTop)} />
           </Box>
-          <Heading className="brand-hero-heading" size="3">
-            Interviews - Sessions - Radio
+          <Heading className={css.heading} size="3">
+            Live Sessions - Interviews - Radio
           </Heading>
         </Stack>
       </Container>
-      <div className="brand-hero-overlay" />
+      <div className={css.scanLinesOverlay} />
     </Section>
   );
 }
