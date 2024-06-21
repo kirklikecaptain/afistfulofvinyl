@@ -1,15 +1,17 @@
 import { Card, Container, Grid, Heading, Section } from "@radix-ui/themes";
 
 import { Stack } from "./stack";
+import { Pagination, PaginationProps } from "./pagination";
 
 export type CardSectionProps = {
   title?: string;
   columns?: "2" | "3" | "4";
   cards: React.ReactNode[];
+  pagination?: PaginationProps;
 };
 
 export function CardSection(props: CardSectionProps) {
-  const { title, columns = "3", cards } = props;
+  const { title, columns = "3", cards, pagination } = props;
 
   return (
     <Section px="4" style={{ backgroundColor: "var(--gray-2)" }}>
@@ -30,6 +32,7 @@ export function CardSection(props: CardSectionProps) {
             </Card>
           )}
         </Stack>
+        {pagination && <Pagination {...pagination} />}
       </Container>
     </Section>
   );

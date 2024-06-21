@@ -2085,13 +2085,7 @@ export type VideoPageQueryQuery = {
         name: string | null;
         accentColor: string | null;
         slug: string | null;
-        photo: {
-          __typename: "Asset";
-          url: string | null;
-          width: number | null;
-          height: number | null;
-          description: string | null;
-        } | null;
+        photo: { __typename: "Asset"; url: string | null; description: string | null } | null;
       } | null;
     } | null>;
   } | null;
@@ -2133,13 +2127,7 @@ export type ArtistProfilePageQueryQuery = {
         name: string | null;
         accentColor: string | null;
         slug: string | null;
-        photo: {
-          __typename: "Asset";
-          url: string | null;
-          width: number | null;
-          height: number | null;
-          description: string | null;
-        } | null;
+        photo: { __typename: "Asset"; url: string | null; description: string | null } | null;
       } | null;
     } | null>;
   } | null;
@@ -2183,13 +2171,36 @@ export type HomePageQueryQuery = {
         name: string | null;
         accentColor: string | null;
         slug: string | null;
-        photo: {
-          __typename: "Asset";
-          url: string | null;
-          width: number | null;
-          height: number | null;
-          description: string | null;
-        } | null;
+        photo: { __typename: "Asset"; url: string | null; description: string | null } | null;
+      } | null;
+    } | null>;
+  } | null;
+};
+
+export type AllVideosPageQueryVariables = Exact<{
+  limit: Scalars["Int"]["input"];
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  videoType: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type AllVideosPageQuery = {
+  __typename: "Query";
+  videos: {
+    __typename: "VideoCollection";
+    total: number;
+    items: Array<{
+      __typename: "Video";
+      slug: string | null;
+      title: string | null;
+      subtitle: string | null;
+      videoType: string | null;
+      thumbnail: { __typename: "Asset"; url: string | null; description: string | null } | null;
+      artist: {
+        __typename: "Artist";
+        name: string | null;
+        accentColor: string | null;
+        slug: string | null;
+        photo: { __typename: "Asset"; url: string | null; description: string | null } | null;
       } | null;
     } | null>;
   } | null;
@@ -2207,13 +2218,7 @@ export type VideoCardLinkFragment = {
     name: string | null;
     accentColor: string | null;
     slug: string | null;
-    photo: {
-      __typename: "Asset";
-      url: string | null;
-      width: number | null;
-      height: number | null;
-      description: string | null;
-    } | null;
+    photo: { __typename: "Asset"; url: string | null; description: string | null } | null;
   } | null;
 };
 
@@ -2258,8 +2263,6 @@ export const VideoCardLinkFragmentDoc = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "url" } },
-                      { kind: "Field", name: { kind: "Name", value: "width" } },
-                      { kind: "Field", name: { kind: "Name", value: "height" } },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
                     ],
                   },
@@ -2579,8 +2582,6 @@ export const VideoPageQueryDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "url" } },
-                      { kind: "Field", name: { kind: "Name", value: "width" } },
-                      { kind: "Field", name: { kind: "Name", value: "height" } },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
                     ],
                   },
@@ -2745,8 +2746,6 @@ export const ArtistProfilePageQueryDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "url" } },
-                      { kind: "Field", name: { kind: "Name", value: "width" } },
-                      { kind: "Field", name: { kind: "Name", value: "height" } },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
                     ],
                   },
@@ -2921,8 +2920,6 @@ export const HomePageQueryDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "url" } },
-                      { kind: "Field", name: { kind: "Name", value: "width" } },
-                      { kind: "Field", name: { kind: "Name", value: "height" } },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
                     ],
                   },
@@ -2935,3 +2932,133 @@ export const HomePageQueryDocument = {
     },
   ],
 } as unknown as DocumentNode<HomePageQueryQuery, HomePageQueryQueryVariables>;
+export const AllVideosPageDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "AllVideosPage" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "skip" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "videoType" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "videos" },
+            name: { kind: "Name", value: "videoCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "skip" },
+                value: { kind: "Variable", name: { kind: "Name", value: "skip" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "order" },
+                value: { kind: "EnumValue", value: "uploadDate_DESC" },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "videoType" },
+                      value: { kind: "Variable", name: { kind: "Name", value: "videoType" } },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "total" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VideoCardLink" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VideoCardLink" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Video" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "slug" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+          { kind: "Field", name: { kind: "Name", value: "videoType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "thumbnail" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "artist" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "accentColor" } },
+                { kind: "Field", name: { kind: "Name", value: "slug" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AllVideosPageQuery, AllVideosPageQueryVariables>;

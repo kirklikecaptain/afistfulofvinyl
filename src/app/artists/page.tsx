@@ -1,7 +1,14 @@
+import { Metadata } from "next";
+
 import { CardLink, CardSection, Hero, Page } from "~/components";
 import { getArtistPagePath } from "~/utils/paths";
 
 import { fetchAllArtistsPageData } from "./page.data";
+
+export const metadata: Metadata = {
+  title: "Artists",
+  description: "All artists who have appeared on A Fistful of Vinyl",
+};
 
 export default async function AllArtistsPage() {
   const { artists } = await fetchAllArtistsPageData();

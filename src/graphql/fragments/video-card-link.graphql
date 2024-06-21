@@ -13,8 +13,6 @@ fragment VideoCardLink on Video {
     slug
     photo {
       url
-      width
-      height
       description
     }
   }

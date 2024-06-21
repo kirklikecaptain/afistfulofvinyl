@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 export type PageProps = {
   artistColor?: string;
   className?: string;
@@ -6,13 +8,12 @@ export type PageProps = {
 };
 
 export function Page(props: PageProps) {
-  const { className = "", artistColor, children, style } = props;
+  const { className, artistColor, children, style } = props;
 
-  const mergedClasses = `${className} ${artistColor ? "artist-theme" : ""}`.trim();
   const mergedStyles = { ...style, ...(artistColor && { "--artist-color": artistColor }) };
 
   return (
-    <main className={mergedClasses} style={mergedStyles}>
+    <main className={classNames(className, { "artist-theme": artistColor })} style={mergedStyles}>
       {children}
     </main>
   );

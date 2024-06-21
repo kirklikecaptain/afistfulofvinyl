@@ -21,7 +21,9 @@ const documents = {
     types.AllArtistsPageQueryDocument,
   "\n  query HomePageQuery {\n    recentVideos: videoCollection(limit: 12, order: uploadDate_DESC) {\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n":
     types.HomePageQueryDocument,
-  "fragment VideoCardLink on Video {\n  slug\n  title\n  subtitle\n  videoType\n  thumbnail {\n    url\n    description\n  }\n  artist {\n    name\n    accentColor\n    slug\n    photo {\n      url\n      width\n      height\n      description\n    }\n  }\n}":
+  "\n  query AllVideosPage($limit: Int!, $skip: Int, $videoType: String) {\n    videos: videoCollection(\n      limit: $limit\n      skip: $skip\n      order: uploadDate_DESC\n      where: { videoType: $videoType }\n    ) {\n      total\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n":
+    types.AllVideosPageDocument,
+  "fragment VideoCardLink on Video {\n  slug\n  title\n  subtitle\n  videoType\n  thumbnail {\n    url\n    description\n  }\n  artist {\n    name\n    accentColor\n    slug\n    photo {\n      url\n      description\n    }\n  }\n}":
     types.VideoCardLinkFragmentDoc,
 };
 
@@ -67,8 +69,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "fragment VideoCardLink on Video {\n  slug\n  title\n  subtitle\n  videoType\n  thumbnail {\n    url\n    description\n  }\n  artist {\n    name\n    accentColor\n    slug\n    photo {\n      url\n      width\n      height\n      description\n    }\n  }\n}",
-): (typeof documents)["fragment VideoCardLink on Video {\n  slug\n  title\n  subtitle\n  videoType\n  thumbnail {\n    url\n    description\n  }\n  artist {\n    name\n    accentColor\n    slug\n    photo {\n      url\n      width\n      height\n      description\n    }\n  }\n}"];
+  source: "\n  query AllVideosPage($limit: Int!, $skip: Int, $videoType: String) {\n    videos: videoCollection(\n      limit: $limit\n      skip: $skip\n      order: uploadDate_DESC\n      where: { videoType: $videoType }\n    ) {\n      total\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query AllVideosPage($limit: Int!, $skip: Int, $videoType: String) {\n    videos: videoCollection(\n      limit: $limit\n      skip: $skip\n      order: uploadDate_DESC\n      where: { videoType: $videoType }\n    ) {\n      total\n      items {\n        ...VideoCardLink\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "fragment VideoCardLink on Video {\n  slug\n  title\n  subtitle\n  videoType\n  thumbnail {\n    url\n    description\n  }\n  artist {\n    name\n    accentColor\n    slug\n    photo {\n      url\n      description\n    }\n  }\n}",
+): (typeof documents)["fragment VideoCardLink on Video {\n  slug\n  title\n  subtitle\n  videoType\n  thumbnail {\n    url\n    description\n  }\n  artist {\n    name\n    accentColor\n    slug\n    photo {\n      url\n      description\n    }\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
