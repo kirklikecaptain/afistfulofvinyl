@@ -12,10 +12,9 @@ export function AppHeader() {
     <header className={css.header}>
       <Container>
         <nav className={css.nav}>
-          <Link href="/" underline="none" className={css.logoLink}>
+          <Link href="/" variant="img">
             <AFoV width="120px" />
           </Link>
-
           <Flex gap="4" align="center">
             <Link href="/artists" color="gray">
               Artists
