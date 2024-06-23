@@ -37,10 +37,12 @@ export type Scalars = {
 export type Artist = Entry & {
   __typename: "Artist";
   accentColor: Maybe<Scalars["String"]["output"]>;
+  appleMusicUrl: Maybe<Scalars["String"]["output"]>;
   bandcampUrl: Maybe<Scalars["String"]["output"]>;
   bio: Maybe<ArtistBio>;
   contentfulMetadata: ContentfulMetadata;
   facebookUrl: Maybe<Scalars["String"]["output"]>;
+  hometown: Maybe<Scalars["String"]["output"]>;
   instagramUrl: Maybe<Scalars["String"]["output"]>;
   linkedFrom: Maybe<ArtistLinkingCollections>;
   name: Maybe<Scalars["String"]["output"]>;
@@ -48,15 +50,22 @@ export type Artist = Entry & {
   shortBio: Maybe<Scalars["String"]["output"]>;
   slug: Maybe<Scalars["String"]["output"]>;
   soundcloudUrl: Maybe<Scalars["String"]["output"]>;
+  spotifyUrl: Maybe<Scalars["String"]["output"]>;
   sys: Sys;
   tiktokUrl: Maybe<Scalars["String"]["output"]>;
   twitterUrl: Maybe<Scalars["String"]["output"]>;
   websiteUrl: Maybe<Scalars["String"]["output"]>;
+  youtubeMusicUrl: Maybe<Scalars["String"]["output"]>;
   youtubeUrl: Maybe<Scalars["String"]["output"]>;
 };
 
 /** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/artist) */
 export type ArtistAccentColorArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/artist) */
+export type ArtistAppleMusicUrlArgs = {
   locale: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -72,6 +81,11 @@ export type ArtistBioArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/artist) */
 export type ArtistFacebookUrlArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/artist) */
+export type ArtistHometownArgs = {
   locale: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -112,6 +126,11 @@ export type ArtistSoundcloudUrlArgs = {
 };
 
 /** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/artist) */
+export type ArtistSpotifyUrlArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/artist) */
 export type ArtistTiktokUrlArgs = {
   locale: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -123,6 +142,11 @@ export type ArtistTwitterUrlArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/artist) */
 export type ArtistWebsiteUrlArgs = {
+  locale: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/artist) */
+export type ArtistYoutubeMusicUrlArgs = {
   locale: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -197,6 +221,13 @@ export type ArtistFilter = {
   accentColor_not: InputMaybe<Scalars["String"]["input"]>;
   accentColor_not_contains: InputMaybe<Scalars["String"]["input"]>;
   accentColor_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  appleMusicUrl: InputMaybe<Scalars["String"]["input"]>;
+  appleMusicUrl_contains: InputMaybe<Scalars["String"]["input"]>;
+  appleMusicUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  appleMusicUrl_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  appleMusicUrl_not: InputMaybe<Scalars["String"]["input"]>;
+  appleMusicUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  appleMusicUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   bandcampUrl: InputMaybe<Scalars["String"]["input"]>;
   bandcampUrl_contains: InputMaybe<Scalars["String"]["input"]>;
   bandcampUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -215,6 +246,13 @@ export type ArtistFilter = {
   facebookUrl_not: InputMaybe<Scalars["String"]["input"]>;
   facebookUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
   facebookUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  hometown: InputMaybe<Scalars["String"]["input"]>;
+  hometown_contains: InputMaybe<Scalars["String"]["input"]>;
+  hometown_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  hometown_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  hometown_not: InputMaybe<Scalars["String"]["input"]>;
+  hometown_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  hometown_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   instagramUrl: InputMaybe<Scalars["String"]["input"]>;
   instagramUrl_contains: InputMaybe<Scalars["String"]["input"]>;
   instagramUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -251,6 +289,13 @@ export type ArtistFilter = {
   soundcloudUrl_not: InputMaybe<Scalars["String"]["input"]>;
   soundcloudUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
   soundcloudUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  spotifyUrl: InputMaybe<Scalars["String"]["input"]>;
+  spotifyUrl_contains: InputMaybe<Scalars["String"]["input"]>;
+  spotifyUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  spotifyUrl_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  spotifyUrl_not: InputMaybe<Scalars["String"]["input"]>;
+  spotifyUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  spotifyUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   sys: InputMaybe<SysFilter>;
   tiktokUrl: InputMaybe<Scalars["String"]["input"]>;
   tiktokUrl_contains: InputMaybe<Scalars["String"]["input"]>;
@@ -273,6 +318,13 @@ export type ArtistFilter = {
   websiteUrl_not: InputMaybe<Scalars["String"]["input"]>;
   websiteUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
   websiteUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  youtubeMusicUrl: InputMaybe<Scalars["String"]["input"]>;
+  youtubeMusicUrl_contains: InputMaybe<Scalars["String"]["input"]>;
+  youtubeMusicUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  youtubeMusicUrl_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  youtubeMusicUrl_not: InputMaybe<Scalars["String"]["input"]>;
+  youtubeMusicUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  youtubeMusicUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   youtubeUrl: InputMaybe<Scalars["String"]["input"]>;
   youtubeUrl_contains: InputMaybe<Scalars["String"]["input"]>;
   youtubeUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -331,10 +383,14 @@ export enum ArtistLinkingCollectionsVideoCollectionOrder {
 export enum ArtistOrder {
   AccentColorAsc = "accentColor_ASC",
   AccentColorDesc = "accentColor_DESC",
+  AppleMusicUrlAsc = "appleMusicUrl_ASC",
+  AppleMusicUrlDesc = "appleMusicUrl_DESC",
   BandcampUrlAsc = "bandcampUrl_ASC",
   BandcampUrlDesc = "bandcampUrl_DESC",
   FacebookUrlAsc = "facebookUrl_ASC",
   FacebookUrlDesc = "facebookUrl_DESC",
+  HometownAsc = "hometown_ASC",
+  HometownDesc = "hometown_DESC",
   InstagramUrlAsc = "instagramUrl_ASC",
   InstagramUrlDesc = "instagramUrl_DESC",
   NameAsc = "name_ASC",
@@ -345,6 +401,8 @@ export enum ArtistOrder {
   SlugDesc = "slug_DESC",
   SoundcloudUrlAsc = "soundcloudUrl_ASC",
   SoundcloudUrlDesc = "soundcloudUrl_DESC",
+  SpotifyUrlAsc = "spotifyUrl_ASC",
+  SpotifyUrlDesc = "spotifyUrl_DESC",
   SysFirstPublishedAtAsc = "sys_firstPublishedAt_ASC",
   SysFirstPublishedAtDesc = "sys_firstPublishedAt_DESC",
   SysIdAsc = "sys_id_ASC",
@@ -359,6 +417,8 @@ export enum ArtistOrder {
   TwitterUrlDesc = "twitterUrl_DESC",
   WebsiteUrlAsc = "websiteUrl_ASC",
   WebsiteUrlDesc = "websiteUrl_DESC",
+  YoutubeMusicUrlAsc = "youtubeMusicUrl_ASC",
+  YoutubeMusicUrlDesc = "youtubeMusicUrl_DESC",
   YoutubeUrlAsc = "youtubeUrl_ASC",
   YoutubeUrlDesc = "youtubeUrl_DESC",
 }
@@ -1843,6 +1903,13 @@ export type CfArtistNestedFilter = {
   accentColor_not: InputMaybe<Scalars["String"]["input"]>;
   accentColor_not_contains: InputMaybe<Scalars["String"]["input"]>;
   accentColor_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  appleMusicUrl: InputMaybe<Scalars["String"]["input"]>;
+  appleMusicUrl_contains: InputMaybe<Scalars["String"]["input"]>;
+  appleMusicUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  appleMusicUrl_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  appleMusicUrl_not: InputMaybe<Scalars["String"]["input"]>;
+  appleMusicUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  appleMusicUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   bandcampUrl: InputMaybe<Scalars["String"]["input"]>;
   bandcampUrl_contains: InputMaybe<Scalars["String"]["input"]>;
   bandcampUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -1861,6 +1928,13 @@ export type CfArtistNestedFilter = {
   facebookUrl_not: InputMaybe<Scalars["String"]["input"]>;
   facebookUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
   facebookUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  hometown: InputMaybe<Scalars["String"]["input"]>;
+  hometown_contains: InputMaybe<Scalars["String"]["input"]>;
+  hometown_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  hometown_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  hometown_not: InputMaybe<Scalars["String"]["input"]>;
+  hometown_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  hometown_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   instagramUrl: InputMaybe<Scalars["String"]["input"]>;
   instagramUrl_contains: InputMaybe<Scalars["String"]["input"]>;
   instagramUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -1897,6 +1971,13 @@ export type CfArtistNestedFilter = {
   soundcloudUrl_not: InputMaybe<Scalars["String"]["input"]>;
   soundcloudUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
   soundcloudUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  spotifyUrl: InputMaybe<Scalars["String"]["input"]>;
+  spotifyUrl_contains: InputMaybe<Scalars["String"]["input"]>;
+  spotifyUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  spotifyUrl_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  spotifyUrl_not: InputMaybe<Scalars["String"]["input"]>;
+  spotifyUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  spotifyUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   sys: InputMaybe<SysFilter>;
   tiktokUrl: InputMaybe<Scalars["String"]["input"]>;
   tiktokUrl_contains: InputMaybe<Scalars["String"]["input"]>;
@@ -1919,6 +2000,13 @@ export type CfArtistNestedFilter = {
   websiteUrl_not: InputMaybe<Scalars["String"]["input"]>;
   websiteUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
   websiteUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  youtubeMusicUrl: InputMaybe<Scalars["String"]["input"]>;
+  youtubeMusicUrl_contains: InputMaybe<Scalars["String"]["input"]>;
+  youtubeMusicUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;
+  youtubeMusicUrl_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  youtubeMusicUrl_not: InputMaybe<Scalars["String"]["input"]>;
+  youtubeMusicUrl_not_contains: InputMaybe<Scalars["String"]["input"]>;
+  youtubeMusicUrl_not_in: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   youtubeUrl: InputMaybe<Scalars["String"]["input"]>;
   youtubeUrl_contains: InputMaybe<Scalars["String"]["input"]>;
   youtubeUrl_exists: InputMaybe<Scalars["Boolean"]["input"]>;

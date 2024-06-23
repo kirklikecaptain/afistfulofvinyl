@@ -13,7 +13,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider defaultTheme="dark" attribute="class" enableSystem>
-          <Theme accentColor="blue" asChild>
+          <Theme accentColor="gray" asChild>
             <AppLayout>{children}</AppLayout>
           </Theme>
         </ThemeProvider>

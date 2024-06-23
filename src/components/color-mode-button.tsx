@@ -13,6 +13,8 @@ export function ColorModeButton(props: ColorModeButtonProps) {
   const { color, variant = "soft" } = props;
   const { theme, setTheme } = useTheme();
 
+  const handleValueChange = (value: string) => setTheme(value);
+
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
@@ -23,7 +25,7 @@ export function ColorModeButton(props: ColorModeButtonProps) {
         </IconButton>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content variant="soft">
-        <DropdownMenu.RadioGroup value={theme} onValueChange={(value) => setTheme(value)}>
+        <DropdownMenu.RadioGroup value={theme} onValueChange={handleValueChange}>
           <DropdownMenu.RadioItem value="dark">Dark Mode</DropdownMenu.RadioItem>
           <DropdownMenu.RadioItem value="light">Light Mode</DropdownMenu.RadioItem>
           <DropdownMenu.RadioItem value="system">System</DropdownMenu.RadioItem>

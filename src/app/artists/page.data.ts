@@ -24,5 +24,11 @@ const AllArtistsPageDocument = graphql(/* GraphQL */ `
 export async function fetchAllArtistsPageData() {
   const data = await contentful.request(AllArtistsPageDocument);
 
-  return { artists: data.artists?.items.filter(notEmpty) ?? [] };
+  return {
+    artists:
+      data.artists?.items.filter(notEmpty).filter(
+        // TODO: Remove this filter when all published artists have linked videos
+        (video) => video.linkedFrom?.videoCollection?.total && video.linkedFrom?.videoCollection?.total > 0,
+      ) ?? [],
+  };
 }

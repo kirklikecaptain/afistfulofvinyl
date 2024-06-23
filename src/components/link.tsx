@@ -1,16 +1,16 @@
 import { Link as RadixLink, type LinkProps as RadixLinkProps } from "@radix-ui/themes";
 import NextLink, { type LinkProps as NextLinkProps } from "next/link";
+import { CSSProperties } from "react";
 
-export type LinkProps<T extends string> = Omit<RadixLinkProps, "href"> &
-  NextLinkProps<T> & { variant?: "img" | "block" };
+export type LinkProps<T extends string> = { variant?: "img" | "block" } & NextLinkProps<T> &
+  Omit<RadixLinkProps, "href">;
 
 export function Link<T extends string>(props: LinkProps<T>) {
   const { variant, underline, style, children, href, scroll, replace, prefetch, ...radixLinkProps } = props;
 
-  const variantStyle = {
+  const variantStyle: CSSProperties = {
     display: variant === "img" ? "inline-block" : "block",
     lineHeight: variant === "img" ? 0 : "inherit",
-    width: variant === "img" ? "auto" : "100%",
     color: "inherit",
     ...style,
   };

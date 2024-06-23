@@ -1,4 +1,4 @@
-import { Flex, Box } from "@radix-ui/themes";
+import { Stack } from "../stack";
 
 import { AppHeader } from "./app-header/app-header";
 import { AppFooter } from "./app-footer/app-footer";
@@ -9,10 +9,10 @@ export type AppLayoutProps = {
 
 export function AppLayout({ children }: AppLayoutProps) {
   return (
-    <Flex direction="column">
+    <Stack overflow="clip">
       <AppHeader />
-      <Box flexGrow="1">{children}</Box>
+      {children}
       <AppFooter />
-    </Flex>
+    </Stack>
   );
 }

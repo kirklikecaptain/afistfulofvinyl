@@ -3,10 +3,10 @@
   "private": true,
   "version": "2.0.0",
   "scripts": {
-    "build": "next build",
     "dev": "next dev",
+    "build": "next build",
+    "serve": "next start",
     "lint": "next lint",
-    "start": "next start",
     "format": "eslint --fix .",
     "codegen": "graphql-codegen --require dotenv/config --config codegen.ts dotenv_config_path=.env.local"
   },

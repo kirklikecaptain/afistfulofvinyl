@@ -1,38 +1,52 @@
-import { Flex, Container } from "@radix-ui/themes";
+"use client";
+
+import { Box, Container, IconButton } from "@radix-ui/themes";
+import { Cross1Icon, HamburgerMenuIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { IconInfoCircle, IconMail, IconUsers, IconVideo } from "@tabler/icons-react";
+import { useState } from "react";
+import classnames from "classnames";
 
 import { Link } from "~/components/link";
 import { AFoV } from "~/components/afov";
-import { ColorModeButton } from "~/components/color-mode-button";
-import { SearchButton } from "~/components/search-button/search-button";
 
 import css from "./app-header.module.css";
 
 export function AppHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
+
   return (
     <header className={css.header}>
       <Container>
         <nav className={css.nav}>
-          <Link href="/" variant="img">
-            <AFoV width="120px" />
+          <IconButton className={css.menuButton} onClick={toggleMenu} variant="soft" size="3">
+            <HamburgerMenuIcon className={classnames({ [css.closed]: menuOpen })} />
+            <Cross1Icon className={classnames({ [css.closed]: !menuOpen })} />
+          </IconButton>
+          <Link href="/" onClick={toggleMenu} className={css.logo} variant="img">
+            <AFoV />
           </Link>
-          <Flex gap="4" align="center">
-            <Link href="/artists" color="gray">
-              Artists
-            </Link>
-            <Link href="/videos" color="gray">
-              Videos
-            </Link>
-            <Link href="/about" color="gray">
-              About
-            </Link>
-            <Link href="/contact" color="gray">
-              Contact
-            </Link>
-            <SearchButton color="gray" />
-            <ColorModeButton color="gray" />
-          </Flex>
+          <Box className={classnames(css.menu, { [css.closed]: !menuOpen })}>
+            {links.map((link) => (
+              <Link key={link.href} href={link.href} onClick={toggleMenu}>
+                <span className={css.linkIcon}>{link.icon}</span>
+                <span className={css.linkLabel}>{link.label}</span>
+              </Link>
+            ))}
+          </Box>
+          <IconButton variant="soft" size="3">
+            <MagnifyingGlassIcon />
+          </IconButton>
         </nav>
       </Container>
     </header>
   );
 }
+
+const links = [
+  { label: "Artists", href: "/artists" as const, icon: <IconUsers /> },
+  { label: "Videos", href: "/videos" as const, icon: <IconVideo /> },
+  { label: "About", href: "/about" as const, icon: <IconInfoCircle /> },
+  { label: "Contact", href: "/contact" as const, icon: <IconMail /> },
+];
