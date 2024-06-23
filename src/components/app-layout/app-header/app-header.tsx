@@ -14,6 +14,7 @@ import css from "./app-header.module.css";
 export function AppHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const closeMenu = () => setMenuOpen(false);
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
@@ -24,12 +25,12 @@ export function AppHeader() {
             <HamburgerMenuIcon className={classnames({ [css.closed]: menuOpen })} />
             <Cross1Icon className={classnames({ [css.closed]: !menuOpen })} />
           </IconButton>
-          <Link href="/" onClick={toggleMenu} className={css.logo} variant="img">
+          <Link href="/" onClick={closeMenu} className={css.logo} variant="img">
             <AFoV />
           </Link>
           <Box className={classnames(css.menu, { [css.closed]: !menuOpen })}>
             {links.map((link) => (
-              <Link key={link.href} href={link.href} onClick={toggleMenu}>
+              <Link key={link.href} href={link.href} onClick={closeMenu}>
                 <span className={css.linkIcon}>{link.icon}</span>
                 <span className={css.linkLabel}>{link.label}</span>
               </Link>

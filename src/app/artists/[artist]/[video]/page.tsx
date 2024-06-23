@@ -13,8 +13,8 @@ import {
 } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 
-import { CardLink, Page, RichText, Stack, YouTubePlayer } from "~/components";
-import { getVideoPagePath } from "~/utils/paths";
+import { CardLink, Link, Page, RichText, Stack, YouTubePlayer } from "~/components";
+import { getArtistPagePath, getVideoPagePath } from "~/utils/paths";
 
 import { fetchVideoPageData } from "./page.data";
 
@@ -58,19 +58,21 @@ export default async function VideoPage({ params }: VideoPageProps) {
               <Stack pt="4" gap="2">
                 <Heading as="h1" size="8">
                   <Text>{video.title}</Text>
-                  {video.subtitle && <Text size="8">{` ${video.subtitle}`}</Text>}
+                  {video.subtitle && <Text>{` ${video.subtitle}`}</Text>}
                 </Heading>
-                <Flex gap="4" align="center">
-                  <Avatar
-                    size="2"
-                    radius="full"
-                    src={video.artist?.photo?.url ?? undefined}
-                    fallback={video.artist?.name ? video.artist?.name[0] : "?"}
-                  />
-                  <Heading as="h2" size="7">
-                    {video.artist?.name}
-                  </Heading>
-                </Flex>
+                <Link href={getArtistPagePath(video.artist?.slug)}>
+                  <Flex gap="4" align="center">
+                    <Avatar
+                      size="2"
+                      radius="full"
+                      src={video.artist?.photo?.url ?? undefined}
+                      fallback={video.artist?.name ? video.artist?.name[0] : "?"}
+                    />
+                    <Heading as="h2" size="7">
+                      {video.artist?.name}
+                    </Heading>
+                  </Flex>
+                </Link>
               </Stack>
               {video.longDescription && (
                 <>

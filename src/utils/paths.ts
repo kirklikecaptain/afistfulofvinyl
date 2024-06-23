@@ -1,4 +1,4 @@
-export function getArtistPagePath(slug: string | null) {
+export function getArtistPagePath(slug: string | null | undefined) {
   return `/artists/${slug ?? "404"}` as const;
 }
 
