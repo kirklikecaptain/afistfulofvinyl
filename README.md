@@ -12,6 +12,7 @@ Website for [A Fistful of Vinyl](https://www.afistfulofvinyl.com/), a media orga
 | GraphQL Codegen | Code generator for Contentful content types            | [Docs](https://the-guild.dev/graphql/codegen/docs/config-reference/codegen-config) |
 | Radix UI        | Lightly themed component library                       | [Docs](https://www.radix-ui.com/themes/docs/overview/getting-started)              |
 | Tabler Icons    | SVG icon set                                           | [Docs](https://tabler.io/icons)                                                    |
+| usehooks-ts     | Utility hooks written in TypeScript                    | [Docs](https://usehooks-ts.com/react-hook/use-boolean)                             |
 
 ## Getting Started
 

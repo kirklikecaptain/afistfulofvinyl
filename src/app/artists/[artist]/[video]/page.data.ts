@@ -60,14 +60,23 @@ const VideoPageDocument = graphql(/* GraphQL */ `
         ...VideoCardLink
       }
     }
+    recentVideos: videoCollection(limit: 3, order: uploadDate_DESC) {
+      items {
+        ...VideoCardLink
+      }
+    }
   }
 `);
 
 export async function fetchVideoPageData(params: { artistSlug: string; videoSlug: string }) {
   const data = await contentful.request(VideoPageDocument, params);
 
+  const featuredVideo = data.video?.items.filter(notEmpty)[0];
+  const byArtist = data.relatedVideos?.items.filter(notEmpty) ?? [];
+  const recentVideos = data.recentVideos?.items.filter(notEmpty) ?? [];
+
   return {
-    video: data.video?.items.filter(notEmpty)[0],
-    relatedVideos: data.relatedVideos?.items.filter(notEmpty) ?? [],
+    video: featuredVideo,
+    relatedVideos: byArtist.length ? byArtist : recentVideos,
   };
 }

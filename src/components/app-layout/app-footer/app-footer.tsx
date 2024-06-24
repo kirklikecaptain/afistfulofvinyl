@@ -16,26 +16,22 @@ export function AppFooter() {
   return (
     <footer
       style={{
-        background: "var(--gray-3)",
         marginTop: "auto",
-        padding: "4rem 1rem 2rem 1rem",
-        justifySelf: "flex-end",
+        padding: "1rem",
+        borderTop: "solid 1px var(--gray-3)",
       }}
     >
       <Container>
-        <Grid columns={{ sm: "2", md: "3" }} gap={{ initial: "8", sm: "4" }}>
+        <Grid py="8" columns={{ sm: "2", md: "3" }} gap={{ initial: "8", sm: "4" }}>
           {columns.map((column) => (
-            <Stack key={column.title} gap="4">
+            <Stack key={column.title} gap="2">
               <Heading as="h2" size="4">
                 {column.title}
               </Heading>
+              <Separator size="4" />
               <Stack gap="2" align="start">
                 {column.links.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                  >
+                  <Link key={link.href} href={link.href}>
                     {link.label}
                   </Link>
                 ))}
@@ -43,14 +39,14 @@ export function AppFooter() {
             </Stack>
           ))}
         </Grid>
-        <Separator size="4" my="6" />
+        <Separator size="4" my="4" />
         <Flex gap="4" align="center" justify="between">
           <Link href="/" variant="img">
-            <AFoV variant="mini" width="70px" />
+            <AFoV variant="mini" width="65px" />
           </Link>
           <Flex gap="3" align="center">
             {socials.map((social) => (
-              <Link key={social.href} href={social.href} variant="img" target="_blank">
+              <Link key={social.href} href={social.href} variant="img">
                 <AccessibleIcon label={social.label}>{social.icon}</AccessibleIcon>
               </Link>
             ))}

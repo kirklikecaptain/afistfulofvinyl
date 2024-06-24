@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { Hero, Page } from "~/components";
+import { Main, Hero } from "~/components";
 
 export const metadata: Metadata = {
   title: "About",
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <Page>
+    <Main>
       <Hero heading="About" />
-    </Page>
+    </Main>
   );
 }

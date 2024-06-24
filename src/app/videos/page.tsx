@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { CardLink, CardSection, Hero, Page } from "~/components";
+import { CardLink, CardSection, Hero, Main } from "~/components";
 import { getVideoPagePath } from "~/utils/paths";
 
 import { fetchAllVideosPageData } from "./page.data";
@@ -23,12 +23,10 @@ export default async function AllVideosPage({ searchParams }: PageProps) {
   const { category, totalPages, currentPage, videos } = await fetchAllVideosPageData(searchParams);
 
   return (
-    <Page>
+    <Main>
       <Hero heading={category ? `${category}s` : "All Videos"} />
-      <CardSection
-        title="Latest"
-        pagination={{ totalPages, currentPage }}
-        cards={videos.map((video) => (
+      <CardSection title="Latest" pagination={{ totalPages, currentPage }}>
+        {videos.map((video) => (
           <CardLink
             key={video.title}
             href={getVideoPagePath(video.artist?.slug, video.slug)}
@@ -38,7 +36,7 @@ export default async function AllVideosPage({ searchParams }: PageProps) {
             accentColor={video.artist?.accentColor}
           />
         ))}
-      />
-    </Page>
+      </CardSection>
+    </Main>
   );
 }

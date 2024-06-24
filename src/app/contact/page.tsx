@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { Hero, Page } from "~/components";
+import { Main, Hero } from "~/components";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <Page>
+    <Main>
       <Hero heading="Contact" />
-    </Page>
+    </Main>
   );
 }

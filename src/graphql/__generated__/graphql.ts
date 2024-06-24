@@ -2177,6 +2177,24 @@ export type VideoPageQueryQuery = {
       } | null;
     } | null>;
   } | null;
+  recentVideos: {
+    __typename: "VideoCollection";
+    items: Array<{
+      __typename: "Video";
+      slug: string | null;
+      title: string | null;
+      subtitle: string | null;
+      videoType: string | null;
+      thumbnail: { __typename: "Asset"; url: string | null; description: string | null } | null;
+      artist: {
+        __typename: "Artist";
+        name: string | null;
+        accentColor: string | null;
+        slug: string | null;
+        photo: { __typename: "Asset"; url: string | null; description: string | null } | null;
+      } | null;
+    } | null>;
+  } | null;
 };
 
 export type ArtistProfilePageQueryQueryVariables = Exact<{
@@ -2613,6 +2631,36 @@ export const VideoPageQueryDocument = {
                     },
                   ],
                 },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VideoCardLink" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "recentVideos" },
+            name: { kind: "Name", value: "videoCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "IntValue", value: "3" },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "order" },
+                value: { kind: "EnumValue", value: "uploadDate_DESC" },
               },
             ],
             selectionSet: {

@@ -6,7 +6,7 @@ export { ColorModeButton } from "./color-mode-button";
 export { Hero } from "./hero";
 export { Image } from "./image";
 export { Link } from "./link";
-export { Page } from "./page";
+export { Main } from "./main";
 export { CardLink } from "./card-link/card-link";
 export { YouTubePlayer } from "./youtube-player/youtube-player";
 export { Stack } from "./stack";

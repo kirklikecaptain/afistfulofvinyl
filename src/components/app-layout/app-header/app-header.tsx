@@ -3,7 +3,7 @@
 import { Box, Container, IconButton } from "@radix-ui/themes";
 import { Cross1Icon, HamburgerMenuIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { IconInfoCircle, IconMail, IconUsers, IconVideo } from "@tabler/icons-react";
-import { useState } from "react";
+import { useBoolean } from "usehooks-ts";
 import classnames from "classnames";
 
 import { Link } from "~/components/link";
@@ -12,10 +12,7 @@ import { AFoV } from "~/components/afov";
 import css from "./app-header.module.css";
 
 export function AppHeader() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const closeMenu = () => setMenuOpen(false);
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const { value: menuOpen, setFalse: closeMenu, toggle: toggleMenu } = useBoolean(false);
 
   return (
     <header className={css.header}>
@@ -46,8 +43,8 @@ export function AppHeader() {
 }
 
 const links = [
-  { label: "Artists", href: "/artists" as const, icon: <IconUsers /> },
-  { label: "Videos", href: "/videos" as const, icon: <IconVideo /> },
-  { label: "About", href: "/about" as const, icon: <IconInfoCircle /> },
-  { label: "Contact", href: "/contact" as const, icon: <IconMail /> },
+  { label: "Artists", href: "/artists" as const, icon: <IconUsers size={16} /> },
+  { label: "Videos", href: "/videos" as const, icon: <IconVideo size={16} /> },
+  { label: "About", href: "/about" as const, icon: <IconInfoCircle size={16} /> },
+  { label: "Contact", href: "/contact" as const, icon: <IconMail size={16} /> },
 ];

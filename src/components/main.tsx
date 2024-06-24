@@ -1,14 +1,14 @@
 import classNames from "classnames";
 
-export type PageProps = {
+export type MainProps = {
   artistColor?: string;
   className?: string;
   style?: React.CSSProperties;
   children: React.ReactNode;
 };
 
-export function Page(props: PageProps) {
-  const { className, artistColor, children, style } = props;
+export function Main(props: MainProps) {
+  const { className, artistColor, style, children } = props;
 
   const mergedStyles = { ...style, ...(artistColor && { "--artist-color": artistColor }) };
 

@@ -1,7 +1,7 @@
 import { Avatar, Container, Heading, Section } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 
-import { CardLink, CardSection, Page, Stack } from "~/components";
+import { CardLink, CardSection, Main, Stack } from "~/components";
 import { getVideoPagePath } from "~/utils/paths";
 
 import { fetchArtistProfilePageData } from "./page.data";
@@ -20,7 +20,7 @@ export default async function ArtistProfilePage({ params }: ArtistProfilePagePro
   }
 
   return (
-    <Page artistColor={artist.accentColor ?? "#000"}>
+    <Main artistColor={artist.accentColor ?? "#000"}>
       <Section>
         <Container>
           <Stack gap="6" align="center" justify="center">
@@ -34,9 +34,8 @@ export default async function ArtistProfilePage({ params }: ArtistProfilePagePro
           </Stack>
         </Container>
       </Section>
-      <CardSection
-        title="Videos"
-        cards={videos.map((video) => (
+      <CardSection title="Videos">
+        {videos.map((video) => (
           <CardLink
             key={video.slug}
             href={getVideoPagePath(video.artist?.slug, video.slug)}
@@ -45,7 +44,7 @@ export default async function ArtistProfilePage({ params }: ArtistProfilePagePro
             accentColor={video.artist?.accentColor}
           />
         ))}
-      ></CardSection>
-    </Page>
+      </CardSection>
+    </Main>
   );
 }

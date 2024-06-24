@@ -1,19 +1,8 @@
 import { Metadata } from "next";
-import {
-  Avatar,
-  Box,
-  Card,
-  Container,
-  Flex,
-  Grid,
-  Heading,
-  Section,
-  Separator,
-  Text,
-} from "@radix-ui/themes";
+import { Avatar, Box, Container, Flex, Grid, Heading, Section, Separator, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 
-import { CardLink, Link, Page, RichText, Stack, YouTubePlayer } from "~/components";
+import { CardLink, Link, Main, RichText, Stack, YouTubePlayer } from "~/components";
 import { getArtistPagePath, getVideoPagePath } from "~/utils/paths";
 
 import { fetchVideoPageData } from "./page.data";
@@ -49,11 +38,11 @@ export default async function VideoPage({ params }: VideoPageProps) {
   }
 
   return (
-    <Page>
+    <Main>
       <Section p="4">
         <Container>
           <Grid columns={{ sm: "1fr 250px", md: "1fr 320px" }} gap="4" align="start">
-            <Card size="2">
+            <Box>
               <YouTubePlayer videoId={video.videoUrl?.split("?v=")[1] ?? ""} title={video.title ?? ""} />
               <Stack pt="4" gap="2">
                 <Heading as="h1" size="8">
@@ -64,7 +53,7 @@ export default async function VideoPage({ params }: VideoPageProps) {
                   <Flex gap="4" align="center">
                     <Avatar
                       size="2"
-                      radius="full"
+                      radius="medium"
                       src={video.artist?.photo?.url ?? undefined}
                       fallback={video.artist?.name ? video.artist?.name[0] : "?"}
                     />
@@ -82,7 +71,7 @@ export default async function VideoPage({ params }: VideoPageProps) {
                   </Box>
                 </>
               )}
-            </Card>
+            </Box>
             <aside>
               <Stack gap="4">
                 <Heading as="h2" size="4">
@@ -104,6 +93,6 @@ export default async function VideoPage({ params }: VideoPageProps) {
           </Grid>
         </Container>
       </Section>
-    </Page>
+    </Main>
   );
 }

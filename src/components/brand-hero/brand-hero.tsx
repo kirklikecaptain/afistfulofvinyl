@@ -18,7 +18,7 @@ export function BrandHero() {
             <AFoV className={classNames(css.afovLogoTop)} />
           </Box>
           <Heading className={css.heading} size="3">
-            Live Sessions - Interviews - Radio
+            Live Sessions & Interviews
           </Heading>
         </Stack>
       </Container>
