@@ -4,7 +4,10 @@ import { notFound } from "next/navigation";
 import { CardLink, CardSection, Main, Stack } from "~/components";
 import { getVideoPagePath } from "~/utils/paths";
 
-import { fetchArtistProfilePageData } from "./page.data";
+import { fetchArtistProfilePageData } from "./_data";
+import { fetchMetadata } from "./_meta";
+
+export const generateMetadata = fetchMetadata;
 
 export type ArtistProfilePageProps = {
   params: {

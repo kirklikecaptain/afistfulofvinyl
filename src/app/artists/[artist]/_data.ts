@@ -8,6 +8,7 @@ const ArtistProfilePageDocument = graphql(/* GraphQL */ `
         name
         slug
         accentColor
+        shortBio
         photo {
           url
           width

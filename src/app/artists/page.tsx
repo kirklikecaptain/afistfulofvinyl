@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { CardLink, CardSection, Hero, Main } from "~/components";
 import { getArtistPagePath } from "~/utils/paths";
 
-import { fetchAllArtistsPageData } from "./page.data";
+import { fetchAllArtistsPageData } from "./_data";
 
 export const metadata: Metadata = {
   title: "Artists",

@@ -2197,6 +2197,20 @@ export type VideoPageQueryQuery = {
   } | null;
 };
 
+export type AllVideoPageParamsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type AllVideoPageParamsQuery = {
+  __typename: "Query";
+  videoCollection: {
+    __typename: "VideoCollection";
+    items: Array<{
+      __typename: "Video";
+      slug: string | null;
+      artist: { __typename: "Artist"; slug: string | null } | null;
+    } | null>;
+  } | null;
+};
+
 export type ArtistProfilePageQueryQueryVariables = Exact<{
   artistSlug: Scalars["String"]["input"];
 }>;
@@ -2210,6 +2224,7 @@ export type ArtistProfilePageQueryQuery = {
       name: string | null;
       slug: string | null;
       accentColor: string | null;
+      shortBio: string | null;
       photo: {
         __typename: "Asset";
         url: string | null;
@@ -2730,6 +2745,55 @@ export const VideoPageQueryDocument = {
     },
   ],
 } as unknown as DocumentNode<VideoPageQueryQuery, VideoPageQueryQueryVariables>;
+export const AllVideoPageParamsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "AllVideoPageParams" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "videoCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "IntValue", value: "500" },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "slug" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "artist" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "Field", name: { kind: "Name", value: "slug" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AllVideoPageParamsQuery, AllVideoPageParamsQueryVariables>;
 export const ArtistProfilePageQueryDocument = {
   kind: "Document",
   definitions: [
@@ -2779,6 +2843,7 @@ export const ArtistProfilePageQueryDocument = {
                       { kind: "Field", name: { kind: "Name", value: "name" } },
                       { kind: "Field", name: { kind: "Name", value: "slug" } },
                       { kind: "Field", name: { kind: "Name", value: "accentColor" } },
+                      { kind: "Field", name: { kind: "Name", value: "shortBio" } },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "photo" },

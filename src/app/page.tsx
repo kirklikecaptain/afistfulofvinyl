@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { BrandHero, CardLink, CardSection, Main } from "~/components";
 import { getVideoPagePath } from "~/utils/paths";
 
-import { fetchHomePageData } from "./page.data";
+import { fetchHomePageData } from "./_data";
 
 export const metadata: Metadata = {
   title: "A Fistful of Vinyl",

@@ -1,24 +1,15 @@
-import { Metadata } from "next";
 import { Avatar, Box, Container, Flex, Grid, Heading, Section, Separator, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 
 import { CardLink, Link, Main, RichText, Stack, YouTubePlayer } from "~/components";
 import { getArtistPagePath, getVideoPagePath } from "~/utils/paths";
 
-import { fetchVideoPageData } from "./page.data";
+import { fetchVideoPageData } from "./_data";
+import { fetchMetadata } from "./_meta";
+import { fetchAllVideoPageParams } from "./_params";
 
-export async function generateMetadata({ params }: VideoPageProps): Promise<Metadata> {
-  const { video } = await fetchVideoPageData({ artistSlug: params.artist, videoSlug: params.video });
-
-  if (!video) {
-    return notFound();
-  }
-
-  return {
-    title: `${video.title} | ${video.artist?.name}`,
-    description: video.shortDescription,
-  };
-}
+export const generateStaticParams = fetchAllVideoPageParams;
+export const generateMetadata = fetchMetadata;
 
 export type VideoPageProps = {
   params: {
