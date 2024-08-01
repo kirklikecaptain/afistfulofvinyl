@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: "images.ctfassets.net",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+        pathname: "/**",
+      },
     ],
   },
 };

@@ -29,13 +29,13 @@ export default async function VideoPage({ params }: VideoPageProps) {
   }
 
   return (
-    <Main>
+    <Main artistColor={video.artist?.accentColor}>
       <Section p="4">
         <Container>
           <Grid columns={{ sm: "1fr 250px", md: "1fr 320px" }} gap="4" align="start">
             <Box>
               <YouTubePlayer videoId={video.videoUrl?.split("?v=")[1] ?? ""} title={video.title ?? ""} />
-              <Stack pt="4" gap="2">
+              <Stack pt="4" gap="2" align="start">
                 <Heading as="h1" size="8">
                   <Text>{video.title}</Text>
                   {video.subtitle && <Text>{` ${video.subtitle}`}</Text>}

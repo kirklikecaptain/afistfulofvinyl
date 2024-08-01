@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { CardLink, CardSection, Hero, Main } from "~/components";
 import { getVideoPagePath } from "~/utils/paths";
 
-import { fetchAllVideosPageData } from "./page.data";
+import { fetchAllVideosPageData } from "./_data";
 
 export const metadata: Metadata = {
   title: "Videos",
