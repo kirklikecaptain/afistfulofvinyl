@@ -1,0 +1,19 @@
+import { Box } from '@mantine/core';
+
+import { exampleUtil } from './{{ComponentName}}.utils';
+
+export interface {{ComponentName}}Props {
+  example?: string;
+}
+
+export function {{ComponentName}}(props: {{ComponentName}}Props) {
+  const { example = "{{ComponentName}}", ...boxProps } = props;
+
+  const example = exampleUtil();
+
+  return (
+    <Box {...boxProps}>
+      <div>{example}</div>
+    </Box>
+  );
+}

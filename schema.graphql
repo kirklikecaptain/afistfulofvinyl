@@ -1,0 +1,1637 @@
+schema {
+  query: Query
+}
+
+directive @contentSourceMaps on QUERY
+
+directive @contentfulSchemaMetadata(contentTypePublishedCounters: JSON) on SCHEMA
+
+directive @delegatedResourceLink(contentTypeId: String, field: JSON) on FIELD_DEFINITION | OBJECT
+
+directive @enumMapper(value: JSON) on ENUM_VALUE
+
+directive @featureFlag(featureName: String) on FIELD
+
+directive @fieldResolver(data: JSON, kind: String) on FIELD_DEFINITION
+
+directive @timeline(where: TimelineFilterInput!) on QUERY
+
+directive @typeIdentifier(contentTypeId: String) on OBJECT
+
+"""
+[See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/artist)
+"""
+type Artist implements Entry & _Node {
+  _id: ID!
+  accentColor(locale: String, useFallbackLocale: Boolean): String
+  appleMusicUrl(locale: String, useFallbackLocale: Boolean): String
+  bandcampUrl(locale: String, useFallbackLocale: Boolean): String
+  bio(locale: String, useFallbackLocale: Boolean): ArtistBio
+  contentfulMetadata: ContentfulMetadata!
+  facebookUrl(locale: String, useFallbackLocale: Boolean): String
+  hometown(locale: String, useFallbackLocale: Boolean): String
+  instagramUrl(locale: String, useFallbackLocale: Boolean): String
+  linkedFrom(allowedLocales: [String]): ArtistLinkingCollections
+  name(locale: String, useFallbackLocale: Boolean): String
+  photo(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  shortBio(locale: String, useFallbackLocale: Boolean): String
+  slug(locale: String, useFallbackLocale: Boolean): String
+  soundcloudUrl(locale: String, useFallbackLocale: Boolean): String
+  spotifyUrl(locale: String, useFallbackLocale: Boolean): String
+  sys: Sys!
+  tiktokUrl(locale: String, useFallbackLocale: Boolean): String
+  twitterUrl(locale: String, useFallbackLocale: Boolean): String
+  websiteUrl(locale: String, useFallbackLocale: Boolean): String
+  youtubeMusicUrl(locale: String, useFallbackLocale: Boolean): String
+  youtubeUrl(locale: String, useFallbackLocale: Boolean): String
+}
+
+type ArtistBio {
+  json: JSON!
+  links: ArtistBioLinks!
+}
+
+type ArtistBioAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ArtistBioEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ArtistBioLinks {
+  assets: ArtistBioAssets!
+  entries: ArtistBioEntries!
+  resources: ArtistBioResources!
+}
+
+type ArtistBioResources {
+  block: [ArtistBioResourcesBlock!]!
+  hyperlink: [ArtistBioResourcesHyperlink!]!
+  inline: [ArtistBioResourcesInline!]!
+}
+
+type ArtistBioResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ArtistBioResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ArtistBioResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ArtistCollection {
+  items: [Artist]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ArtistFilter {
+  AND: [ArtistFilter]
+  OR: [ArtistFilter]
+  accentColor: String
+  accentColor_contains: String
+  accentColor_exists: Boolean
+  accentColor_in: [String]
+  accentColor_not: String
+  accentColor_not_contains: String
+  accentColor_not_in: [String]
+  appleMusicUrl: String
+  appleMusicUrl_contains: String
+  appleMusicUrl_exists: Boolean
+  appleMusicUrl_in: [String]
+  appleMusicUrl_not: String
+  appleMusicUrl_not_contains: String
+  appleMusicUrl_not_in: [String]
+  bandcampUrl: String
+  bandcampUrl_contains: String
+  bandcampUrl_exists: Boolean
+  bandcampUrl_in: [String]
+  bandcampUrl_not: String
+  bandcampUrl_not_contains: String
+  bandcampUrl_not_in: [String]
+  bio_contains: String
+  bio_exists: Boolean
+  bio_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  facebookUrl: String
+  facebookUrl_contains: String
+  facebookUrl_exists: Boolean
+  facebookUrl_in: [String]
+  facebookUrl_not: String
+  facebookUrl_not_contains: String
+  facebookUrl_not_in: [String]
+  hometown: String
+  hometown_contains: String
+  hometown_exists: Boolean
+  hometown_in: [String]
+  hometown_not: String
+  hometown_not_contains: String
+  hometown_not_in: [String]
+  instagramUrl: String
+  instagramUrl_contains: String
+  instagramUrl_exists: Boolean
+  instagramUrl_in: [String]
+  instagramUrl_not: String
+  instagramUrl_not_contains: String
+  instagramUrl_not_in: [String]
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  photo_exists: Boolean
+  shortBio: String
+  shortBio_contains: String
+  shortBio_exists: Boolean
+  shortBio_in: [String]
+  shortBio_not: String
+  shortBio_not_contains: String
+  shortBio_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  soundcloudUrl: String
+  soundcloudUrl_contains: String
+  soundcloudUrl_exists: Boolean
+  soundcloudUrl_in: [String]
+  soundcloudUrl_not: String
+  soundcloudUrl_not_contains: String
+  soundcloudUrl_not_in: [String]
+  spotifyUrl: String
+  spotifyUrl_contains: String
+  spotifyUrl_exists: Boolean
+  spotifyUrl_in: [String]
+  spotifyUrl_not: String
+  spotifyUrl_not_contains: String
+  spotifyUrl_not_in: [String]
+  sys: SysFilter
+  tiktokUrl: String
+  tiktokUrl_contains: String
+  tiktokUrl_exists: Boolean
+  tiktokUrl_in: [String]
+  tiktokUrl_not: String
+  tiktokUrl_not_contains: String
+  tiktokUrl_not_in: [String]
+  twitterUrl: String
+  twitterUrl_contains: String
+  twitterUrl_exists: Boolean
+  twitterUrl_in: [String]
+  twitterUrl_not: String
+  twitterUrl_not_contains: String
+  twitterUrl_not_in: [String]
+  websiteUrl: String
+  websiteUrl_contains: String
+  websiteUrl_exists: Boolean
+  websiteUrl_in: [String]
+  websiteUrl_not: String
+  websiteUrl_not_contains: String
+  websiteUrl_not_in: [String]
+  youtubeMusicUrl: String
+  youtubeMusicUrl_contains: String
+  youtubeMusicUrl_exists: Boolean
+  youtubeMusicUrl_in: [String]
+  youtubeMusicUrl_not: String
+  youtubeMusicUrl_not_contains: String
+  youtubeMusicUrl_not_in: [String]
+  youtubeUrl: String
+  youtubeUrl_contains: String
+  youtubeUrl_exists: Boolean
+  youtubeUrl_in: [String]
+  youtubeUrl_not: String
+  youtubeUrl_not_contains: String
+  youtubeUrl_not_in: [String]
+}
+
+type ArtistLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  videoCollection(limit: Int = 100, locale: String, order: [ArtistLinkingCollectionsVideoCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): VideoCollection
+}
+
+enum ArtistLinkingCollectionsVideoCollectionOrder {
+  shortDescription_ASC
+  shortDescription_DESC
+  slug_ASC
+  slug_DESC
+  subtitle_ASC
+  subtitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+  uploadDate_ASC
+  uploadDate_DESC
+  videoType_ASC
+  videoType_DESC
+  videoUrl_ASC
+  videoUrl_DESC
+}
+
+enum ArtistOrder {
+  accentColor_ASC
+  accentColor_DESC
+  appleMusicUrl_ASC
+  appleMusicUrl_DESC
+  bandcampUrl_ASC
+  bandcampUrl_DESC
+  facebookUrl_ASC
+  facebookUrl_DESC
+  hometown_ASC
+  hometown_DESC
+  instagramUrl_ASC
+  instagramUrl_DESC
+  name_ASC
+  name_DESC
+  shortBio_ASC
+  shortBio_DESC
+  slug_ASC
+  slug_DESC
+  soundcloudUrl_ASC
+  soundcloudUrl_DESC
+  spotifyUrl_ASC
+  spotifyUrl_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  tiktokUrl_ASC
+  tiktokUrl_DESC
+  twitterUrl_ASC
+  twitterUrl_DESC
+  websiteUrl_ASC
+  websiteUrl_DESC
+  youtubeMusicUrl_ASC
+  youtubeMusicUrl_DESC
+  youtubeUrl_ASC
+  youtubeUrl_DESC
+}
+
+"""Represents a binary file in a space. An asset can be any file type."""
+type Asset {
+  contentType(locale: String, useFallbackLocale: Boolean): String
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String, useFallbackLocale: Boolean): String
+  fileName(locale: String, useFallbackLocale: Boolean): String
+  height(locale: String, useFallbackLocale: Boolean): Int
+  linkedFrom(allowedLocales: [String]): AssetLinkingCollections
+  size(locale: String, useFallbackLocale: Boolean): Int
+  sys: Sys!
+  title(locale: String, useFallbackLocale: Boolean): String
+  url(locale: String, transform: ImageTransformOptions, useFallbackLocale: Boolean): String
+  width(locale: String, useFallbackLocale: Boolean): Int
+}
+
+type AssetCollection {
+  items: [Asset]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input AssetFilter {
+  AND: [AssetFilter]
+  OR: [AssetFilter]
+  contentType: String
+  contentType_contains: String
+  contentType_exists: Boolean
+  contentType_in: [String]
+  contentType_not: String
+  contentType_not_contains: String
+  contentType_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  description: String
+  description_contains: String
+  description_exists: Boolean
+  description_in: [String]
+  description_not: String
+  description_not_contains: String
+  description_not_in: [String]
+  fileName: String
+  fileName_contains: String
+  fileName_exists: Boolean
+  fileName_in: [String]
+  fileName_not: String
+  fileName_not_contains: String
+  fileName_not_in: [String]
+  height: Int
+  height_exists: Boolean
+  height_gt: Int
+  height_gte: Int
+  height_in: [Int]
+  height_lt: Int
+  height_lte: Int
+  height_not: Int
+  height_not_in: [Int]
+  size: Int
+  size_exists: Boolean
+  size_gt: Int
+  size_gte: Int
+  size_in: [Int]
+  size_lt: Int
+  size_lte: Int
+  size_not: Int
+  size_not_in: [Int]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  url: String
+  url_contains: String
+  url_exists: Boolean
+  url_in: [String]
+  url_not: String
+  url_not_contains: String
+  url_not_in: [String]
+  width: Int
+  width_exists: Boolean
+  width_gt: Int
+  width_gte: Int
+  width_in: [Int]
+  width_lt: Int
+  width_lte: Int
+  width_not: Int
+  width_not_in: [Int]
+}
+
+type AssetLinkingCollections {
+  artistCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ArtistCollection
+  contributorCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ContributorCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  pageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): PageCollection
+  venueCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): VenueCollection
+  videoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): VideoCollection
+}
+
+enum AssetOrder {
+  contentType_ASC
+  contentType_DESC
+  fileName_ASC
+  fileName_DESC
+  height_ASC
+  height_DESC
+  size_ASC
+  size_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  url_ASC
+  url_DESC
+  width_ASC
+  width_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/blogPost)
+"""
+type BlogPost implements Entry & _Node {
+  _id: ID!
+  content(locale: String, useFallbackLocale: Boolean): BlogPostContent
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): BlogPostLinkingCollections
+  slug(locale: String, useFallbackLocale: Boolean): String
+  sys: Sys!
+  title(locale: String, useFallbackLocale: Boolean): String
+}
+
+type BlogPostCollection {
+  items: [BlogPost]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type BlogPostContent {
+  json: JSON!
+  links: BlogPostContentLinks!
+}
+
+type BlogPostContentAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type BlogPostContentEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type BlogPostContentLinks {
+  assets: BlogPostContentAssets!
+  entries: BlogPostContentEntries!
+  resources: BlogPostContentResources!
+}
+
+type BlogPostContentResources {
+  block: [BlogPostContentResourcesBlock!]!
+  hyperlink: [BlogPostContentResourcesHyperlink!]!
+  inline: [BlogPostContentResourcesInline!]!
+}
+
+type BlogPostContentResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type BlogPostContentResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type BlogPostContentResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+input BlogPostFilter {
+  AND: [BlogPostFilter]
+  OR: [BlogPostFilter]
+  content_contains: String
+  content_exists: Boolean
+  content_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type BlogPostLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+enum BlogPostOrder {
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+type ContentfulMetadata {
+  concepts: [TaxonomyConcept]!
+  tags: [ContentfulTag]!
+}
+
+input ContentfulMetadataConceptsDescendantsFilter {
+  id_contains_all: [String]
+  id_contains_none: [String]
+  id_contains_some: [String]
+}
+
+input ContentfulMetadataConceptsFilter {
+  descendants: ContentfulMetadataConceptsDescendantsFilter
+  id_contains_all: [String]
+  id_contains_none: [String]
+  id_contains_some: [String]
+}
+
+input ContentfulMetadataFilter {
+  concepts: ContentfulMetadataConceptsFilter
+  concepts_exists: Boolean
+  tags: ContentfulMetadataTagsFilter
+  tags_exists: Boolean
+}
+
+input ContentfulMetadataTagsFilter {
+  id_contains_all: [String]
+  id_contains_none: [String]
+  id_contains_some: [String]
+}
+
+"""
+Represents a tag entity for finding and organizing content easily.
+      Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-tags
+"""
+type ContentfulTag {
+  id: String
+  name: String
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/contributor)
+"""
+type Contributor implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  email(locale: String, useFallbackLocale: Boolean): String
+  instagram(locale: String, useFallbackLocale: Boolean): String
+  linkedFrom(allowedLocales: [String]): ContributorLinkingCollections
+  name(locale: String, useFallbackLocale: Boolean): String
+  photo(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  roles(locale: String, useFallbackLocale: Boolean): String
+  summary(locale: String, useFallbackLocale: Boolean): ContributorSummary
+  sys: Sys!
+}
+
+type ContributorCollection {
+  items: [Contributor]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ContributorFilter {
+  AND: [ContributorFilter]
+  OR: [ContributorFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  email: String
+  email_contains: String
+  email_exists: Boolean
+  email_in: [String]
+  email_not: String
+  email_not_contains: String
+  email_not_in: [String]
+  instagram: String
+  instagram_contains: String
+  instagram_exists: Boolean
+  instagram_in: [String]
+  instagram_not: String
+  instagram_not_contains: String
+  instagram_not_in: [String]
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  photo_exists: Boolean
+  roles: String
+  roles_contains: String
+  roles_exists: Boolean
+  roles_in: [String]
+  roles_not: String
+  roles_not_contains: String
+  roles_not_in: [String]
+  summary_contains: String
+  summary_exists: Boolean
+  summary_not_contains: String
+  sys: SysFilter
+}
+
+type ContributorLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  videoCollection(limit: Int = 100, locale: String, order: [ContributorLinkingCollectionsVideoCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): VideoCollection
+}
+
+enum ContributorLinkingCollectionsVideoCollectionOrder {
+  shortDescription_ASC
+  shortDescription_DESC
+  slug_ASC
+  slug_DESC
+  subtitle_ASC
+  subtitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+  uploadDate_ASC
+  uploadDate_DESC
+  videoType_ASC
+  videoType_DESC
+  videoUrl_ASC
+  videoUrl_DESC
+}
+
+enum ContributorOrder {
+  email_ASC
+  email_DESC
+  instagram_ASC
+  instagram_DESC
+  name_ASC
+  name_DESC
+  roles_ASC
+  roles_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type ContributorSummary {
+  json: JSON!
+  links: ContributorSummaryLinks!
+}
+
+type ContributorSummaryAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ContributorSummaryEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ContributorSummaryLinks {
+  assets: ContributorSummaryAssets!
+  entries: ContributorSummaryEntries!
+  resources: ContributorSummaryResources!
+}
+
+type ContributorSummaryResources {
+  block: [ContributorSummaryResourcesBlock!]!
+  hyperlink: [ContributorSummaryResourcesHyperlink!]!
+  inline: [ContributorSummaryResourcesInline!]!
+}
+
+type ContributorSummaryResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ContributorSummaryResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ContributorSummaryResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z,
+    compliant with the 'date-time' format outlined in section 5.6 of
+    the RFC 3339 profile of the ISO 8601 standard for representation
+    of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""
+The 'Dimension' type represents dimensions as whole numeric values between `1` and `4000`.
+"""
+scalar Dimension
+
+interface Entry {
+  contentfulMetadata: ContentfulMetadata!
+  sys: Sys!
+}
+
+type EntryCollection {
+  items: [Entry]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input EntryFilter {
+  AND: [EntryFilter]
+  OR: [EntryFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+}
+
+enum EntryOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""The 'HexColor' type represents color in `rgb:ffffff` string format."""
+scalar HexColor
+
+enum ImageFormat {
+  """AVIF image format."""
+  AVIF
+  """JPG image format."""
+  JPG
+  """
+  Progressive JPG format stores multiple passes of an image in progressively higher detail.
+          When a progressive image is loading, the viewer will first see a lower quality pixelated version which
+          will gradually improve in detail, until the image is fully downloaded. This is to display an image as
+          early as possible to make the layout look as designed.
+  """
+  JPG_PROGRESSIVE
+  """PNG image format"""
+  PNG
+  """
+  8-bit PNG images support up to 256 colors and weigh less than the standard 24-bit PNG equivalent.
+          The 8-bit PNG format is mostly used for simple images, such as icons or logos.
+  """
+  PNG8
+  """WebP image format."""
+  WEBP
+}
+
+enum ImageResizeFocus {
+  """Focus the resizing on the bottom."""
+  BOTTOM
+  """Focus the resizing on the bottom left."""
+  BOTTOM_LEFT
+  """Focus the resizing on the bottom right."""
+  BOTTOM_RIGHT
+  """Focus the resizing on the center."""
+  CENTER
+  """Focus the resizing on the largest face."""
+  FACE
+  """Focus the resizing on the area containing all the faces."""
+  FACES
+  """Focus the resizing on the left."""
+  LEFT
+  """Focus the resizing on the right."""
+  RIGHT
+  """Focus the resizing on the top."""
+  TOP
+  """Focus the resizing on the top left."""
+  TOP_LEFT
+  """Focus the resizing on the top right."""
+  TOP_RIGHT
+}
+
+enum ImageResizeStrategy {
+  """
+  Crops a part of the original image to fit into the specified dimensions.
+  """
+  CROP
+  """
+  Resizes the image to the specified dimensions, cropping the image if needed.
+  """
+  FILL
+  """Resizes the image to fit into the specified dimensions."""
+  FIT
+  """
+  Resizes the image to the specified dimensions, padding the image if needed.
+          Uses desired background color as padding color.
+  """
+  PAD
+  """
+  Resizes the image to the specified dimensions, changing the original aspect ratio if needed.
+  """
+  SCALE
+  """Creates a thumbnail from the image."""
+  THUMB
+}
+
+input ImageTransformOptions {
+  """
+  Desired background color, used with corner radius or `PAD` resize strategy.
+          Defaults to transparent (for `PNG`, `PNG8` and `WEBP`) or white (for `JPG` and `JPG_PROGRESSIVE`).
+  """
+  backgroundColor: HexColor
+  """
+  Desired corner radius in pixels.
+          Results in an image with rounded corners (pass `-1` for a full circle/ellipse).
+          Defaults to `0`. Uses desired background color as padding color,
+          unless the format is `JPG` or `JPG_PROGRESSIVE` and resize strategy is `PAD`, then defaults to white.
+  """
+  cornerRadius: Int
+  """Desired image format. Defaults to the original image format."""
+  format: ImageFormat
+  """Desired height in pixels. Defaults to the original image height."""
+  height: Dimension
+  """
+  Desired quality of the image in percents.
+          Used for `PNG8`, `JPG`, `JPG_PROGRESSIVE` and `WEBP` formats.
+  """
+  quality: Quality
+  """Desired resize focus area. Defaults to `CENTER`."""
+  resizeFocus: ImageResizeFocus
+  """Desired resize strategy. Defaults to `FIT`."""
+  resizeStrategy: ImageResizeStrategy
+  """Desired width in pixels. Defaults to the original image width."""
+  width: Dimension
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+[See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/page)
+"""
+type Page implements Entry & _Node {
+  _id: ID!
+  backgroundImage(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  content(locale: String, useFallbackLocale: Boolean): PageContent
+  contentfulMetadata: ContentfulMetadata!
+  heading(locale: String, useFallbackLocale: Boolean): String
+  linkedFrom(allowedLocales: [String]): PageLinkingCollections
+  metaDescription(locale: String, useFallbackLocale: Boolean): String
+  metaImage(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  metaTitle(locale: String, useFallbackLocale: Boolean): String
+  name(locale: String, useFallbackLocale: Boolean): String
+  slug(locale: String, useFallbackLocale: Boolean): String
+  subheading(locale: String, useFallbackLocale: Boolean): PageSubheading
+  sys: Sys!
+}
+
+type PageCollection {
+  items: [Page]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type PageContent {
+  json: JSON!
+  links: PageContentLinks!
+}
+
+type PageContentAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type PageContentEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type PageContentLinks {
+  assets: PageContentAssets!
+  entries: PageContentEntries!
+  resources: PageContentResources!
+}
+
+type PageContentResources {
+  block: [PageContentResourcesBlock!]!
+  hyperlink: [PageContentResourcesHyperlink!]!
+  inline: [PageContentResourcesInline!]!
+}
+
+type PageContentResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageContentResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageContentResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+input PageFilter {
+  AND: [PageFilter]
+  OR: [PageFilter]
+  backgroundImage_exists: Boolean
+  content_contains: String
+  content_exists: Boolean
+  content_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  heading: String
+  heading_contains: String
+  heading_exists: Boolean
+  heading_in: [String]
+  heading_not: String
+  heading_not_contains: String
+  heading_not_in: [String]
+  metaDescription: String
+  metaDescription_contains: String
+  metaDescription_exists: Boolean
+  metaDescription_in: [String]
+  metaDescription_not: String
+  metaDescription_not_contains: String
+  metaDescription_not_in: [String]
+  metaImage_exists: Boolean
+  metaTitle: String
+  metaTitle_contains: String
+  metaTitle_exists: Boolean
+  metaTitle_in: [String]
+  metaTitle_not: String
+  metaTitle_not_contains: String
+  metaTitle_not_in: [String]
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  subheading_contains: String
+  subheading_exists: Boolean
+  subheading_not_contains: String
+  sys: SysFilter
+}
+
+type PageLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+enum PageOrder {
+  heading_ASC
+  heading_DESC
+  metaDescription_ASC
+  metaDescription_DESC
+  metaTitle_ASC
+  metaTitle_DESC
+  name_ASC
+  name_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type PageSubheading {
+  json: JSON!
+  links: PageSubheadingLinks!
+}
+
+type PageSubheadingAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type PageSubheadingEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type PageSubheadingLinks {
+  assets: PageSubheadingAssets!
+  entries: PageSubheadingEntries!
+  resources: PageSubheadingResources!
+}
+
+type PageSubheadingResources {
+  block: [PageSubheadingResourcesBlock!]!
+  hyperlink: [PageSubheadingResourcesHyperlink!]!
+  inline: [PageSubheadingResourcesInline!]!
+}
+
+type PageSubheadingResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageSubheadingResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageSubheadingResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+"""
+The 'Quality' type represents quality as whole numeric values between `1` and `100`.
+"""
+scalar Quality
+
+type Query {
+  _node(id: ID!, locale: String, preview: Boolean, useFallbackLocale: Boolean): _Node
+  _nodes(ids: [ID!]!, locale: String, preview: Boolean, useFallbackLocale: Boolean): [_Node]!
+  artist(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Artist
+  artistCollection(limit: Int = 100, locale: String, order: [ArtistOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ArtistFilter): ArtistCollection
+  asset(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: AssetFilter): AssetCollection
+  blogPost(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): BlogPost
+  blogPostCollection(limit: Int = 100, locale: String, order: [BlogPostOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: BlogPostFilter): BlogPostCollection
+  contributor(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Contributor
+  contributorCollection(limit: Int = 100, locale: String, order: [ContributorOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ContributorFilter): ContributorCollection
+  entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: EntryFilter): EntryCollection
+  page(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Page
+  pageCollection(limit: Int = 100, locale: String, order: [PageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: PageFilter): PageCollection
+  venue(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Venue
+  venueCollection(limit: Int = 100, locale: String, order: [VenueOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: VenueFilter): VenueCollection
+  video(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Video
+  videoCollection(limit: Int = 100, locale: String, order: [VideoOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: VideoFilter): VideoCollection
+}
+
+interface ResourceLink {
+  sys: ResourceSys!
+}
+
+type ResourceSys {
+  linkType: String!
+  urn: String!
+}
+
+type Sys {
+  environmentId: String!
+  firstPublishedAt: DateTime
+  id: String!
+  """The locale that was requested."""
+  locale: String
+  publishedAt: DateTime
+  publishedVersion: Int
+  spaceId: String!
+}
+
+input SysFilter {
+  firstPublishedAt: DateTime
+  firstPublishedAt_exists: Boolean
+  firstPublishedAt_gt: DateTime
+  firstPublishedAt_gte: DateTime
+  firstPublishedAt_in: [DateTime]
+  firstPublishedAt_lt: DateTime
+  firstPublishedAt_lte: DateTime
+  firstPublishedAt_not: DateTime
+  firstPublishedAt_not_in: [DateTime]
+  id: String
+  id_contains: String
+  id_exists: Boolean
+  id_in: [String]
+  id_not: String
+  id_not_contains: String
+  id_not_in: [String]
+  publishedAt: DateTime
+  publishedAt_exists: Boolean
+  publishedAt_gt: DateTime
+  publishedAt_gte: DateTime
+  publishedAt_in: [DateTime]
+  publishedAt_lt: DateTime
+  publishedAt_lte: DateTime
+  publishedAt_not: DateTime
+  publishedAt_not_in: [DateTime]
+  publishedVersion: Float
+  publishedVersion_exists: Boolean
+  publishedVersion_gt: Float
+  publishedVersion_gte: Float
+  publishedVersion_in: [Float]
+  publishedVersion_lt: Float
+  publishedVersion_lte: Float
+  publishedVersion_not: Float
+  publishedVersion_not_in: [Float]
+}
+
+"""
+Represents a taxonomy concept entity for finding and organizing content easily.
+        Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-concepts
+"""
+type TaxonomyConcept {
+  id: String
+}
+
+input TimelineFilterInput {
+  """Preview content starting from a given release date"""
+  release_lte: String
+  """Preview content starting from a given timestamp"""
+  timestamp_lte: DateTime
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/venue)
+"""
+type Venue implements Entry & _Node {
+  _id: ID!
+  about(locale: String, useFallbackLocale: Boolean): String
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): VenueLinkingCollections
+  location(locale: String, useFallbackLocale: Boolean): String
+  logo(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  name(locale: String, useFallbackLocale: Boolean): String
+  slug(locale: String, useFallbackLocale: Boolean): String
+  sys: Sys!
+}
+
+type VenueCollection {
+  items: [Venue]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input VenueFilter {
+  AND: [VenueFilter]
+  OR: [VenueFilter]
+  about: String
+  about_contains: String
+  about_exists: Boolean
+  about_in: [String]
+  about_not: String
+  about_not_contains: String
+  about_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  location: String
+  location_contains: String
+  location_exists: Boolean
+  location_in: [String]
+  location_not: String
+  location_not_contains: String
+  location_not_in: [String]
+  logo_exists: Boolean
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+}
+
+type VenueLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  videoCollection(limit: Int = 100, locale: String, order: [VenueLinkingCollectionsVideoCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): VideoCollection
+}
+
+enum VenueLinkingCollectionsVideoCollectionOrder {
+  shortDescription_ASC
+  shortDescription_DESC
+  slug_ASC
+  slug_DESC
+  subtitle_ASC
+  subtitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+  uploadDate_ASC
+  uploadDate_DESC
+  videoType_ASC
+  videoType_DESC
+  videoUrl_ASC
+  videoUrl_DESC
+}
+
+enum VenueOrder {
+  location_ASC
+  location_DESC
+  name_ASC
+  name_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/iy94k83j702j/content_types/video)
+"""
+type Video implements Entry & _Node {
+  _id: ID!
+  artist(locale: String, preview: Boolean, useFallbackLocale: Boolean, where: ArtistFilter): Artist
+  contentfulMetadata: ContentfulMetadata!
+  contributorsCollection(limit: Int = 100, locale: String, order: [VideoContributorsCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ContributorFilter): VideoContributorsCollection
+  linkedFrom(allowedLocales: [String]): VideoLinkingCollections
+  longDescription(locale: String, useFallbackLocale: Boolean): VideoLongDescription
+  shortDescription(locale: String, useFallbackLocale: Boolean): String
+  slug(locale: String, useFallbackLocale: Boolean): String
+  subtitle(locale: String, useFallbackLocale: Boolean): String
+  sys: Sys!
+  thumbnail(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  title(locale: String, useFallbackLocale: Boolean): String
+  uploadDate(locale: String, useFallbackLocale: Boolean): DateTime
+  venue(locale: String, preview: Boolean, useFallbackLocale: Boolean, where: VenueFilter): Venue
+  videoType(locale: String, useFallbackLocale: Boolean): String
+  videoUrl(locale: String, useFallbackLocale: Boolean): String
+}
+
+type VideoCollection {
+  items: [Video]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type VideoContributorsCollection {
+  items: [Contributor]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum VideoContributorsCollectionOrder {
+  email_ASC
+  email_DESC
+  instagram_ASC
+  instagram_DESC
+  name_ASC
+  name_DESC
+  roles_ASC
+  roles_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+input VideoFilter {
+  AND: [VideoFilter]
+  OR: [VideoFilter]
+  artist: cfArtistNestedFilter
+  artist_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  contributors: cfContributorNestedFilter
+  contributorsCollection_exists: Boolean
+  longDescription_contains: String
+  longDescription_exists: Boolean
+  longDescription_not_contains: String
+  shortDescription: String
+  shortDescription_contains: String
+  shortDescription_exists: Boolean
+  shortDescription_in: [String]
+  shortDescription_not: String
+  shortDescription_not_contains: String
+  shortDescription_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  subtitle: String
+  subtitle_contains: String
+  subtitle_exists: Boolean
+  subtitle_in: [String]
+  subtitle_not: String
+  subtitle_not_contains: String
+  subtitle_not_in: [String]
+  sys: SysFilter
+  thumbnail_exists: Boolean
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  uploadDate: DateTime
+  uploadDate_exists: Boolean
+  uploadDate_gt: DateTime
+  uploadDate_gte: DateTime
+  uploadDate_in: [DateTime]
+  uploadDate_lt: DateTime
+  uploadDate_lte: DateTime
+  uploadDate_not: DateTime
+  uploadDate_not_in: [DateTime]
+  venue: cfVenueNestedFilter
+  venue_exists: Boolean
+  videoType: String
+  videoType_contains: String
+  videoType_exists: Boolean
+  videoType_in: [String]
+  videoType_not: String
+  videoType_not_contains: String
+  videoType_not_in: [String]
+  videoUrl: String
+  videoUrl_contains: String
+  videoUrl_exists: Boolean
+  videoUrl_in: [String]
+  videoUrl_not: String
+  videoUrl_not_contains: String
+  videoUrl_not_in: [String]
+}
+
+type VideoLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+type VideoLongDescription {
+  json: JSON!
+  links: VideoLongDescriptionLinks!
+}
+
+type VideoLongDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type VideoLongDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type VideoLongDescriptionLinks {
+  assets: VideoLongDescriptionAssets!
+  entries: VideoLongDescriptionEntries!
+  resources: VideoLongDescriptionResources!
+}
+
+type VideoLongDescriptionResources {
+  block: [VideoLongDescriptionResourcesBlock!]!
+  hyperlink: [VideoLongDescriptionResourcesHyperlink!]!
+  inline: [VideoLongDescriptionResourcesInline!]!
+}
+
+type VideoLongDescriptionResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type VideoLongDescriptionResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type VideoLongDescriptionResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+enum VideoOrder {
+  shortDescription_ASC
+  shortDescription_DESC
+  slug_ASC
+  slug_DESC
+  subtitle_ASC
+  subtitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+  uploadDate_ASC
+  uploadDate_DESC
+  videoType_ASC
+  videoType_DESC
+  videoUrl_ASC
+  videoUrl_DESC
+}
+
+interface _Node {
+  _id: ID!
+}
+
+input cfArtistNestedFilter {
+  AND: [cfArtistNestedFilter]
+  OR: [cfArtistNestedFilter]
+  accentColor: String
+  accentColor_contains: String
+  accentColor_exists: Boolean
+  accentColor_in: [String]
+  accentColor_not: String
+  accentColor_not_contains: String
+  accentColor_not_in: [String]
+  appleMusicUrl: String
+  appleMusicUrl_contains: String
+  appleMusicUrl_exists: Boolean
+  appleMusicUrl_in: [String]
+  appleMusicUrl_not: String
+  appleMusicUrl_not_contains: String
+  appleMusicUrl_not_in: [String]
+  bandcampUrl: String
+  bandcampUrl_contains: String
+  bandcampUrl_exists: Boolean
+  bandcampUrl_in: [String]
+  bandcampUrl_not: String
+  bandcampUrl_not_contains: String
+  bandcampUrl_not_in: [String]
+  bio_contains: String
+  bio_exists: Boolean
+  bio_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  facebookUrl: String
+  facebookUrl_contains: String
+  facebookUrl_exists: Boolean
+  facebookUrl_in: [String]
+  facebookUrl_not: String
+  facebookUrl_not_contains: String
+  facebookUrl_not_in: [String]
+  hometown: String
+  hometown_contains: String
+  hometown_exists: Boolean
+  hometown_in: [String]
+  hometown_not: String
+  hometown_not_contains: String
+  hometown_not_in: [String]
+  instagramUrl: String
+  instagramUrl_contains: String
+  instagramUrl_exists: Boolean
+  instagramUrl_in: [String]
+  instagramUrl_not: String
+  instagramUrl_not_contains: String
+  instagramUrl_not_in: [String]
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  photo_exists: Boolean
+  shortBio: String
+  shortBio_contains: String
+  shortBio_exists: Boolean
+  shortBio_in: [String]
+  shortBio_not: String
+  shortBio_not_contains: String
+  shortBio_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  soundcloudUrl: String
+  soundcloudUrl_contains: String
+  soundcloudUrl_exists: Boolean
+  soundcloudUrl_in: [String]
+  soundcloudUrl_not: String
+  soundcloudUrl_not_contains: String
+  soundcloudUrl_not_in: [String]
+  spotifyUrl: String
+  spotifyUrl_contains: String
+  spotifyUrl_exists: Boolean
+  spotifyUrl_in: [String]
+  spotifyUrl_not: String
+  spotifyUrl_not_contains: String
+  spotifyUrl_not_in: [String]
+  sys: SysFilter
+  tiktokUrl: String
+  tiktokUrl_contains: String
+  tiktokUrl_exists: Boolean
+  tiktokUrl_in: [String]
+  tiktokUrl_not: String
+  tiktokUrl_not_contains: String
+  tiktokUrl_not_in: [String]
+  twitterUrl: String
+  twitterUrl_contains: String
+  twitterUrl_exists: Boolean
+  twitterUrl_in: [String]
+  twitterUrl_not: String
+  twitterUrl_not_contains: String
+  twitterUrl_not_in: [String]
+  websiteUrl: String
+  websiteUrl_contains: String
+  websiteUrl_exists: Boolean
+  websiteUrl_in: [String]
+  websiteUrl_not: String
+  websiteUrl_not_contains: String
+  websiteUrl_not_in: [String]
+  youtubeMusicUrl: String
+  youtubeMusicUrl_contains: String
+  youtubeMusicUrl_exists: Boolean
+  youtubeMusicUrl_in: [String]
+  youtubeMusicUrl_not: String
+  youtubeMusicUrl_not_contains: String
+  youtubeMusicUrl_not_in: [String]
+  youtubeUrl: String
+  youtubeUrl_contains: String
+  youtubeUrl_exists: Boolean
+  youtubeUrl_in: [String]
+  youtubeUrl_not: String
+  youtubeUrl_not_contains: String
+  youtubeUrl_not_in: [String]
+}
+
+input cfContributorNestedFilter {
+  AND: [cfContributorNestedFilter]
+  OR: [cfContributorNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  email: String
+  email_contains: String
+  email_exists: Boolean
+  email_in: [String]
+  email_not: String
+  email_not_contains: String
+  email_not_in: [String]
+  instagram: String
+  instagram_contains: String
+  instagram_exists: Boolean
+  instagram_in: [String]
+  instagram_not: String
+  instagram_not_contains: String
+  instagram_not_in: [String]
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  photo_exists: Boolean
+  roles: String
+  roles_contains: String
+  roles_exists: Boolean
+  roles_in: [String]
+  roles_not: String
+  roles_not_contains: String
+  roles_not_in: [String]
+  summary_contains: String
+  summary_exists: Boolean
+  summary_not_contains: String
+  sys: SysFilter
+}
+
+input cfVenueNestedFilter {
+  AND: [cfVenueNestedFilter]
+  OR: [cfVenueNestedFilter]
+  about: String
+  about_contains: String
+  about_exists: Boolean
+  about_in: [String]
+  about_not: String
+  about_not_contains: String
+  about_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  location: String
+  location_contains: String
+  location_exists: Boolean
+  location_in: [String]
+  location_not: String
+  location_not_contains: String
+  location_not_in: [String]
+  logo_exists: Boolean
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+}

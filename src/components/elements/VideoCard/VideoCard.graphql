@@ -1,0 +1,19 @@
+fragment VideoCard on Video {
+  _id
+  title
+  subtitle
+  slug
+  videoType
+  uploadDate
+  thumbnail {
+    url
+  }
+  artist {
+    name
+    accentColor
+    slug
+    photo {
+      url
+    }
+  }
+}
