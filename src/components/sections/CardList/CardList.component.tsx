@@ -21,7 +21,7 @@ function CardListContent({ children, ...gridProps }: SimpleGridProps) {
 
 function CardList({ children }: { children: React.ReactNode }) {
   return (
-    <Box>
+    <Box py="lg">
       <Container>{children}</Container>
     </Box>
   );

@@ -1,0 +1,9 @@
+fragment ArtistCard on Artist {
+  _id
+  name
+  accentColor
+  slug
+  photo {
+    url
+  }
+}

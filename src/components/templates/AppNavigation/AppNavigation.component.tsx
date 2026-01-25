@@ -1,5 +1,5 @@
 import { Box, Container, Group, Text } from '@mantine/core';
-import { AFoVLogo } from '~/components/elements';
+import { AFoVLogo, Link } from '~/components/elements';
 
 import css from './AppNavigation.module.css';
 
@@ -8,10 +8,12 @@ function Header() {
     <Box component="header" className={css.Header} p="md">
       <Container>
         <Group component="nav" justify="space-between">
-          <AFoVLogo w="120" />
+          <Link href="/" c="inherit">
+            <AFoVLogo w="120" />
+          </Link>
           <Group>
-            <Text>Artists</Text>
-            <Text>Videos</Text>
+            <Link href="/artists">Artists</Link>
+            <Link href="/videos">Videos</Link>
           </Group>
         </Group>
       </Container>

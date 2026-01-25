@@ -65,6 +65,7 @@
     "eslint-config-mantine": "^4.0.3",
     "eslint-config-next": "16.0.7",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "plop": "^4.0.4",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.7.4",

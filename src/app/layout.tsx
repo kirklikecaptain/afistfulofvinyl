@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Purveyors of punk, folk, and diy culture since 2010',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" {...themeHtmlProps}>
       <head>
