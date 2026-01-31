@@ -6,7 +6,7 @@ export type AFoVLogoProps = BoxProps & {
 };
 
 export function AFoVLogo(props: AFoVLogoProps) {
-  const { variant = 'full', w = '10rem', ...boxProps } = props;
+  const { variant = 'full', w, ...boxProps } = props;
 
   const { viewBox, path } = afovSvgData[variant];
 

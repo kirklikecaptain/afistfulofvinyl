@@ -1,0 +1,153 @@
+@keyframes scan-lines {
+  0% {
+    background-position-y: 0;
+  }
+
+  100% {
+    background-position-y: 5px;
+  }
+}
+
+.afovLogoTop {
+  width: clamp(6rem, 40vw, 30rem);
+  position: relative;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.layer1,
+.layer2,
+.layer3 {
+  transition: all 0.2s ease-in-out;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.layer1 {
+  color: red;
+}
+
+.layer2 {
+  color: lightgreen;
+}
+
+.layer3 {
+  color: blue;
+}
+
+.scanLinesOverlay {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.2s ease-in-out;
+  background-image: url('/noise-swatch.png');
+  background-size: 200px;
+  opacity: 0;
+
+  &::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    transform-origin: center;
+    background-size: 100% 5px;
+    background-position-y: 0;
+    background-image: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 5%),
+      rgb(0 0 0 / 5%) 50%,
+      rgb(255 255 255 / 5%) 50%,
+      rgb(255 255 255 / 5%)
+    );
+  }
+}
+
+.section {
+  position: relative;
+  padding: 7rem 0;
+
+  &:has(.afovLogoGroup:hover) .scanLinesOverlay {
+    opacity: 1;
+
+    &::after {
+      opacity: 1;
+      animation: scan-lines 0.5s linear infinite;
+    }
+  }
+}
+
+.afovLogoGroup {
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+  isolation: isolate;
+
+  &:hover {
+    transform: scale(1.02);
+
+    & .afovLogoTop {
+      opacity: 0;
+    }
+
+    & .layer1,
+    & .layer2,
+    & .layer3 {
+      opacity: 1;
+    }
+
+    & .layer1 {
+      transform: scale(0.96);
+      filter: blur(1.5px);
+    }
+
+    & .layer3 {
+      transform: scale(1.04);
+      filter: blur(1.5px);
+    }
+  }
+}
+
+.heading {
+  position: relative;
+  z-index: 1;
+}
+
+/* html.light .section:has(.afovLogoGroup:hover) .scanLinesOverlay {
+  opacity: 0.5;
+} */
+
+/* html.light .afovLogoLayer {
+  mix-blend-mode: multiply;
+
+  &.layer1 {
+    color: red;
+  }
+
+  &.layer2 {
+    color: green;
+  }
+
+  &.layer3 {
+    color: blue;
+  }
+} */
+
+/* html.dark .afovLogoLayer {
+  mix-blend-mode: screen;
+
+  &.layer1 {
+    color: red;
+  }
+
+  &.layer2 {
+    color: lightgreen;
+  }
+
+  &.layer3 {
+    color: blue;
+  }
+} */

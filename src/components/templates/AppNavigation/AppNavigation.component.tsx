@@ -1,4 +1,4 @@
-import { Box, Container, Group, Text } from '@mantine/core';
+import { Box, Container, Group } from '@mantine/core';
 import { AFoVLogo, Link } from '~/components/elements';
 
 import css from './AppNavigation.module.css';
