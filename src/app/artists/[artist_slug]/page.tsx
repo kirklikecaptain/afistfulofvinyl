@@ -1,6 +1,8 @@
-import { CardList, VideoCard } from '~/components';
-import { getArtistPageData } from './page.data';
 import { notFound } from 'next/navigation';
+
+import { CardSection, VideoCard } from '~/components';
+
+import { getArtistPageData } from './page.data';
 
 export default async function ArtistPage({ params }: PageProps<'/artists/[artist_slug]'>) {
   const { artist_slug } = await params;
@@ -13,16 +15,14 @@ export default async function ArtistPage({ params }: PageProps<'/artists/[artist
   return (
     <div>
       <div>{artist?.name}</div>
-      <CardList>
-        <CardList.Title order={2} mb="md">
-          Videos by {artist?.name}
-        </CardList.Title>
-        <CardList.Content spacing="lg">
+      <CardSection>
+        <CardSection.Title>Videos by {artist?.name}</CardSection.Title>
+        <CardSection.Grid>
           {videos.map((video) => (
-            <VideoCard key={video._id} _fragment={video} />
+            <VideoCard key={video._id} fragment={video} />
           ))}
-        </CardList.Content>
-      </CardList>
+        </CardSection.Grid>
+      </CardSection>
     </div>
   );
 }

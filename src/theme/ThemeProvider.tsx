@@ -1,6 +1,7 @@
 'use client';
 
 import { MantineProvider } from '@mantine/core';
+
 import { theme } from './config';
 import { afov, defaultColorScheme } from './constants';
 

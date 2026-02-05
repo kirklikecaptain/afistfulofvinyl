@@ -14,7 +14,9 @@
     "jsx": "react-jsx",
     "incremental": true,
     "verbatimModuleSyntax": true,
-    "paths": { "~/*": ["./src/*"] },
+    "paths": {
+      "~/*": ["./src/*"]
+    },
     "plugins": [
       { "name": "next" },
       { "name": "@0no-co/graphqlsp", "schema": "./schema.graphql", "trackFieldUsage": false }
@@ -23,6 +25,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "**/*.mjs",
     "**/*.mts",
     "next-env.d.ts",
     ".next/types/**/*.ts",

@@ -1,4 +1,4 @@
-import type { Maybe } from '../__generated__/graphql';
+import type { Maybe } from '~/contentful/__generated__/graphql';
 
 export function isNonNullable<I>(item: Maybe<I>): item is NonNullable<I> {
   return item != null && item !== undefined;

@@ -1,7 +1,9 @@
 import '@mantine/core/styles.css';
+
 import type { Metadata } from 'next';
+
 import { AppNavigation } from '~/components';
-import { ThemeProvider, ThemeScript, themeHtmlProps } from '~/theme';
+import { themeHtmlProps, ThemeProvider, ThemeScript } from '~/theme';
 
 export const metadata: Metadata = {
   title: 'A Fistful of Vinyl',

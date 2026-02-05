@@ -1,19 +1,18 @@
-import { CardList, ArtistCard } from '~/components';
+import { ArtistCard, CardSection } from '~/components';
+
 import { getAllArtistsPageData } from './page.data';
 
 export default async function ArtistsPage() {
-  const data = await getAllArtistsPageData();
+  const { artists } = await getAllArtistsPageData();
 
   return (
-    <CardList>
-      <CardList.Title order={2} mb="md">
-        Artists
-      </CardList.Title>
-      <CardList.Content spacing="lg">
-        {data.artists.map((artist) => (
-          <ArtistCard key={artist._id} _fragment={artist} />
+    <CardSection>
+      <CardSection.Title>Artists</CardSection.Title>
+      <CardSection.Grid>
+        {artists.map((artist) => (
+          <ArtistCard key={artist._id} fragment={artist} />
         ))}
-      </CardList.Content>
-    </CardList>
+      </CardSection.Grid>
+    </CardSection>
   );
 }

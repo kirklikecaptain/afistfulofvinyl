@@ -1,8 +1,11 @@
 import { notFound } from 'next/navigation';
+
 import { getVideoPageData } from './page.data';
 
-export default async function VideoPage(props: PageProps<'/artists/[artist_slug]/[video_slug]'>) {
-  const { artist_slug, video_slug } = await props.params;
+export default async function VideoPage({
+  params,
+}: PageProps<'/artists/[artist_slug]/[video_slug]'>) {
+  const { artist_slug, video_slug } = await params;
   const { video } = await getVideoPageData(artist_slug, video_slug);
 
   if (!video) {

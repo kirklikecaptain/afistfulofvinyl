@@ -5,4 +5,4 @@ node_modules
 *.lock
 pnpm-lock.yaml
 **/__generated__
-.hbs
+**/*.hbs

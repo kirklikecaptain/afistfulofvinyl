@@ -1,0 +1,1 @@
+export { AFoVHero } from './AFoVHero';

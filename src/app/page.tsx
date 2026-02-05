@@ -1,4 +1,4 @@
-import { Page, VideoCard, AFoVHero, CardList } from '~/components';
+import { AFoVHero, CardSection, Page, VideoCard } from '~/components';
 
 import { getHomePageData } from './page.data';
 
@@ -8,16 +8,14 @@ export default async function HomePage() {
   return (
     <Page>
       <AFoVHero />
-      <CardList>
-        <CardList.Title order={2} mb="md">
-          Recent Videos
-        </CardList.Title>
-        <CardList.Content spacing="lg">
+      <CardSection>
+        <CardSection.Title>Recent Videos</CardSection.Title>
+        <CardSection.Grid>
           {recentVideos.map((video) => (
-            <VideoCard key={video._id} _fragment={video} />
+            <VideoCard key={video._id} fragment={video} />
           ))}
-        </CardList.Content>
-      </CardList>
+        </CardSection.Grid>
+      </CardSection>
     </Page>
   );
 }
