@@ -1,8 +1,7 @@
-'use client';
-
-import { Container, createTheme } from '@mantine/core';
+import { createTheme, Container } from '@mantine/core';
 
 export const theme = createTheme({
+  primaryColor: 'gray',
   components: {
     Container: Container.extend({
       defaultProps: {

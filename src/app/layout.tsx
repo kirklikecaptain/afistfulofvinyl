@@ -1,18 +1,23 @@
 import '@mantine/core/styles.css';
+import '@mantine/spotlight/styles.css';
 
 import type { Metadata } from 'next';
 
-import { AppNavigation } from '~/components';
-import { themeHtmlProps, ThemeProvider, ThemeScript } from '~/theme';
+import { AppLayout, AppSpotlight, Html } from '~/components';
+import { ThemeProvider, ThemeScript } from '~/theme';
+
+import { getRootLayoutData } from './layout.data';
 
 export const metadata: Metadata = {
   title: 'A Fistful of Vinyl',
   description: 'Purveyors of punk, folk, and diy culture since 2010',
 };
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default async function RootLayout({ children }: LayoutProps<'/'>) {
+  const { spotlightData } = await getRootLayoutData();
+
   return (
-    <html lang="en" {...themeHtmlProps}>
+    <Html>
       <head>
         <ThemeScript />
         <link rel="shortcut icon" href="/favicon.svg" />
@@ -23,9 +28,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       </head>
       <body>
         <ThemeProvider>
-          <AppNavigation>{children}</AppNavigation>
+          <AppLayout>{children}</AppLayout>
+          <AppSpotlight artists={spotlightData.artists} videos={spotlightData.videos} />
         </ThemeProvider>
       </body>
-    </html>
+    </Html>
   );
 }

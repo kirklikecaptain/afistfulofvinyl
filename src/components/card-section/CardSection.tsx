@@ -1,3 +1,5 @@
+import { Stack } from '@mantine/core';
+
 import { Section } from '~/components/section';
 
 import { CardSectionTitle, CardSectionGrid } from './CardSection.parts';
@@ -8,7 +10,11 @@ export interface CardSectionProps {
 }
 
 export function CardSection({ children }: CardSectionProps) {
-  return <Section>{children}</Section>;
+  return (
+    <Section>
+      <Stack>{children}</Stack>
+    </Section>
+  );
 }
 
 CardSection.Title = CardSectionTitle;

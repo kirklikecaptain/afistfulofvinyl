@@ -6,7 +6,7 @@ import css from './AFoVHero.module.css';
 
 export function AFoVHero() {
   return (
-    <Box bg="dark.9" py="xl" className={css.section}>
+    <Box bg="dark.9" className={css.section}>
       <Container>
         <Stack align="center" justify="center">
           <Box className={css.afovLogoGroup}>
@@ -16,7 +16,7 @@ export function AFoVHero() {
             <AFoVLogo className={css.afovLogoTop} />
           </Box>
           <Text className={css.heading}>
-            Purveyors of DIY music and culture off and on since 2008
+            Purveyors of DIY music and culture off-and-on since 2008
           </Text>
         </Stack>
       </Container>

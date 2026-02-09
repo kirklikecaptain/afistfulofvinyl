@@ -1,7 +1,11 @@
 import { SimpleGrid, Title, type SimpleGridProps, type TitleProps } from '@mantine/core';
 
 export function CardSectionTitle({ children, ...titleProps }: TitleProps) {
-  return <Title {...titleProps}>{children}</Title>;
+  return (
+    <Title order={2} {...titleProps}>
+      {children}
+    </Title>
+  );
 }
 
 export function CardSectionGrid({ children, ...gridProps }: SimpleGridProps) {
