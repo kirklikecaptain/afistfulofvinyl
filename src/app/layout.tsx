@@ -4,9 +4,10 @@ import '@mantine/spotlight/styles.css';
 import type { Metadata } from 'next';
 
 import { AppLayout, AppSpotlight, Html } from '~/components';
-import { ThemeProvider, ThemeScript } from '~/theme';
+import { ThemeScript } from '~/lib/mantine';
+import { getRootLayoutData } from '~/queries';
 
-import { getRootLayoutData } from './layout.data';
+import { RootLayoutProvider } from './layout.provider';
 
 export const metadata: Metadata = {
   title: 'A Fistful of Vinyl',
@@ -27,10 +28,10 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
         />
       </head>
       <body>
-        <ThemeProvider>
+        <RootLayoutProvider>
           <AppLayout>{children}</AppLayout>
           <AppSpotlight artists={spotlightData.artists} videos={spotlightData.videos} />
-        </ThemeProvider>
+        </RootLayoutProvider>
       </body>
     </Html>
   );

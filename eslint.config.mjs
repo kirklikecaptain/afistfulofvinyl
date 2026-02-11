@@ -78,7 +78,7 @@ const ignoredFiles = globalIgnores([
   'build/**',
   'next-env.d.ts',
   '_archive/**',
-  'src/contentful/__generated__/**',
+  '**/contentful/generated/**',
 ]);
 
 const eslintConfig = defineConfig([
