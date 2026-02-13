@@ -3,6 +3,8 @@
 A Next.js application built with React 19, Mantine UI, and Contentful GraphQL.
 This project uses modern tooling including GraphQL Code Generator, ESLint, Stylelint, and Plop for scalable, maintainable development.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1ec93eb2-0ba2-4a3f-aafe-44118ce8cce2/deploy-status)](https://app.netlify.com/projects/afov/deploys)
+
 ## Stack
 
 - **Framework:** Next.js 16 (App Router)

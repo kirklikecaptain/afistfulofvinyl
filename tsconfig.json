@@ -14,10 +14,11 @@
     "jsx": "react-jsx",
     "incremental": true,
     "verbatimModuleSyntax": true,
+    "baseUrl": ".",
+    "plugins": [{ "name": "next" }],
     "paths": {
       "~/*": ["./src/*"]
-    },
-    "plugins": [{ "name": "next" }]
+    }
   },
   "include": [
     "**/*.ts",
