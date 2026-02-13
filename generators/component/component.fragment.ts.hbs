@@ -1,0 +1,9 @@
+import { FragmentType, getFragmentData } from '~/contentful/__generated__/fragment-masking';
+
+export const {{ComponentName}}Fragment = graphql(`
+  fragment {{ComponentNameFragment}} on {{TypeName}} {
+    _id
+  }
+`);
+
+export type {{ComponentName}}FragmentProp = FragmentType<typeof {{ComponentName}}Fragment>;

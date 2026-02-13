@@ -1,4 +1,4 @@
-import { themeHtmlProps } from '~/theme';
+import { themeHtmlProps } from '~/lib/mantine';
 
 type HtmlProps = {
   children: React.ReactNode;

@@ -1,28 +1,31 @@
+import { Title } from '@mantine/core';
 import { notFound } from 'next/navigation';
 
-import { CardSection, VideoCard } from '~/components';
+import { CardSection, Page, Section, VideoCard } from '~/components';
+import { getArtistProfilePageData } from '~/queries/getArtistProfilePageData';
 
-import { getArtistPageData } from './page.data';
+export default async function ArtistProfilePage(props: PageProps<'/artists/[artist_slug]'>) {
+  const { artist_slug } = await props.params;
 
-export default async function ArtistPage({ params }: PageProps<'/artists/[artist_slug]'>) {
-  const { artist_slug } = await params;
-  const { artist, videos } = await getArtistPageData(artist_slug);
+  const { artist, videos } = await getArtistProfilePageData(artist_slug);
 
   if (!artist) {
     return notFound();
   }
 
   return (
-    <div>
-      <div>{artist?.name}</div>
+    <Page>
+      <Section bg="dark.9">
+        <Title>{artist.name}</Title>
+      </Section>
       <CardSection>
-        <CardSection.Title>Videos by {artist?.name}</CardSection.Title>
+        <CardSection.Title>Videos</CardSection.Title>
         <CardSection.Grid>
           {videos.map((video) => (
             <VideoCard key={video._id} fragment={video} />
           ))}
         </CardSection.Grid>
       </CardSection>
-    </div>
+    </Page>
   );
 }

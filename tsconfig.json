@@ -17,10 +17,7 @@
     "paths": {
       "~/*": ["./src/*"]
     },
-    "plugins": [
-      { "name": "next" },
-      { "name": "@0no-co/graphqlsp", "schema": "./schema.graphql", "trackFieldUsage": false }
-    ]
+    "plugins": [{ "name": "next" }]
   },
   "include": [
     "**/*.ts",
