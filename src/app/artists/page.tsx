@@ -1,5 +1,5 @@
 import { ArtistCard, CardSection } from '~/components';
-import { getArtistListPageData } from '~/queries';
+import { getArtistListPageData } from '~/queries/getArtistListPageData';
 
 export default async function ArtistListPage() {
   const { artists } = await getArtistListPageData();

@@ -1,11 +1,8 @@
 'use client';
 
 import { ThemeProvider } from '~/lib/mantine';
+import type { WithChildren } from '~/utils/types';
 
-interface RootLayoutProviderProps {
-  children: React.ReactNode;
-}
-
-export function RootLayoutProvider({ children }: RootLayoutProviderProps) {
+export function RootLayoutProvider({ children }: WithChildren) {
   return <ThemeProvider>{children}</ThemeProvider>;
 }

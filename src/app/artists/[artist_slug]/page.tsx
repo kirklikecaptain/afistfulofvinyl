@@ -2,7 +2,7 @@ import { Title } from '@mantine/core';
 import { notFound } from 'next/navigation';
 
 import { CardSection, Page, Section, VideoCard } from '~/components';
-import { getArtistProfilePageData } from '~/queries';
+import { getArtistProfilePageData } from '~/queries/getArtistProfilePageData';
 
 export default async function ArtistProfilePage(props: PageProps<'/artists/[artist_slug]'>) {
   const { artist_slug } = await props.params;

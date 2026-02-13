@@ -5,13 +5,13 @@ import type { Metadata } from 'next';
 
 import { AppLayout, AppSpotlight, Html } from '~/components';
 import { ThemeScript } from '~/lib/mantine';
-import { getRootLayoutData } from '~/queries';
+import { getRootLayoutData } from '~/queries/getRootLayoutData';
 
 import { RootLayoutProvider } from './layout.provider';
 
 export const metadata: Metadata = {
   title: 'A Fistful of Vinyl',
-  description: 'Purveyors of punk, folk, and diy culture since 2010',
+  description: 'Purveyors of punk, folk, and DIY culture since 2010',
 };
 
 export default async function RootLayout({ children }: LayoutProps<'/'>) {

@@ -1,8 +1,8 @@
 import { AFoVHero, CardSection, Page, VideoCard } from '~/components';
-import { getHomePageData } from '~/queries';
+import { getHomePageData } from '~/queries/getHomePageData';
 
 export default async function HomePage() {
-  const data = await getHomePageData();
+  const { recentVideos } = await getHomePageData();
 
   return (
     <Page>
@@ -10,7 +10,7 @@ export default async function HomePage() {
       <CardSection>
         <CardSection.Title>Recent Videos</CardSection.Title>
         <CardSection.Grid>
-          {data.recentVideos.map((video) => (
+          {recentVideos.map((video) => (
             <VideoCard key={video?._id} fragment={video} />
           ))}
         </CardSection.Grid>

@@ -2,7 +2,7 @@ import { Container, Title, Text } from '@mantine/core';
 import { notFound } from 'next/navigation';
 
 import { YoutubePlayer } from '~/components';
-import { getVideoPageData } from '~/queries';
+import { getVideoPageData } from '~/queries/getVideoPageData';
 
 export default async function VideoPage(props: PageProps<'/artists/[artist_slug]/[video_slug]'>) {
   const { artist_slug, video_slug } = await props.params;
