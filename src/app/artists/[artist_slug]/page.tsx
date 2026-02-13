@@ -1,8 +1,11 @@
 import { Title } from '@mantine/core';
 import { notFound } from 'next/navigation';
 
-import { CardSection, Page, Section, VideoCard } from '~/components';
 import { getArtistProfilePageData } from '~/queries/getArtistProfilePageData';
+import { CardSection } from '~/ui/components/CardSection';
+import { Section } from '~/ui/components/Section';
+import { VideoCard } from '~/ui/components/VideoCard';
+import { Page } from '~/ui/layouts/Page';
 
 export default async function ArtistProfilePage(props: PageProps<'/artists/[artist_slug]'>) {
   const { artist_slug } = await props.params;

@@ -1,6 +1,6 @@
 import { Box, Container, Stack, Text } from '@mantine/core';
 
-import { AFoVLogo } from '~/components/AFoVLogo';
+import { AFoVLogo } from '~/ui/components/AFoVLogo';
 
 import css from './AFoVHero.module.css';
 

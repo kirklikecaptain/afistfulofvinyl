@@ -1,5 +1,5 @@
-import type { AppSpotlightProps } from '~/components';
 import { serverQuery, graphql, assertCollectionItems } from '~/lib/contentful';
+import type { AppSpotlightProps } from '~/ui/features/AppSpotlight';
 import { toArtistPagePath, toVideoPagePath } from '~/utils/paths';
 
 export const RootLayoutDocument = graphql(`

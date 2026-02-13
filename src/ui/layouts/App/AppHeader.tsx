@@ -4,16 +4,14 @@ import { ActionIcon, Box, Container, Group } from '@mantine/core';
 import { spotlight } from '@mantine/spotlight';
 import { IconSearch } from '@tabler/icons-react';
 
-import { AFoVLogo } from '~/components/AFoVLogo';
-import { Link } from '~/components/Link';
+import { AFoVLogo } from '~/ui/components/AFoVLogo';
+import { Link } from '~/ui/components/Link';
 
-export type AppLayoutHeaderProps = {
-  className: string;
-};
+import css from './App.module.css';
 
-export function AppLayoutHeader({ className }: AppLayoutHeaderProps) {
+export function AppHeader() {
   return (
-    <Box component="header" p="md" className={className}>
+    <Box className={css.AppHeader} component="header" p="md">
       <Container>
         <Group component="nav" justify="space-between">
           <Group>
