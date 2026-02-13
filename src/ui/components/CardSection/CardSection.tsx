@@ -1,6 +1,6 @@
 import { Stack } from '@mantine/core';
 
-import { Section } from '~/components/Section';
+import { Section } from '~/ui/components/Section';
 
 import { CardSectionTitle, CardSectionGrid } from './CardSection.parts';
 

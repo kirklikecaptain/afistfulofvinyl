@@ -1,7 +1,7 @@
 import { Box } from '@mantine/core';
 
-import { Link } from '~/components/Link';
-import type { ArtistCardFragment } from '~/lib/contentful';
+import { type ArtistCardFragment } from '~/lib/contentful';
+import { Link } from '~/ui/components/Link';
 import { fragmentToProps, type PropsOrFragment } from '~/utils/fragments';
 import { useArtistColors } from '~/utils/useArtistColors';
 

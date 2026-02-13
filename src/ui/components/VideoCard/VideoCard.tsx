@@ -1,8 +1,8 @@
 import { Box, Title, Text, AspectRatio } from '@mantine/core';
 
-import { Image } from '~/components/Image';
-import { Link } from '~/components/Link';
-import type { VideoCardFragment } from '~/lib/contentful';
+import { type VideoCardFragment } from '~/lib/contentful';
+import { Image } from '~/ui/components/Image';
+import { Link } from '~/ui/components/Link';
 import { fragmentToProps, type PropsOrFragment } from '~/utils/fragments';
 
 import { getVideoCardProps } from './VideoCard.utils';

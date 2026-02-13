@@ -1,0 +1,11 @@
+.App {
+  --app-nav-border: 1px solid var(--mantine-color-dark-5);
+}
+
+.AppHeader {
+  border-bottom: var(--app-nav-border);
+}
+
+.AppFooter {
+  border-top: var(--app-nav-border);
+}

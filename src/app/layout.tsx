@@ -3,9 +3,10 @@ import '@mantine/spotlight/styles.css';
 
 import type { Metadata } from 'next';
 
-import { AppLayout, AppSpotlight, Html } from '~/components';
-import { ThemeScript } from '~/lib/mantine';
+import { themeHtmlProps, ThemeScript } from '~/lib/mantine';
 import { getRootLayoutData } from '~/queries/getRootLayoutData';
+import { AppSpotlight } from '~/ui/features/AppSpotlight';
+import { App } from '~/ui/layouts/App';
 
 import { RootLayoutProvider } from './layout.provider';
 
@@ -18,7 +19,7 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const { spotlightData } = await getRootLayoutData();
 
   return (
-    <Html>
+    <html lang="en" {...themeHtmlProps}>
       <head>
         <ThemeScript />
         <link rel="shortcut icon" href="/favicon.svg" />
@@ -29,10 +30,10 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
       </head>
       <body>
         <RootLayoutProvider>
-          <AppLayout>{children}</AppLayout>
+          <App>{children}</App>
           <AppSpotlight artists={spotlightData.artists} videos={spotlightData.videos} />
         </RootLayoutProvider>
       </body>
-    </Html>
+    </html>
   );
 }

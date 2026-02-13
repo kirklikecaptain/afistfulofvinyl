@@ -1,5 +1,8 @@
-import { AFoVHero, CardSection, Page, VideoCard } from '~/components';
 import { getHomePageData } from '~/queries/getHomePageData';
+import { CardSection } from '~/ui/components/CardSection';
+import { VideoCard } from '~/ui/components/VideoCard';
+import { AFoVHero } from '~/ui/features/AFoVHero';
+import { Page } from '~/ui/layouts/Page';
 
 export default async function HomePage() {
   const { recentVideos } = await getHomePageData();
