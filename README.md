@@ -1,20 +1,14 @@
-# afov.next
+# afistfulofvinyl
 
-A Next.js application built with React 19, Mantine UI, and Contentful GraphQL.
-This project uses modern tooling including GraphQL Code Generator, ESLint, Stylelint, and Plop for scalable, maintainable development.
+Website for A Fistful of Vinyl
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1ec93eb2-0ba2-4a3f-aafe-44118ce8cce2/deploy-status)](https://app.netlify.com/projects/afov/deploys)
 
 ## Stack
 
-- **Framework:** Next.js 16 (App Router)
-- **UI:** Mantine v8
-- **Language:** TypeScript
-- **Data:** Contentful GraphQL API
-- **GraphQL Client:** `@urql/core` (server-side usage)
-- **Styling:** PostCSS + SCSS, Stylelint
-- **Code Quality:** ESLint, Prettier
-- **Tooling:** GraphQL Codegen, Plop
+- (Typescript)<https://www.typescriptlang.org/docs/> / (React)<https://react.dev/reference/react> / (Next.js)<https://nextjs.org/docs/app>
+- (Mantine UI)<https://mantine.dev/core/package/> / (CSS Modules)<https://github.com/css-modules/css-modules>
+- (Contentful CMS via GraphQL)<https://www.contentful.com/developers/docs/references/graphql/> introduction/> / (GraphQL Codegen)<https://the-guild.dev/graphql/codegen/plugins/presets/preset-client> / (URQL)<https://nearform.com/open-source/urql/docs/>
 
 ## Scripts
 
